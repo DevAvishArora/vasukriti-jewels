@@ -1,0 +1,12 @@
+export { HeroSection } from './hero-section';
+export { FeaturedCollections } from './featured-collections';
+export { TrendingProducts } from './trending-products';
+export { Testimonials } from './testimonials';
+export { LuxuryHero } from './luxury-hero';
+export { VideoShowcase } from './video-showcase';
+export { MusicPlayer } from './music-player';
+export { CategoryCards } from './category-cards';
+export { WhyChooseUs } from './why-choose-us';
+export { NewArrivals } from './new-arrivals';
+export { Newsletter } from './newsletter';
+export { BrandStory } from './brand-story';

@@ -1,0 +1,250 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "../styles/responsive.css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-inter);
+  --font-serif: var(--font-playfair);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+}
+
+:root {
+  /* Premium Luxury Theme - Warm Ivory Base */
+  --radius: 0.75rem;
+  --background: 255 252 247; /* ivory-50 */
+  --foreground: 26 26 22; /* charcoal-900 */
+  --card: 255 255 255;
+  --card-foreground: 26 26 22;
+  --popover: 255 255 255;
+  --popover-foreground: 26 26 22;
+  --primary: 204 181 144; /* champagne-500 */
+  --primary-foreground: 26 26 22;
+  --secondary: 232 150 143; /* rosegold-500 */
+  --secondary-foreground: 26 26 22;
+  --muted: 245 240 232; /* champagne-100 */
+  --muted-foreground: 110 110 101; /* charcoal-600 */
+  --accent: 232 150 143; /* rosegold-500 */
+  --accent-foreground: 255 252 247;
+  --destructive: 156 61 61; /* maroon-600 */
+  --border: 237 228 213; /* champagne-200 */
+  --input: 237 228 213;
+  --ring: 204 181 144;
+  --chart-1: 204 181 144;
+  --chart-2: 232 150 143;
+  --chart-3: 46 157 95;
+  --chart-4: 154 61 61;
+  --chart-5: 49 72 40;
+  --sidebar: 255 252 247;
+  --sidebar-foreground: 26 26 22;
+  --sidebar-primary: 204 181 144;
+  --sidebar-primary-foreground: 26 26 22;
+  --sidebar-accent: 245 240 232;
+  --sidebar-accent-foreground: 26 26 22;
+  --sidebar-border: 237 228 213;
+  --sidebar-ring: 204 181 144;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+@layer utilities {
+  /* Smooth transitions */
+  .transition-smooth {
+    @apply transition-all duration-300 ease-in-out;
+  }
+  
+  /* 3D card effect */
+  .card-3d {
+    transform-style: preserve-3d;
+    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  .card-3d:hover {
+    transform: perspective(1000px) rotateY(5deg) translateZ(10px);
+  }
+  
+  /* Subtle lift animation */
+  .lift {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  .lift:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 24px -8px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Shimmer loading effect */
+  @keyframes shimmer {
+    0% {
+      background-position: -1000px 0;
+    }
+    100% {
+      background-position: 1000px 0;
+    }
+  }
+  
+  .shimmer {
+    animation: shimmer 2s infinite linear;
+    background: linear-gradient(
+      to right,
+      transparent 0%,
+      rgba(255, 255, 255, 0.3) 50%,
+      transparent 100%
+    );
+    background-size: 1000px 100%;
+  }
+  
+  /* Smooth scrolling */
+  html {
+    scroll-behavior: smooth;
+  }
+
+  /* Premium selection */
+  ::selection {
+    background-color: rgba(232, 150, 143, 0.3);
+    color: inherit;
+  }
+
+  /* Fade in animation */
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  .animate-fade-in {
+    animation: fadeIn 0.5s ease-out;
+  }
+  
+  /* Gradient animation */
+  @keyframes gradient {
+    0%, 100% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+  }
+  
+  .animate-gradient {
+    background-size: 200% 200%;
+    animation: gradient 3s ease infinite;
+  }
+
+  /* Shimmer effect for promotional bar */
+  @keyframes shimmer {
+    0% {
+      background-position: -1000px 0;
+    }
+    100% {
+      background-position: 1000px 0;
+    }
+  }
+
+  .shimmer {
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 255, 255, 0.3),
+      transparent
+    );
+    background-size: 1000px 100%;
+    animation: shimmer 2.5s linear infinite;
+  }
+
+  /* Glassmorphism */
+  .glass {
+    background: rgba(255, 252, 247, 0.95);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+  }
+
+  /* Premium gradient backgrounds */
+  .gradient-ivory {
+    background: linear-gradient(135deg, #FFFCF7 0%, #FFF9F0 50%, #FFF5E8 100%);
+  }
+
+  .gradient-champagne {
+    background: linear-gradient(135deg, #FAF8F5 0%, #F5F0E8 50%, #EDE4D5 100%);
+  }
+
+  .gradient-rosegold {
+    background: linear-gradient(135deg, #FFF5F5 0%, #FFEAEA 50%, #FFD5D5 100%);
+  }
+
+  /* Soft glow effects */
+  .glow-champagne {
+    box-shadow: 0 0 40px rgba(204, 181, 144, 0.25);
+  }
+
+  .glow-rosegold {
+    box-shadow: 0 0 30px rgba(232, 150, 143, 0.2);
+  }
+
+  /* Premium text styles */
+  .text-luxury {
+    letter-spacing: 0.05em;
+    font-weight: 400;
+  }
+
+  .text-elegant {
+    letter-spacing: 0.025em;
+    font-weight: 400;
+  }
+
+  /* Smooth transitions */
+  .transition-elegant {
+    transition: all 400ms cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .transition-smooth {
+    transition: all 600ms cubic-bezier(0.25, 0.1, 0.25, 1);
+  }
+}
