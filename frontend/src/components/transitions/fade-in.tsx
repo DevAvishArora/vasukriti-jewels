@@ -41,7 +41,7 @@ export function FadeIn({
       transition={{
         duration,
         delay,
-        ease: [0.4, 0, 0.2, 1],
+        ease: [0.4, 0, 0.2, 1] as const,
       }}
       className={className}
     >

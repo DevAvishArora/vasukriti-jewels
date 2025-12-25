@@ -17,10 +17,17 @@ import {
   Settings,
   LogOut,
   Store,
-  Layers
+  Layers,
+  X
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useAuthStore } from '@/store/auth-store';
+import { Sheet, SheetContent } from '@/components/ui/sheet';
+
+interface SidebarProps {
+  isMobileOpen?: boolean;
+  onMobileClose?: () => void;
+}
 
 const navItems = [
   {
@@ -84,7 +91,7 @@ const navItems = [
   },
 ];
 
-export function Sidebar() {
+export function Sidebar({ isMobileOpen = false, onMobileClose }: SidebarProps) {
   const pathname = usePathname();
   const router = useRouter();
   const { user, logout } = useAuthStore();
@@ -94,11 +101,17 @@ export function Sidebar() {
     router.push('/login');
   };
 
-  return (
-    <div className="flex h-screen w-64 flex-col bg-gradient-to-b from-gray-900 to-gray-800 text-white">
+  const handleLinkClick = () => {
+    if (onMobileClose) {
+      onMobileClose();
+    }
+  };
+
+  const SidebarContent = () => (
+    <div className="flex h-full flex-col bg-gradient-to-b from-gray-900 to-gray-800 text-white">
       {/* Logo & Brand */}
       <div className="border-b border-gray-700 px-6 py-5">
-        <Link href="/admin" className="flex items-center gap-3">
+        <Link href="/admin" className="flex items-center gap-3" onClick={handleLinkClick}>
           <div className="rounded-lg bg-gradient-to-r from-amber-500 to-rose-500 p-2">
             <Store className="h-6 w-6" />
           </div>
@@ -133,6 +146,7 @@ export function Sidebar() {
               <li key={item.href}>
                 <Link
                   href={item.href}
+                  onClick={handleLinkClick}
                   className={cn(
                     'flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium transition-all',
                     isActive
@@ -151,7 +165,7 @@ export function Sidebar() {
 
       {/* Footer Actions */}
       <div className="border-t border-gray-700 p-4 space-y-2">
-        <Link href="/">
+        <Link href="/" onClick={handleLinkClick}>
           <Button 
             variant="outline" 
             className="w-full justify-start gap-2 border-gray-600 text-gray-300 hover:bg-gray-700 hover:text-white transition-all"
@@ -170,5 +184,21 @@ export function Sidebar() {
         </Button>
       </div>
     </div>
+  );
+
+  return (
+    <>
+      {/* Desktop Sidebar - Always visible on large screens */}
+      <div className="hidden lg:flex h-screen w-64 flex-col">
+        <SidebarContent />
+      </div>
+
+      {/* Mobile Sidebar - Drawer */}
+      <Sheet open={isMobileOpen} onOpenChange={onMobileClose}>
+        <SheetContent side="left" className="w-64 p-0 bg-transparent border-0">
+          <SidebarContent />
+        </SheetContent>
+      </Sheet>
+    </>
   );
 }

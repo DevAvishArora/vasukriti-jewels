@@ -4,6 +4,8 @@ import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { useAuthStore } from '@/store/auth-store';
 import { Sidebar } from '@/components/admin/sidebar';
+import { Menu } from 'lucide-react';
+import { Button } from '@/components/ui/button';
 
 export default function AdminLayout({
   children,
@@ -12,6 +14,7 @@ export default function AdminLayout({
 }>) {
   const router = useRouter();
   const [isReady, setIsReady] = useState(false);
+  const [isMobileSidebarOpen, setIsMobileSidebarOpen] = useState(false);
   
   // Use a ref to get the latest auth state without causing re-renders
   const isAuthenticated = useAuthStore((state) => state.isAuthenticated);
@@ -53,9 +56,31 @@ export default function AdminLayout({
 
   return (
     <div className="flex h-screen overflow-hidden bg-gray-50 dark:bg-gray-900">
-      <Sidebar />
-      <main className="flex-1 overflow-y-auto">
-        <div className="container mx-auto px-6 py-8">
+      {/* Mobile Header */}
+      <div className="lg:hidden fixed top-0 left-0 right-0 z-40 bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700">
+        <div className="flex items-center justify-between px-4 py-3">
+          <Button
+            variant="ghost"
+            size="icon"
+            onClick={() => setIsMobileSidebarOpen(true)}
+            className="text-gray-700 dark:text-gray-300"
+          >
+            <Menu className="h-6 w-6" />
+          </Button>
+          <h1 className="text-lg font-semibold text-gray-900 dark:text-white">Admin Panel</h1>
+          <div className="w-10" /> {/* Spacer for centering */}
+        </div>
+      </div>
+
+      {/* Sidebar - Desktop: Fixed, Mobile: Drawer */}
+      <Sidebar 
+        isMobileOpen={isMobileSidebarOpen} 
+        onMobileClose={() => setIsMobileSidebarOpen(false)} 
+      />
+      
+      {/* Main Content */}
+      <main className="flex-1 overflow-y-auto pt-14 lg:pt-0">
+        <div className="container mx-auto px-4 sm:px-6 py-6 sm:py-8">
           {children}
         </div>
       </main>

@@ -148,7 +148,7 @@ export default function ProductDetailsPage() {
               <button onClick={() => router.push('/shop')} className="hover:text-black transition-colors">
                 Shop
               </button>
-              {product.category?.name && (
+              {product.category && typeof product.category === 'object' && product.category.name && (
                 <>
                   <ChevronRight className="w-3 h-3" />
                   <span className="text-black">{product.category.name}</span>
@@ -203,7 +203,7 @@ export default function ProductDetailsPage() {
             {/* Right Column - Product Info */}
             <div className="lg:sticky lg:top-24 lg:self-start space-y-6">
               {/* Category */}
-              {product.category?.name && (
+              {product.category && typeof product.category === 'object' && product.category.name && (
                 <div className="text-xs tracking-widest text-gray-500 uppercase">
                   {product.category.name}
                 </div>
