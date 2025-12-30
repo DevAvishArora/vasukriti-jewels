@@ -58,7 +58,7 @@ export function MobileNav({ isOpen, onClose }: MobileNavProps) {
       <Sheet open={isOpen} onOpenChange={onClose}>
         <SheetContent side="left" className="w-80 p-0 bg-white">
           <SheetHeader className="border-b px-6 py-4">
-            <SheetTitle className="text-left font-playfair text-xl bg-gradient-to-r from-amber-600 to-rose-600 bg-clip-text text-transparent">
+            <SheetTitle className="text-left font-playfair text-xl text-[#7e1219]">
               Vasukriti Jewels
             </SheetTitle>
           </SheetHeader>
@@ -67,9 +67,9 @@ export function MobileNav({ isOpen, onClose }: MobileNavProps) {
             <div className="flex-1 overflow-y-auto py-4">
               {/* User Section */}
               {isAuthenticated && user ? (
-                <div className="px-6 py-4 bg-gradient-to-r from-amber-50 to-rose-50 mb-4">
+                <div className="px-6 py-4 bg-red-50 mb-4">
                   <div className="flex items-center gap-3">
-                    <div className="flex h-12 w-12 items-center justify-center rounded-full bg-gradient-to-r from-amber-600 to-rose-600 text-white font-semibold">
+                    <div className="flex h-12 w-12 items-center justify-center rounded-full bg-[#7e1219] text-white font-semibold">
                       {user.fullName.charAt(0).toUpperCase()}
                     </div>
                     <div>
@@ -85,14 +85,14 @@ export function MobileNav({ isOpen, onClose }: MobileNavProps) {
                   <div className="flex gap-2">
                     <Link
                       href="/login"
-                      className="flex-1 px-4 py-2 text-center text-sm font-medium border border-amber-600 text-amber-600 rounded-md hover:bg-amber-50 transition-colors"
+                      className="flex-1 px-4 py-2 text-center text-sm font-medium border border-[#7e1219] text-[#7e1219] rounded-md hover:bg-red-50 transition-colors"
                       onClick={onClose}
                     >
                       Login
                     </Link>
                     <Link
                       href="/register"
-                      className="flex-1 px-4 py-2 text-center text-sm font-medium bg-gradient-to-r from-amber-600 to-rose-600 text-white rounded-md hover:from-amber-700 hover:to-rose-700 transition-colors"
+                      className="flex-1 px-4 py-2 text-center text-sm font-medium bg-[#7e1219] text-white rounded-md hover:bg-[#6b0f15] transition-colors"
                       onClick={onClose}
                     >
                       Sign Up
@@ -171,7 +171,7 @@ export function MobileNav({ isOpen, onClose }: MobileNavProps) {
                     {user.role === 'admin' && (
                       <Link
                         href="/admin"
-                        className="flex items-center gap-3 px-3 py-2 text-sm font-medium bg-gradient-to-r from-amber-50 to-rose-50 text-amber-700 rounded-md hover:from-amber-100 hover:to-rose-100 transition-colors"
+                        className="flex items-center gap-3 px-3 py-2 text-sm font-medium bg-red-50 text-[#7e1219] rounded-md hover:bg-red-100 transition-colors"
                         onClick={onClose}
                       >
                         <Sparkles className="h-5 w-5" />

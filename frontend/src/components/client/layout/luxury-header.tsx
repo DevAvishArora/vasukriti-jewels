@@ -138,13 +138,13 @@ export function LuxuryHeader({ onMobileMenuToggle }: LuxuryHeaderProps) {
           {/* Center - Logo */}
           <Link
             href="/"
-            className="absolute left-1/2 transform -translate-x-1/2 font-playfair text-base sm:text-2xl md:text-4xl lg:text-5xl font-bold bg-gradient-to-r from-red-800 via-red-700 to-red-900 bg-clip-text text-transparent hover:scale-105 transition-transform whitespace-nowrap max-w-[120px] sm:max-w-none overflow-hidden text-center"
+            className="absolute left-1/2 transform -translate-x-1/2 font-playfair text-sm sm:text-xl md:text-4xl lg:text-5xl font-bold bg-gradient-to-r from-red-800 via-red-700 to-red-900 bg-clip-text text-transparent hover:scale-105 transition-transform whitespace-nowrap max-w-[100px] sm:max-w-[200px] md:max-w-none overflow-hidden text-center"
           >
             VASUKRITI
           </Link>
 
           {/* Right Side - Actions & More Nav */}
-          <div className="flex items-center gap-4 lg:gap-6 flex-1 justify-end">
+          <div className="flex items-center gap-2 sm:gap-4 lg:gap-6 flex-1 justify-end">
             {/* Actions */}
             <div className="flex items-center gap-1 sm:gap-2 md:gap-3">
               {/* Speaker (global audio control) - Hidden on mobile */}
@@ -167,10 +167,10 @@ export function LuxuryHeader({ onMobileMenuToggle }: LuxuryHeaderProps) {
                   <VolumeX className="h-5 w-5" />
                 )}
               </button>
-              {/* Search Icon - Hidden on mobile */}
+              {/* Search Icon - Hidden on mobile and small tablets */}
               <button
                 onClick={() => router.push('/search')}
-                className="hidden sm:block text-gray-700 hover:text-red-700 transition-colors"
+                className="hidden md:block text-gray-700 hover:text-red-700 transition-colors"
                 aria-label="Search"
               >
                 <Search className="h-5 w-5" />
@@ -204,12 +204,12 @@ export function LuxuryHeader({ onMobileMenuToggle }: LuxuryHeaderProps) {
                 )}
               </button>
 
-              {/* User Menu */}
+              {/* User Menu - Hidden on mobile/tablet, visible on desktop */}
               {isAuthenticated && user ? (
                 <DropdownMenu>
                   <DropdownMenuTrigger asChild>
                     <button
-                      className="flex items-center gap-2 rounded-full border-2 border-red-200 px-3 py-1.5 hover:border-red-700 transition-colors bg-red-50/50"
+                      className="hidden lg:flex items-center gap-2 rounded-full border-2 border-red-200 px-3 py-1.5 hover:border-red-700 transition-colors bg-red-50/50"
                       aria-label="User menu"
                     >
                       <User className="h-4 w-4 text-red-700" />
@@ -268,7 +268,7 @@ export function LuxuryHeader({ onMobileMenuToggle }: LuxuryHeaderProps) {
                     variant="ghost"
                     size="sm"
                     onClick={() => router.push('/login')}
-                    className="hidden sm:flex text-gray-700 hover:text-red-700"
+                    className="hidden lg:flex text-gray-700 hover:text-red-700"
                   >
                     <LogIn className="mr-2 h-4 w-4" />
                     Login
@@ -276,7 +276,7 @@ export function LuxuryHeader({ onMobileMenuToggle }: LuxuryHeaderProps) {
                   <Button
                     size="sm"
                     onClick={() => router.push('/register')}
-                    className="bg-gradient-to-r from-red-700 to-red-800 hover:from-red-800 hover:to-red-900 text-white font-semibold"
+                    className="bg-gradient-to-r from-red-700 to-red-800 hover:from-red-800 hover:to-red-900 text-white font-semibold text-xs sm:text-sm"
                   >
                     <UserPlus className="mr-2 h-4 w-4" />
                     <span className="hidden sm:inline">Sign Up</span>

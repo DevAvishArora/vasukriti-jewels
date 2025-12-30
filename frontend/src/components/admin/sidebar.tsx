@@ -112,7 +112,7 @@ export function Sidebar({ isMobileOpen = false, onMobileClose }: SidebarProps) {
       {/* Logo & Brand */}
       <div className="border-b border-gray-700 px-6 py-5">
         <Link href="/admin" className="flex items-center gap-3" onClick={handleLinkClick}>
-          <div className="rounded-lg bg-gradient-to-r from-amber-500 to-rose-500 p-2">
+          <div className="rounded-lg bg-[#7e1219] p-2">
             <Store className="h-6 w-6" />
           </div>
           <div>
@@ -125,7 +125,7 @@ export function Sidebar({ isMobileOpen = false, onMobileClose }: SidebarProps) {
       {/* User Info */}
       <div className="border-b border-gray-700 px-6 py-4">
         <div className="flex items-center gap-3">
-          <div className="flex h-10 w-10 items-center justify-center rounded-full bg-gradient-to-r from-amber-500 to-rose-500 font-semibold">
+          <div className="flex h-10 w-10 items-center justify-center rounded-full bg-[#7e1219] font-semibold">
             {user?.fullName?.charAt(0).toUpperCase()}
           </div>
           <div className="flex-1 min-w-0">
@@ -150,7 +150,7 @@ export function Sidebar({ isMobileOpen = false, onMobileClose }: SidebarProps) {
                   className={cn(
                     'flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium transition-all',
                     isActive
-                      ? 'bg-gradient-to-r from-amber-500 to-rose-500 text-white shadow-lg'
+                      ? 'bg-[#7e1219] text-white shadow-lg'
                       : 'text-gray-300 hover:bg-gray-700 hover:text-white'
                   )}
                 >
