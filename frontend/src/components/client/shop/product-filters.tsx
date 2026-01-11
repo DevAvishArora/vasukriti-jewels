@@ -45,6 +45,7 @@ export function ProductFilters({ filters, onFilterChange, onClearFilters }: Prod
     category: true,
     price: true,
     material: true,
+    color: true,
   });
 
   useEffect(() => {
@@ -96,8 +97,7 @@ export function ProductFilters({ filters, onFilterChange, onClearFilters }: Prod
 
   const handlePriceChange = (values: number[]) => {
     onFilterChange({
-      ...filcolors.length > 0 ||
-    filters.ters,
+      ...filters,
       minPrice: values[0],
       maxPrice: values[1],
     });

@@ -28,8 +28,8 @@ interface Category {
 
 interface Image {
   url: string;
-  alt: string;
-  isPrimary: boolean;
+  alt?: string;
+  isPrimary?: boolean;
 }
 
 interface Product {
@@ -70,7 +70,7 @@ export default function EditProductPage() {
     weight: '',
     stockQuantity: '',
     sku: '',
-    images: [{ url: '', alt: '', isPrimary: true }],
+    images: [{ url: '', alt: '', isPrimary: true }] as Image[],
     tags: '',
     isActive: true,
   });
