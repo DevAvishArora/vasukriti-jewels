@@ -166,13 +166,6 @@ export function MegaMenu({ onClose }: Readonly<MegaMenuProps>) {
                         className="absolute inset-0 opacity-0 group-hover:opacity-90 transition-opacity duration-300"
                         style={{ backgroundColor: '#7e1219' }}
                       />
-
-                      {/* Text */}
-                      <div className="absolute inset-0 flex items-center justify-center p-4">
-                        <h4 className="text-sm font-light text-gray-900 group-hover:text-white transition-colors duration-300 text-center uppercase tracking-wider">
-                          {category.name}
-                        </h4>
-                      </div>
                     </Link>
                   ))
                 )}

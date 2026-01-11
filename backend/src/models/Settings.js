@@ -5,7 +5,7 @@ const settingsSchema = new mongoose.Schema(
     // Site Information
     siteName: {
       type: String,
-      default: 'Vasukriti Jewels',
+      default: 'Vasukriti',
     },
     siteDescription: {
       type: String,

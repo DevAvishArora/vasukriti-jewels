@@ -59,7 +59,7 @@ export function MobileNav({ isOpen, onClose }: MobileNavProps) {
         <SheetContent side="left" className="w-80 p-0 bg-white">
           <SheetHeader className="border-b px-6 py-4">
             <SheetTitle className="text-left font-playfair text-xl text-[#7e1219]">
-              Vasukriti Jewels
+              Vasukriti
             </SheetTitle>
           </SheetHeader>
 

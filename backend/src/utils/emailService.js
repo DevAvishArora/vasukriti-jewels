@@ -4,6 +4,7 @@ const {
   shippingUpdateTemplate,
   passwordResetTemplate,
   welcomeEmailTemplate,
+  emailVerificationTemplate,
 } = require('./emailTemplates');
 
 /**
@@ -14,7 +15,7 @@ const {
 const sendOrderConfirmation = async (order, user) => {
   try {
     const mailOptions = {
-      from: `"Vasukriti Jewels" <${process.env.EMAIL_USER}>`,
+      from: `"Vasukriti" <${process.env.EMAIL_USER}>`,
       to: user.email,
       subject: `Order Confirmation - #${order.orderNumber}`,
       html: orderConfirmationTemplate(order),
@@ -38,7 +39,7 @@ const sendOrderConfirmation = async (order, user) => {
 const sendShippingUpdate = async (order, user, trackingInfo = null) => {
   try {
     const mailOptions = {
-      from: `"Vasukriti Jewels" <${process.env.EMAIL_USER}>`,
+      from: `"Vasukriti" <${process.env.EMAIL_USER}>`,
       to: user.email,
       subject: `Your Order Has Been Shipped - #${order.orderNumber}`,
       html: shippingUpdateTemplate(order, trackingInfo),
@@ -62,9 +63,9 @@ const sendShippingUpdate = async (order, user, trackingInfo = null) => {
 const sendPasswordReset = async (user, resetToken, resetUrl) => {
   try {
     const mailOptions = {
-      from: `"Vasukriti Jewels" <${process.env.EMAIL_USER}>`,
+      from: `"Vasukriti" <${process.env.EMAIL_USER}>`,
       to: user.email,
-      subject: 'Password Reset Request - Vasukriti Jewels',
+      subject: 'Password Reset Request - Vasukriti',
       html: passwordResetTemplate(resetUrl, user.name),
     };
 
@@ -84,9 +85,9 @@ const sendPasswordReset = async (user, resetToken, resetUrl) => {
 const sendWelcomeEmail = async (user) => {
   try {
     const mailOptions = {
-      from: `"Vasukriti Jewels" <${process.env.EMAIL_USER}>`,
+      from: `"Vasukriti" <${process.env.EMAIL_USER}>`,
       to: user.email,
-      subject: 'Welcome to Vasukriti Jewels! ',
+      subject: 'Welcome to Vasukriti! ',
       html: welcomeEmailTemplate(user.name),
     };
 
@@ -99,9 +100,41 @@ const sendWelcomeEmail = async (user) => {
   }
 };
 
+/**
+ * Send email verification to new users
+ * @param {Object} user - User document
+ * @param {String} verificationToken - Email verification token
+ * @param {String} verificationUrl - Email verification URL
+ */
+const sendVerificationEmail = async (user, verificationToken, verificationUrl) => {
+  try {
+    const mailOptions = {
+      from: `"Vasukriti" <${process.env.EMAIL_USER}>`,
+      to: user.email,
+      subject: 'Verify Your Email - Vasukriti',
+      html: emailVerificationTemplate(verificationUrl, user.name),
+    };
+
+    const info = await transporter.sendMail(mailOptions);
+    console.log(`✅ Verification email sent to ${user.email}: ${info.messageId}`);
+    
+    // If using Ethereal, log the preview URL
+    if (process.env.EMAIL_HOST === 'smtp.ethereal.email') {
+      const previewUrl = require('nodemailer').getTestMessageUrl(info);
+      console.log('📧 Preview email at:', previewUrl);
+    }
+    
+    return info;
+  } catch (error) {
+    console.error('❌ Error sending verification email:', error);
+    throw error; // Throw error so caller knows email failed
+  }
+};
+
 module.exports = {
   sendOrderConfirmation,
   sendShippingUpdate,
   sendPasswordReset,
   sendWelcomeEmail,
+  sendVerificationEmail,
 };

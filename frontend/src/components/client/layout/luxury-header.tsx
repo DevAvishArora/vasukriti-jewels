@@ -213,8 +213,8 @@ export function LuxuryHeader({ onMobileMenuToggle }: LuxuryHeaderProps) {
                       aria-label="User menu"
                     >
                       <User className="h-4 w-4 text-red-700" />
-                      <span className="hidden sm:inline text-sm font-medium text-gray-900">
-                        {user.fullName.split(' ')[0]}
+                      <span className="text-sm font-medium text-gray-900">
+                        {user?.fullName?.split(' ')[0] || 'User'}
                       </span>
                     </button>
                   </DropdownMenuTrigger>

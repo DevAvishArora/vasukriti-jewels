@@ -71,7 +71,7 @@ export function useRazorpay() {
         key: keyId,
         amount,
         currency,
-        name: 'Vasukriti Jewels',
+        name: 'Vasukriti',
         description: 'Order Payment',
         order_id: razorpayOrderId,
         prefill: {

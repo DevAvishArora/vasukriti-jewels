@@ -1,126 +1,92 @@
 'use client';
 
-import { useState, useMemo } from 'react';
-import { Search, Package, Truck, RotateCcw, ShoppingBag, User, ChevronDown } from 'lucide-react';
+import { useState, useMemo, useEffect } from 'react';
+import { Search, Package, Truck, RotateCcw, ShoppingBag, User, ChevronDown, HelpCircle, CreditCard } from 'lucide-react';
 import { ClientLayout } from '@/components/client/client-layout';
 import { FadeIn } from '@/components/transitions';
+import axiosInstance from '@/lib/axios-instance';
 
-const faqData = [
-  {
-    category: 'Orders',
-    icon: ShoppingBag,
-    questions: [
-      {
-        question: 'How do I place an order?',
-        answer: 'Browse our collections, add items to your cart, proceed to checkout, and complete the payment. You\'ll receive an order confirmation email with tracking details.',
-      },
-      {
-        question: 'Can I modify or cancel my order?',
-        answer: 'Orders can be modified or cancelled within 1 hour of placement. Please contact our customer support immediately. Once the order is processed, modifications may not be possible.',
-      },
-      {
-        question: 'Do you offer Cash on Delivery (COD)?',
-        answer: 'Yes, we offer COD for orders below ₹50,000. A nominal COD fee may apply. COD is available for select serviceable areas only.',
-      },
-      {
-        question: 'What payment methods do you accept?',
-        answer: 'We accept credit/debit cards, net banking, UPI, digital wallets (Paytm, PhonePe, Google Pay), and Cash on Delivery for eligible orders.',
-      },
-    ],
-  },
-  {
-    category: 'Shipping',
-    icon: Truck,
-    questions: [
-      {
-        question: 'How long does delivery take?',
-        answer: 'Standard delivery takes 5-7 business days. Express delivery (1-3 business days) is available for select locations at an additional cost. Custom orders may take 2-3 weeks.',
-      },
-      {
-        question: 'Do you ship internationally?',
-        answer: 'Yes, we ship to select international destinations. International shipping takes 10-15 business days. Additional customs duties may apply based on your country.',
-      },
-      {
-        question: 'How can I track my order?',
-        answer: 'Once shipped, you\'ll receive a tracking number via email and SMS. You can also track your order from the "My Orders" section in your account.',
-      },
-      {
-        question: 'What are the shipping charges?',
-        answer: 'Free shipping on orders above ₹10,000. For orders below ₹10,000, a flat shipping fee of ₹150 applies. Express delivery costs ₹500 extra.',
-      },
-    ],
-  },
-  {
-    category: 'Returns & Exchanges',
-    icon: RotateCcw,
-    questions: [
-      {
-        question: 'What is your return policy?',
-        answer: '7-day return policy from the date of delivery. Products must be unused, in original packaging with all tags and certificates. Custom-made items are non-returnable.',
-      },
-      {
-        question: 'How do I return a product?',
-        answer: 'Initiate a return request from your account\'s "My Orders" section. Our team will arrange a pickup. Refunds are processed within 7-10 business days after quality check.',
-      },
-      {
-        question: 'Can I exchange a product?',
-        answer: 'Yes, exchanges are available within 7 days. You can exchange for a different size, design, or product of equal or higher value. Price difference must be paid if applicable.',
-      },
-      {
-        question: 'Are there any items that cannot be returned?',
-        answer: 'Custom-made jewelry, engraved items, earrings (hygiene reasons), sale items, and gift cards are non-returnable. Please check product details before purchasing.',
-      },
-    ],
-  },
-  {
-    category: 'Products',
-    icon: Package,
-    questions: [
-      {
-        question: 'Are your products certified?',
-        answer: 'Yes, all gold jewelry comes with BIS Hallmark certification. Diamond jewelry includes IGI/GIA certificates. We provide authenticity certificates with every purchase.',
-      },
-      {
-        question: 'What is the purity of gold used?',
-        answer: 'We offer jewelry in 14K, 18K, and 22K gold. Each product listing clearly mentions the gold purity. All items are BIS hallmarked for authenticity.',
-      },
-      {
-        question: 'Can I customize a design?',
-        answer: 'Yes, we offer customization services. You can modify existing designs or create something entirely new. Our design team will work with you. Custom orders take 2-3 weeks.',
-      },
-      {
-        question: 'Do you offer resizing services?',
-        answer: 'Yes, complimentary resizing is available for rings purchased from us within 30 days. Subsequent resizing may incur charges based on complexity.',
-      },
-    ],
-  },
-  {
-    category: 'Account & Support',
-    icon: User,
-    questions: [
-      {
-        question: 'How do I create an account?',
-        answer: 'Click "Sign In" in the header, then select "Create Account". Fill in your details and verify your email. You can also checkout as a guest without creating an account.',
-      },
-      {
-        question: 'I forgot my password. What should I do?',
-        answer: 'Click "Forgot Password" on the login page. Enter your email address, and we\'ll send you a password reset link. Follow the instructions to create a new password.',
-      },
-      {
-        question: 'How can I contact customer support?',
-        answer: 'Email us at support@vasukritijewels.com, call +91 98765 43210 (10 AM - 8 PM), or use the contact form. We respond within 24 hours on business days.',
-      },
-      {
-        question: 'Do you have a physical store?',
-        answer: 'Yes, our flagship store is in Mumbai. Visit our Contact page for address and hours. We recommend booking an appointment for personalized service.',
-      },
-    ],
-  },
-];
+interface FAQ {
+  _id: string;
+  question: string;
+  answer: string;
+  category: string;
+  order: number;
+  isActive: boolean;
+  isDraft: boolean;
+  tags: string[];
+}
+
+interface CategoryData {
+  category: string;
+  icon: any;
+  questions: FAQ[];
+}
+
+// Category icon mapping
+const categoryIcons: Record<string, any> = {
+  general: HelpCircle,
+  shipping: Truck,
+  returns: RotateCcw,
+  payment: CreditCard,
+  products: Package,
+  orders: ShoppingBag,
+  account: User,
+};
+
+// Category label mapping
+const categoryLabels: Record<string, string> = {
+  general: 'General',
+  shipping: 'Shipping & Delivery',
+  returns: 'Returns & Exchanges',
+  payment: 'Payment',
+  products: 'Products',
+  orders: 'Orders',
+  account: 'Account & Support',
+};
 
 export default function FAQPage() {
   const [searchQuery, setSearchQuery] = useState('');
   const [openItem, setOpenItem] = useState<string | null>(null);
+  const [faqs, setFaqs] = useState<FAQ[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    fetchFAQs();
+  }, []);
+
+  const fetchFAQs = async () => {
+    try {
+      setLoading(true);
+      setError(null);
+      const response = await axiosInstance.get('/cms/faq/active');
+      setFaqs(response.data.data || []);
+    } catch (error) {
+      console.error('Error fetching FAQs:', error);
+      setError('Failed to load FAQs. Please try again later.');
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  // Group FAQs by category
+  const faqData: CategoryData[] = useMemo(() => {
+    const grouped: Record<string, FAQ[]> = {};
+    
+    faqs.forEach((faq) => {
+      if (!grouped[faq.category]) {
+        grouped[faq.category] = [];
+      }
+      grouped[faq.category].push(faq);
+    });
+
+    return Object.keys(grouped).map((category) => ({
+      category: categoryLabels[category] || category,
+      icon: categoryIcons[category] || HelpCircle,
+      questions: grouped[category].sort((a, b) => a.order - b.order),
+    }));
+  }, [faqs]);
 
   const filteredFAQs = useMemo(() => {
     if (!searchQuery.trim()) return faqData;
@@ -175,7 +141,28 @@ export default function FAQPage() {
       <section className="py-16">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
-            {filteredFAQs.length > 0 ? (
+            {loading ? (
+              <div className="text-center py-12">
+                <div className="inline-block h-12 w-12 animate-spin rounded-full border-4 border-solid border-[#7e1219] border-r-transparent mb-4"></div>
+                <p className="text-gray-600 font-light">Loading FAQs...</p>
+              </div>
+            ) : error ? (
+              <div className="text-center py-12">
+                <div className="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <HelpCircle className="h-8 w-8 text-red-600" strokeWidth={1.5} />
+                </div>
+                <h3 className="text-xl font-light tracking-wide text-gray-900 mb-2">
+                  Unable to Load FAQs
+                </h3>
+                <p className="text-gray-600 font-light mb-4">{error}</p>
+                <button
+                  onClick={fetchFAQs}
+                  className="px-6 py-2 bg-[#7e1219] text-white hover:bg-opacity-90 transition-colors font-light uppercase tracking-wider text-sm"
+                >
+                  Try Again
+                </button>
+              </div>
+            ) : filteredFAQs.length > 0 ? (
               <div className="space-y-8">
                 {filteredFAQs.map((category) => {
                   const Icon = category.icon;
@@ -190,13 +177,13 @@ export default function FAQPage() {
                         </h2>
                       </div>
                       <div className="space-y-2">
-                        {category.questions.map((faq, index) => {
-                          const itemId = `${category.category}-${index}`;
+                        {category.questions.map((faq) => {
+                          const itemId = `${category.category}-${faq._id}`;
                           const isOpen = openItem === itemId;
                           
                           return (
                             <div
-                              key={itemId}
+                              key={faq._id}
                               className="bg-white border border-gray-200 overflow-hidden"
                             >
                               <button

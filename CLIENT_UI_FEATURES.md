@@ -1,4 +1,4 @@
-# 💎 Vasukriti Jewels - Client UI Features & Design System
+# 💎 Vasukriti - Client UI Features & Design System
 
 ## 🎯 Overview
 Premium jewelry e-commerce platform with modern, elegant design focusing on user experience, smooth animations, and conversion optimization.

@@ -2,7 +2,7 @@ const jwt = require('jsonwebtoken');
 const User = require('../models/User');
 const { generateToken, generateRefreshToken, generateRandomToken, hashToken } = require('../utils/tokenUtils');
 const logger = require('../utils/logger');
-const { sendWelcomeEmail, sendPasswordReset } = require('../utils/emailService');
+const { sendWelcomeEmail, sendPasswordReset, sendVerificationEmail } = require('../utils/emailService');
 
 // @desc    Register new user
 // @route   POST /api/auth/register
@@ -33,6 +33,20 @@ const register = async (req, res, next) => {
       user.verificationTokenExpires = Date.now() + 24 * 60 * 60 * 1000; // 24 hours
       await user.save();
 
+      // Send verification email
+      const verificationUrl = `${process.env.FRONTEND_URL}/verify-email?token=${verificationToken}`;
+      try {
+        await sendVerificationEmail(
+          { email: user.email, name: user.fullName },
+          verificationToken,
+          verificationUrl
+        );
+        logger.info(`Verification email sent to: ${user.email}`);
+      } catch (emailError) {
+        logger.error('Failed to send verification email:', emailError);
+        // Don't fail registration if email fails, but log it
+      }
+
       // Send welcome email
       try {
         await sendWelcomeEmail({ email: user.email, name: user.fullName });
@@ -46,13 +60,14 @@ const register = async (req, res, next) => {
 
       res.status(201).json({
         success: true,
-        message: 'Registration successful. Welcome to Vasukriti Jewels!',
+        message: 'Registration successful. Please check your email to verify your account.',
         data: {
           user: {
             id: user._id,
             fullName: user.fullName,
             email: user.email,
             role: user.role,
+            isVerified: user.isVerified,
           },
           token: generateToken(user._id),
           refreshToken: generateRefreshToken(user._id),
@@ -311,6 +326,53 @@ const verifyEmail = async (req, res, next) => {
   }
 };
 
+// @desc    Resend verification email
+// @route   POST /api/auth/resend-verification
+// @access  Private
+const resendVerificationEmail = async (req, res, next) => {
+  try {
+    const user = await User.findById(req.user._id);
+
+    if (!user) {
+      res.status(404);
+      throw new Error('User not found');
+    }
+
+    if (user.isVerified) {
+      res.status(400);
+      throw new Error('Email is already verified');
+    }
+
+    // Generate new verification token
+    const verificationToken = generateRandomToken();
+    user.verificationToken = hashToken(verificationToken);
+    user.verificationTokenExpires = Date.now() + 24 * 60 * 60 * 1000; // 24 hours
+    await user.save();
+
+    // Send verification email
+    const verificationUrl = `${process.env.FRONTEND_URL}/verify-email?token=${verificationToken}`;
+    try {
+      await sendVerificationEmail(
+        { email: user.email, name: user.fullName },
+        verificationToken,
+        verificationUrl
+      );
+      logger.info(`Verification email resent to: ${user.email}`);
+      
+      res.status(200).json({
+        success: true,
+        message: 'Verification email sent successfully. Please check your inbox.',
+      });
+    } catch (emailError) {
+      logger.error('Failed to resend verification email:', emailError);
+      res.status(500);
+      throw new Error('Failed to send verification email. Please try again later.');
+    }
+  } catch (error) {
+    next(error);
+  }
+};
+
 module.exports = {
   register,
   login,
@@ -319,4 +381,5 @@ module.exports = {
   forgotPassword,
   resetPassword,
   verifyEmail,
+  resendVerificationEmail,
 };

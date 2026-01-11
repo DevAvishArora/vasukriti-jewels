@@ -37,7 +37,7 @@ export default function PrivacyPage() {
                 1. Introduction
               </h2>
               <p>
-                At Vasukriti Jewels, we respect your privacy and are committed to protecting your personal information. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our website or make a purchase.
+                At Vasukriti, we respect your privacy and are committed to protecting your personal information. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our website or make a purchase.
               </p>
             </section>
 
@@ -203,7 +203,7 @@ export default function PrivacyPage() {
                 If you have any questions about this Privacy Policy or our data practices, please contact us:
               </p>
               <div className="mt-4 p-6 bg-gray-50 border border-gray-200">
-                <p className="mb-2"><strong>Vasukriti Jewels</strong></p>
+                <p className="mb-2"><strong>Vasukriti</strong></p>
                 <p className="mb-1">Email: privacy@vasukritijewels.com</p>
                 <p className="mb-1">Phone: +91 98765 43210</p>
                 <p>Address: 123 Jewelry Lane, Mumbai, Maharashtra 400001, India</p>

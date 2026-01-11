@@ -19,6 +19,7 @@ import {
 import { Badge } from '@/components/ui/badge';
 import { Plus, Search, Edit, Trash2, FolderTree, Loader2 } from 'lucide-react';
 import Image from 'next/image';
+import { ImageUpload } from '@/components/admin/ImageUpload';
 
 interface Category {
   _id: string;
@@ -43,7 +44,7 @@ export default function CategoriesPage() {
   const [formData, setFormData] = useState({
     name: '',
     description: '',
-    imageUrl: '',
+    image: [] as { url: string; publicId?: string }[],
   });
 
   useEffect(() => {
@@ -70,7 +71,10 @@ export default function CategoriesPage() {
       const submitData = {
         name: formData.name,
         description: formData.description,
-        image: formData.imageUrl ? { url: formData.imageUrl } : undefined,
+        image: formData.image[0] ? { 
+          url: formData.image[0].url,
+          publicId: formData.image[0].publicId
+        } : undefined,
       };
 
       if (editingCategoryId) {
@@ -78,7 +82,7 @@ export default function CategoriesPage() {
       } else {
         await axiosInstance.post('/categories', submitData);
       }
-      setFormData({ name: '', description: '', imageUrl: '' });
+      setFormData({ name: '', description: '', image: [] });
       setShowForm(false);
       setEditingCategoryId(null);
       fetchCategories();
@@ -97,7 +101,7 @@ export default function CategoriesPage() {
     setFormData({ 
       name: category.name, 
       description: category.description || '', 
-      imageUrl: category.image?.url || '' 
+      image: category.image ? [{ url: category.image.url, publicId: category.image.publicId }] : [],
     });
     setShowForm(true);
     setError('');
@@ -132,7 +136,7 @@ export default function CategoriesPage() {
             onClick={() => {
               if (!showForm) {
                 setEditingCategoryId(null);
-                setFormData({ name: '', description: '', imageUrl: '' });
+                setFormData({ name: '', description: '', image: [] });
                 setError('');
               }
               setShowForm(!showForm);
@@ -182,26 +186,16 @@ export default function CategoriesPage() {
                 />
               </div>
 
-              {/* Image URL Input */}
+              {/* Category Image Upload */}
               <div>
-                <Label htmlFor="imageUrl">Category Image URL</Label>
-                <Input
-                  id="imageUrl"
-                  type="url"
-                  value={formData.imageUrl}
-                  onChange={(e) => setFormData({ ...formData, imageUrl: e.target.value })}
-                  placeholder="https://example.com/image.jpg"
+                <ImageUpload
+                  label="Category Image"
+                  value={formData.image}
+                  onChange={(images) => setFormData({ ...formData, image: images })}
+                  maxImages={1}
+                  required={false}
+                  folder="categories"
                 />
-                {formData.imageUrl && (
-                  <div className="mt-4 relative w-full h-48 border border-gray-200 rounded-lg overflow-hidden bg-gray-50">
-                    <Image
-                      src={formData.imageUrl}
-                      alt="Category preview"
-                      fill
-                      className="object-cover"
-                    />
-                  </div>
-                )}
               </div>
 
               <div className="flex gap-3">
@@ -225,7 +219,7 @@ export default function CategoriesPage() {
                   variant="outline"
                   onClick={() => {
                     setShowForm(false);
-                    setFormData({ name: '', description: '', imageUrl: '' });
+                    setFormData({ name: '', description: '', image: [] });
                     setEditingCategoryId(null);
                     setError('');
                   }}

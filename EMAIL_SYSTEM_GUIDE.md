@@ -1,7 +1,7 @@
 # Email Notifications System - Implementation Guide
 
 ## Overview
-The email notifications system has been fully integrated into Vasukriti Jewels. Customers now receive professional HTML emails for order confirmations, shipping updates, password resets, and welcome messages.
+The email notifications system has been fully integrated into Vasukriti. Customers now receive professional HTML emails for order confirmations, shipping updates, password resets, and welcome messages.
 
 ## Architecture
 
@@ -14,7 +14,7 @@ The email notifications system has been fully integrated into Vasukriti Jewels. 
 2. **Email Templates** (`/backend/src/utils/emailTemplates.js`)
    - HTML templates with inline CSS
    - Responsive design for all email clients
-   - Vasukriti Jewels branding (amber-600 & rose-600 gradients)
+   - Vasukriti branding (amber-600 & rose-600 gradients)
 
 3. **Email Service** (`/backend/src/utils/emailService.js`)
    - Utility functions for sending emails
@@ -84,7 +84,7 @@ FRONTEND_URL=http://localhost:3000
 3. Sign in if prompted
 4. In the "App passwords" page:
    - Select app: Choose "Mail" or "Other (Custom name)"
-   - If "Other", enter "Vasukriti Jewels Backend"
+   - If "Other", enter "Vasukriti Backend"
    - Select device: Choose your device or "Other"
 5. Click "Generate"
 6. Copy the 16-character password (shown without spaces)
@@ -249,7 +249,7 @@ Or error message if configuration is invalid.
 - Works across all major email clients (Gmail, Outlook, Apple Mail, etc.)
 
 ### Branding
-- Vasukriti Jewels color scheme (amber-600 & rose-600 gradients)
+- Vasukriti color scheme (amber-600 & rose-600 gradients)
 - Professional header with logo/name
 - Consistent footer with contact info and copyright
 
@@ -322,7 +322,7 @@ const templateName = (data) => {
 const sendEmailType = async (recipient, data) => {
   try {
     const mailOptions = {
-      from: `"Vasukriti Jewels" <${process.env.EMAIL_USER}>`,
+      from: `"Vasukriti" <${process.env.EMAIL_USER}>`,
       to: recipient.email,
       subject: 'Email Subject',
       html: emailTemplate(data),

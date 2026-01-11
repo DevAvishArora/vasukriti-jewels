@@ -1,7 +1,7 @@
 # 🎯 Admin Dashboard - Complete Feature List
 
 ## Overview
-Comprehensive admin dashboard for Vasukriti Jewels eCommerce platform with complete management capabilities for products, orders, customers, inventory, and analytics.
+Comprehensive admin dashboard for Vasukriti eCommerce platform with complete management capabilities for products, orders, customers, inventory, and analytics.
 
 ---
 

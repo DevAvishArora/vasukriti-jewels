@@ -11,6 +11,7 @@ import {
   LogOut,
   Menu,
   X,
+  Shield,
 } from 'lucide-react';
 import { useState } from 'react';
 import { ClientLayout } from '@/components/client/client-layout';
@@ -41,6 +42,11 @@ const navItems = [
     label: 'Addresses',
     href: '/account/addresses',
     icon: MapPin,
+  },
+  {
+    label: 'Change Password',
+    href: '/account/password',
+    icon: Shield,
   },
 ];
 

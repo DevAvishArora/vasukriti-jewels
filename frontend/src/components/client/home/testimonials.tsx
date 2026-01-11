@@ -27,7 +27,7 @@ const testimonials = [
     name: 'Anita Desai',
     location: 'Bangalore',
     rating: 5,
-    text: 'Beautiful collection and authentic products. Fast delivery and secure packaging. Highly recommend Vasukriti Jewels!',
+    text: 'Beautiful collection and authentic products. Fast delivery and secure packaging. Highly recommend Vasukriti!',
     initials: 'AD',
   },
   {

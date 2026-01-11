@@ -14,6 +14,7 @@ interface FilterState {
   minPrice: number;
   maxPrice: number;
   materials: string[];
+  colors: string[];
 }
 
 interface ProductFiltersProps {
@@ -21,6 +22,20 @@ interface ProductFiltersProps {
   readonly onFilterChange: (filters: FilterState) => void;
   readonly onClearFilters: () => void;
 }
+
+
+const COLORS = [
+  { name: 'Gold', hex: '#FFD700' },
+  { name: 'Rose Gold', hex: '#B76E79' },
+  { name: 'Silver', hex: '#C0C0C0' },
+  { name: 'White Gold', hex: '#F5F5DC' },
+  { name: 'Yellow Gold', hex: '#FFD700' },
+  { name: 'Black', hex: '#000000' },
+  { name: 'Blue', hex: '#4A90E2' },
+  { name: 'Green', hex: '#50C878' },
+  { name: 'Pink', hex: '#FFB6C1' },
+  { name: 'Red', hex: '#DC143C' },
+];
 
 const MATERIALS = ['Gold', 'Silver', 'Diamond', 'Platinum', 'Rose Gold', 'White Gold'];
 
@@ -71,9 +86,18 @@ export function ProductFilters({ filters, onFilterChange, onClearFilters }: Prod
     onFilterChange({ ...filters, materials: newMaterials });
   };
 
+  const handleColorChange = (color: string, checked: boolean) => {
+    const newColors = checked
+      ? [...filters.colors, color]
+      : filters.colors.filter((c) => c !== color);
+
+    onFilterChange({ ...filters, colors: newColors });
+  };
+
   const handlePriceChange = (values: number[]) => {
     onFilterChange({
-      ...filters,
+      ...filcolors.length > 0 ||
+    filters.ters,
       minPrice: values[0],
       maxPrice: values[1],
     });
@@ -177,7 +201,7 @@ export function ProductFilters({ filters, onFilterChange, onClearFilters }: Prod
       </div>
 
       {/* Material Filter */}
-      <div className="pb-8">
+      <div className="pb-8 border-b border-gray-100">
         <button
           onClick={() => toggleSection('material')}
           className="flex w-full items-center justify-between text-left mb-4"
@@ -206,6 +230,47 @@ export function ProductFilters({ filters, onFilterChange, onClearFilters }: Prod
                   className="text-sm text-gray-600 cursor-pointer font-light"
                 >
                   {material}
+                </Label>
+              </div>
+            ))}
+          </div>
+        )}
+      </div>
+
+      {/* Color Filter */}
+      <div className="pb-8">
+        <button
+          onClick={() => toggleSection('color')}
+          className="flex w-full items-center justify-between text-left mb-4"
+        >
+          <h3 className="text-xs font-light text-gray-900 uppercase tracking-wider">Color</h3>
+          {expandedSections.color ? (
+            <ChevronUp className="h-3 w-3 text-gray-400" />
+          ) : (
+            <ChevronDown className="h-3 w-3 text-gray-400" />
+          )}
+        </button>
+
+        {expandedSections.color && (
+          <div className="space-y-3">
+            {COLORS.map((color) => (
+              <div key={color.name} className="flex items-center gap-3">
+                <Checkbox
+                  id={`color-${color.name}`}
+                  checked={filters.colors.includes(color.name)}
+                  onCheckedChange={(checked) =>
+                    handleColorChange(color.name, checked as boolean)
+                  }
+                />
+                <Label
+                  htmlFor={`color-${color.name}`}
+                  className="flex items-center gap-2 text-sm text-gray-600 cursor-pointer font-light"
+                >
+                  <span
+                    className="w-5 h-5 rounded-full border border-gray-300"
+                    style={{ backgroundColor: color.hex }}
+                  />
+                  {color.name}
                 </Label>
               </div>
             ))}

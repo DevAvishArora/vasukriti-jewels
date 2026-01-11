@@ -1,4 +1,4 @@
-# 🚀 Quick Start Guide - Vasukriti Jewels
+# 🚀 Quick Start Guide - Vasukriti
 
 ## Initial Setup Complete! ✅
 
@@ -71,7 +71,7 @@ You should see:
 ### Test Frontend
 Visit: http://localhost:3000
 
-You should see the Vasukriti Jewels landing page with project status.
+You should see the Vasukriti landing page with project status.
 
 ## 📝 Next Development Steps
 

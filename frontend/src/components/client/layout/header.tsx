@@ -79,7 +79,7 @@ export function Header({ onMobileMenuToggle }: HeaderProps) {
             href="/"
             className="font-playfair text-xl font-bold sm:text-2xl bg-gradient-to-r from-amber-600 to-rose-600 bg-clip-text text-transparent"
           >
-            Vasukriti Jewels
+            Vasukriti
           </Link>
 
           {/* Desktop Navigation */}

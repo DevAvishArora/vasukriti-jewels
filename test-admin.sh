@@ -3,7 +3,7 @@
 # Admin Dashboard Pre-flight Check Script
 # Run this before manual testing to ensure everything is ready
 
-echo "🚀 Vasukriti Jewels - Admin Dashboard Pre-flight Check"
+echo "🚀 Vasukriti - Admin Dashboard Pre-flight Check"
 echo "=================================================="
 echo ""
 

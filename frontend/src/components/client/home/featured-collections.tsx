@@ -100,28 +100,6 @@ export function FeaturedCollections() {
                     className="absolute inset-0 opacity-0 group-hover:opacity-90 transition-opacity duration-500"
                     style={{ backgroundColor: '#7e1219' }}
                   />
-
-                  {/* Content */}
-                  <div className="absolute inset-0 flex flex-col justify-end p-6 text-gray-900 group-hover:text-white transition-colors duration-500">
-                    <motion.div
-                      initial={{ y: 20, opacity: 0 }}
-                      whileInView={{ y: 0, opacity: 1 }}
-                      transition={{ delay: 0.2 }}
-                    >
-                      <h3 className="text-xl font-light mb-1 tracking-wide">
-                        {category.name}
-                      </h3>
-                      {category.description && (
-                        <p className="text-xs mb-4 opacity-70 font-light uppercase tracking-wider line-clamp-2">
-                          {category.description}
-                        </p>
-                      )}
-                      <div className="flex items-center gap-2 text-xs font-light uppercase tracking-wider group-hover:gap-3 transition-all">
-                        <span>Explore</span>
-                        <ArrowRight className="h-3 w-3" />
-                      </div>
-                    </motion.div>
-                  </div>
                 </Link>
               </motion.div>
             ))

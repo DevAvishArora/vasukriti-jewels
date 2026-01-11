@@ -10,7 +10,7 @@
 
 1. **Go to** [MongoDB Atlas](https://www.mongodb.com/cloud/atlas)
 2. **Sign up** for a free account
-3. **Create a new project** (e.g., "Vasukriti Jewels")
+3. **Create a new project** (e.g., "Vasukriti")
 4. **Build a cluster**:
    - Choose **FREE** tier (M0)
    - Select a region close to you
@@ -100,7 +100,7 @@ mongodb://localhost:27017/vasukriti-jewels
 3. **Generate App Password**:
    - Go to [App Passwords](https://myaccount.google.com/apppasswords)
    - Select "Mail" and "Other (Custom name)"
-   - Name it "Vasukriti Jewels"
+   - Name it "Vasukriti"
    - Click "Generate"
    - Copy the 16-character password (e.g., `abcd efgh ijkl mnop`)
 
@@ -119,7 +119,7 @@ EMAIL_PASSWORD=abcd efgh ijkl mnop  (app password)
 3. **Create API Key**:
    - Go to Settings → API Keys
    - Click "Create API Key"
-   - Name: "Vasukriti Jewels"
+   - Name: "Vasukriti"
    - Full Access
    - Copy the API key (starts with `SG.`)
 

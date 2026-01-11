@@ -12,7 +12,7 @@ export function Footer() {
           {/* Brand */}
           <div>
             <Link href="/" className="inline-block text-xl font-light tracking-wider mb-6 text-white">
-              VASUKRITI JEWELS
+              VASUKRITI
             </Link>
             <p className="text-sm text-neutral-300 leading-relaxed">
               Crafting timeless elegance with premium handcrafted jewelry since 2014.
@@ -148,7 +148,7 @@ export function Footer() {
       <div className="border-t border-neutral-600">
         <div className="max-w-7xl mx-auto px-6 py-6">
           <div className="flex flex-col items-center justify-between gap-4 md:flex-row text-xs text-neutral-300">
-            <p>© 2025 Vasukriti Jewels. All rights reserved.</p>
+            <p>© 2025 Vasukriti. All rights reserved.</p>
             <div className="flex gap-6">
               <Link href="/policies/terms" className="hover:text-white transition-colors">
                 Terms

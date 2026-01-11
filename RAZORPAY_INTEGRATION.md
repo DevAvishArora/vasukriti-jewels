@@ -2,7 +2,7 @@
 
 ## Setup Complete! ✅
 
-Razorpay payment gateway has been integrated into your Vasukriti Jewels e-commerce store.
+Razorpay payment gateway has been integrated into your Vasukriti e-commerce store.
 
 ## Features Implemented
 

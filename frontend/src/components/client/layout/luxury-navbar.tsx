@@ -160,15 +160,15 @@ export function LuxuryNavbar({ onMobileMenuToggle }: LuxuryNavbarProps) {
                 <Search className="h-5 w-5 text-gray-900" />
               </button>
 
-              {/* Wishlist - Hide on small mobile */}
+              {/* Wishlist */}
               <Link
                 href="/account/wishlist"
-                className="hidden xs:block relative p-2 hover:opacity-60 transition-opacity touch-target"
+                className="relative p-2 hover:opacity-60 transition-opacity touch-target"
                 aria-label="Wishlist"
               >
                 <Heart className="h-5 w-5 text-gray-900" />
                 {wishlistCount > 0 && (
-                  <span className="absolute -right-1 -top-1 flex h-4 w-4 items-center justify-center rounded-full bg-neutral-900 text-[10px] font-bold text-white">
+                  <span className="absolute -right-0.5 -top-0.5 flex h-5 w-5 items-center justify-center rounded-full bg-rose-600 text-[11px] font-bold text-white z-10 border border-white">
                     {wishlistCount}
                   </span>
                 )}
@@ -188,14 +188,19 @@ export function LuxuryNavbar({ onMobileMenuToggle }: LuxuryNavbarProps) {
                 )}
               </button>
 
-              {/* Profile/Auth - Hide on small mobile if not authenticated */}
+              {/* Profile/Auth */}
               {isAuthenticated ? (
-                <div className="relative">                  <button
+                <div className="relative">
+                  <button
                     onClick={() => setShowProfileMenu(!showProfileMenu)}
-                    className="group p-2 hover:bg-champagne-50 rounded-full transition-elegant touch-target"
+                    className="flex items-center gap-2 px-3 py-2 hover:bg-gray-100 rounded-full transition-colors"
                     aria-label="Profile"
                   >
-                    <User className="h-5 w-5 text-charcoal-700 group-hover:text-champagne-600 transition-elegant" />
+                    <User className="h-5 w-5 text-gray-900" />
+                    <span className="hidden md:block text-sm font-medium text-gray-900">
+                      {user?.fullName.split(' ')[0]}
+                    </span>
+                    <ChevronDown className={`h-4 w-4 text-gray-900 transition-transform hidden md:block ${showProfileMenu ? 'rotate-180' : ''}`} />
                   </button>
 
                   <AnimatePresence>

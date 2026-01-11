@@ -86,7 +86,7 @@ export function BrandStory() {
 
               {/* Description */}
               <p className="text-base font-light text-gray-300 leading-relaxed mb-8">
-                For over three decades, Vasukriti Jewels has been synonymous with exceptional 
+                For over three decades, Vasukriti has been synonymous with exceptional 
                 craftsmanship and timeless design. Each piece tells a story of heritage, artistry, 
                 and unwavering commitment to quality.
               </p>

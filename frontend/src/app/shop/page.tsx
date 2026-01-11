@@ -18,6 +18,7 @@ interface FilterState {
   minPrice: number;
   maxPrice: number;
   materials: string[];
+  colors: string[];
 }
 
 function ShopContent() {
@@ -29,6 +30,7 @@ function ShopContent() {
     minPrice: 0,
     maxPrice: 100000,
     materials: [],
+    colors: [],
   });
   const [sort, setSort] = useState('-createdAt');
   const [gridCols, setGridCols] = useState<'3' | '4'>('4');
@@ -82,6 +84,9 @@ function ShopContent() {
         if (filters.materials.length > 0) {
           params.append('material', filters.materials.join(','));
         }
+        if (filters.colors.length > 0) {
+          params.append('color', filters.colors.join(','));
+        }
 
         const response = await axiosInstance.get(`/products?${params}`);
         const data = response.data.data;
@@ -112,6 +117,7 @@ function ShopContent() {
       minPrice: 0,
       maxPrice: 100000,
       materials: [],
+      colors: [],
     });
     setPage(1);
   };
@@ -119,6 +125,7 @@ function ShopContent() {
   const hasActiveFilters =
     filters.categories.length > 0 ||
     filters.materials.length > 0 ||
+    filters.colors.length > 0 ||
     filters.minPrice > 0 ||
     filters.maxPrice < 100000;
 

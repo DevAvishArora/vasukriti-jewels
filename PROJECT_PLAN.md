@@ -1,4 +1,4 @@
-# Vasukriti Jewels - Complete eCommerce Platform
+# Vasukriti - Complete eCommerce Platform
 ## Project Planning & Implementation Document
 
 ---
@@ -20,7 +20,7 @@
 
 ## 🎯 Project Overview
 
-**Project Name:** Vasukriti Jewels  
+**Project Name:** Vasukriti  
 **Type:** Full-stack eCommerce Platform  
 **Target:** Premium Online Jewelry Store  
 **Aesthetic:** Luxurious, Modern, 3D Interactive Experience

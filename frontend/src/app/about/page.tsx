@@ -6,8 +6,8 @@ import { ClientLayout } from '@/components/client/client-layout';
 import { FadeIn, StaggerContainer, StaggerItem, SlideIn } from '@/components/transitions';
 
 export const metadata: Metadata = {
-  title: 'About Us - Vasukriti Jewels',
-  description: 'Discover the story behind Vasukriti Jewels. Learn about our craftsmanship, values, and commitment to creating timeless jewelry pieces.',
+  title: 'About Us - Vasukriti',
+  description: 'Discover the story behind Vasukriti. Learn about our craftsmanship, values, and commitment to creating timeless jewelry pieces.',
 };
 
 export default function AboutPage() {
@@ -56,7 +56,7 @@ export default function AboutPage() {
                 Our Story
               </h2>
               <p className="text-gray-600 mb-4 leading-relaxed font-light">
-                Vasukriti Jewels began with a simple vision: to create jewelry that tells stories. Founded by master craftsmen with a passion for excellence, we&apos;ve grown from a small workshop into a trusted name in fine jewelry.
+                Vasukriti began with a simple vision: to create jewelry that tells stories. Founded by master craftsmen with a passion for excellence, we&apos;ve grown from a small workshop into a trusted name in fine jewelry.
               </p>
               <p className="text-gray-600 mb-4 leading-relaxed font-light">
                 Each piece we create is more than just an accessory—it&apos;s a work of art, meticulously crafted to celebrate your unique journey. From traditional designs that honor our heritage to contemporary pieces that embrace modern elegance, we blend timeless craftsmanship with innovative design.

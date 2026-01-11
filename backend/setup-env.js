@@ -23,7 +23,7 @@ const colors = {
 
 console.log(`${colors.blue}
 ╔════════════════════════════════════════════════════════╗
-║     🔐 Vasukriti Jewels - Environment Setup Helper    ║
+║     🔐 Vasukriti - Environment Setup Helper    ║
 ╚════════════════════════════════════════════════════════╝
 ${colors.reset}`);
 

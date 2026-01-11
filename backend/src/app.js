@@ -52,7 +52,10 @@ if (process.env.NODE_ENV === 'development') {
 // Rate limiting
 app.use('/api', apiLimiter);
 
-// Health check route
+// Health check routes (before auth middleware)
+app.use('/api', require('./routes/health.routes'));
+
+// Root Health check
 app.get('/health', (req, res) => {
   res.status(200).json({
     success: true,
@@ -76,12 +79,14 @@ app.use('/api/reviews', require('./routes/review.routes'));
 app.use('/api/addresses', require('./routes/address.routes'));
 app.use('/api/contact', require('./routes/contact.routes'));
 app.use('/api/payment', require('./routes/payment.routes'));
+app.use('/api/cms', require('./routes/cmsRoutes'));
+app.use('/api/upload', require('./routes/upload.routes'));
 
 // Root route
 app.get('/', (req, res) => {
   res.json({
     success: true,
-    message: 'Welcome to Vasukriti Jewels API',
+    message: 'Welcome to Vasukriti API',
     version: '1.0.0',
   });
 });

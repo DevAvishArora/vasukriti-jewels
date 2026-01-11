@@ -6,6 +6,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
 import { motion } from 'framer-motion';
 import { User, Mail, Phone, Calendar, Shield, Edit2, Save, X, Loader2 } from 'lucide-react';
+import { useRouter } from 'next/navigation';
 import { AccountLayout } from '@/components/client/account/account-layout';
 import { useAuthStore } from '@/store/auth-store';
 import { toast } from 'sonner';
@@ -20,6 +21,7 @@ const profileSchema = z.object({
 type ProfileFormData = z.infer<typeof profileSchema>;
 
 export default function ProfilePage() {
+  const router = useRouter();
   const { user, updateUser } = useAuthStore();
   const [isEditing, setIsEditing] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
@@ -275,7 +277,7 @@ export default function ProfilePage() {
                 Keep your account secure by using a strong password and enabling two-factor authentication.
               </p>
               <button
-                onClick={() => toast.info('Change password feature coming soon')}
+                onClick={() => router.push('/account/password')}
                 className="px-4 py-2 border border-blue-300 text-blue-700 hover:border-blue-400 transition-colors text-xs font-light uppercase tracking-wider"
               >
                 Change Password

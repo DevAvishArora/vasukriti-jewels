@@ -110,7 +110,7 @@ const policies = {
     content: [
       {
         heading: 'Acceptance of Terms',
-        text: 'By accessing and using the Vasukriti Jewels website, you accept and agree to be bound by these Terms and Conditions. If you do not agree, please do not use our services.',
+        text: 'By accessing and using the Vasukriti website, you accept and agree to be bound by these Terms and Conditions. If you do not agree, please do not use our services.',
       },
       {
         heading: 'Product Information',
@@ -126,7 +126,7 @@ const policies = {
       },
       {
         heading: 'Intellectual Property',
-        text: 'All content on this website, including text, images, logos, and designs, is the property of Vasukriti Jewels and protected by copyright laws. You may not reproduce, distribute, or use any content without our written permission.',
+        text: 'All content on this website, including text, images, logos, and designs, is the property of Vasukriti and protected by copyright laws. You may not reproduce, distribute, or use any content without our written permission.',
       },
       {
         heading: 'User Accounts',
@@ -134,7 +134,7 @@ const policies = {
       },
       {
         heading: 'Limitation of Liability',
-        text: 'Vasukriti Jewels shall not be liable for any indirect, incidental, or consequential damages arising from the use of our website or products. Our total liability is limited to the amount you paid for the product in question.',
+        text: 'Vasukriti shall not be liable for any indirect, incidental, or consequential damages arising from the use of our website or products. Our total liability is limited to the amount you paid for the product in question.',
       },
       {
         heading: 'Governing Law',
@@ -160,7 +160,7 @@ export async function generateMetadata({
   }
 
   return {
-    title: `${policy.title} - Vasukriti Jewels`,
+    title: `${policy.title} - Vasukriti`,
     description: `Read our ${policy.title.toLowerCase()} to understand our policies and procedures.`,
   };
 }

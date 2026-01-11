@@ -106,10 +106,9 @@ export function SearchDialog({ open, onOpenChange }: SearchDialogProps) {
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="max-w-3xl p-0 gap-0 border border-gray-900">
+      <DialogContent className="max-w-3xl p-0 gap-0 border border-gray-900" showCloseButton={false}>
         {/* Search Input */}
-        <div className="border-b border-gray-200 bg-white">
-          <form onSubmit={handleSearchSubmit} className="relative">
+        <div className="border-b border-gray-200 bg-white">       <form onSubmit={handleSearchSubmit} className="relative">
             <Search className="absolute left-6 top-1/2 -translate-y-1/2 h-5 w-5 text-gray-900" />
             <input
               ref={inputRef}

@@ -37,7 +37,7 @@ export default function TermsPage() {
                 1. Introduction
               </h2>
               <p>
-                Welcome to Vasukriti Jewels. By accessing or using our website and services, you agree to be bound by these Terms and Conditions. Please read them carefully before making any purchase or using our services.
+                Welcome to Vasukriti. By accessing or using our website and services, you agree to be bound by these Terms and Conditions. Please read them carefully before making any purchase or using our services.
               </p>
             </section>
 
@@ -120,7 +120,7 @@ export default function TermsPage() {
                 8. Intellectual Property
               </h2>
               <p>
-                All content on this website, including text, graphics, logos, images, and software, is the property of Vasukriti Jewels and is protected by copyright and other intellectual property laws. You may not reproduce, distribute, or create derivative works without our express written permission.
+                All content on this website, including text, graphics, logos, images, and software, is the property of Vasukriti and is protected by copyright and other intellectual property laws. You may not reproduce, distribute, or create derivative works without our express written permission.
               </p>
             </section>
 
@@ -130,7 +130,7 @@ export default function TermsPage() {
                 9. Limitation of Liability
               </h2>
               <p>
-                To the maximum extent permitted by law, Vasukriti Jewels shall not be liable for any indirect, incidental, special, consequential, or punitive damages arising out of your use of our website or products. Our total liability shall not exceed the amount paid by you for the specific product or service.
+                To the maximum extent permitted by law, Vasukriti shall not be liable for any indirect, incidental, special, consequential, or punitive damages arising out of your use of our website or products. Our total liability shall not exceed the amount paid by you for the specific product or service.
               </p>
             </section>
 
@@ -163,7 +163,7 @@ export default function TermsPage() {
                 If you have any questions about these Terms and Conditions, please contact us:
               </p>
               <div className="mt-4 p-6 bg-gray-50 border border-gray-200">
-                <p className="mb-2"><strong>Vasukriti Jewels</strong></p>
+                <p className="mb-2"><strong>Vasukriti</strong></p>
                 <p className="mb-1">Email: legal@vasukritijewels.com</p>
                 <p className="mb-1">Phone: +91 98765 43210</p>
                 <p>Address: 123 Jewelry Lane, Mumbai, Maharashtra 400001, India</p>

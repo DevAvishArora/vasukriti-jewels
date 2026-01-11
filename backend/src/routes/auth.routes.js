@@ -8,6 +8,7 @@ const {
   forgotPassword,
   resetPassword,
   verifyEmail,
+  resendVerificationEmail,
 } = require('../controllers/authController');
 const { protect } = require('../middleware/auth.middleware');
 const { authLimiter } = require('../middleware/rateLimit.middleware');
@@ -79,5 +80,6 @@ router.post('/refresh-token', refreshToken);
 router.post('/forgot-password', authLimiter, validateForgotPassword, forgotPassword);
 router.post('/reset-password', authLimiter, validateResetPassword, resetPassword);
 router.get('/verify-email/:token', verifyEmail);
+router.post('/resend-verification', protect, authLimiter, resendVerificationEmail);
 
 module.exports = router;

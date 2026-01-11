@@ -358,3 +358,135 @@ exports.getUserStats = async (req, res, next) => {
     next(error);
   }
 };
+
+/**
+ * @desc    Get current user profile
+ * @route   GET /api/users/profile
+ * @access  Private
+ */
+exports.getProfile = async (req, res, next) => {
+  try {
+    const user = await User.findById(req.user._id).select('-password -refreshToken');
+    
+    if (!user) {
+      return res.status(404).json({
+        success: false,
+        message: 'User not found',
+      });
+    }
+
+    res.status(200).json({
+      success: true,
+      data: { user },
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
+/**
+ * @desc    Update current user profile
+ * @route   PUT /api/users/profile
+ * @access  Private
+ */
+exports.updateProfile = async (req, res, next) => {
+  try {
+    const { fullName, email, phone } = req.body;
+
+    // Check if email is being changed and if it's already taken
+    if (email && email !== req.user.email) {
+      const emailExists = await User.findOne({ email, _id: { $ne: req.user._id } });
+      if (emailExists) {
+        return res.status(400).json({
+          success: false,
+          message: 'Email already in use',
+        });
+      }
+    }
+
+    const user = await User.findByIdAndUpdate(
+      req.user._id,
+      {
+        fullName,
+        email,
+        phone,
+      },
+      {
+        new: true,
+        runValidators: true,
+      }
+    ).select('-password -refreshToken');
+
+    if (!user) {
+      return res.status(404).json({
+        success: false,
+        message: 'User not found',
+      });
+    }
+
+    res.status(200).json({
+      success: true,
+      data: { user },
+      message: 'Profile updated successfully',
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
+/**
+ * @desc    Change user password
+ * @route   PUT /api/users/change-password
+ * @access  Private
+ */
+exports.changePassword = async (req, res, next) => {
+  try {
+    const { currentPassword, newPassword } = req.body;
+
+    // Validation
+    if (!currentPassword || !newPassword) {
+      return res.status(400).json({
+        success: false,
+        message: 'Please provide current and new password',
+      });
+    }
+
+    if (newPassword.length < 6) {
+      return res.status(400).json({
+        success: false,
+        message: 'New password must be at least 6 characters',
+      });
+    }
+
+    // Get user with password
+    const user = await User.findById(req.user._id).select('+password');
+
+    if (!user) {
+      return res.status(404).json({
+        success: false,
+        message: 'User not found',
+      });
+    }
+
+    // Check current password
+    const isPasswordMatch = await user.matchPassword(currentPassword);
+    
+    if (!isPasswordMatch) {
+      return res.status(401).json({
+        success: false,
+        message: 'Current password is incorrect',
+      });
+    }
+
+    // Update password
+    user.password = newPassword;
+    await user.save();
+
+    res.status(200).json({
+      success: true,
+      message: 'Password changed successfully',
+    });
+  } catch (error) {
+    next(error);
+  }
+};

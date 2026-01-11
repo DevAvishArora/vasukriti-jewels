@@ -13,6 +13,8 @@ import {
   Package,
   ArrowLeft,
   Loader2,
+  AlertCircle,
+  Mail,
 } from 'lucide-react';
 import Image from 'next/image';
 import { ClientLayout } from '@/components/client/client-layout';
@@ -48,11 +50,17 @@ export default function CheckoutPage() {
   const [paymentMethod, setPaymentMethod] = useState<'cod' | 'razorpay'>('cod');
   const [isProcessing, setIsProcessing] = useState(false);
   const [shippingData, setShippingData] = useState<ShippingFormData | null>(null);
+  const [orderCompleted, setOrderCompleted] = useState(false);
+  const [selectedAddressId, setSelectedAddressId] = useState<string>('');
+  const [showNewAddressForm, setShowNewAddressForm] = useState(false);
+  const [isResendingEmail, setIsResendingEmail] = useState(false);
 
   const subtotal = useMemo(() => getSubtotal(), [getSubtotal]);
   const shipping = subtotal >= 5000 ? 0 : 200;
-  const tax = subtotal * 0.18;
-  const total = subtotal + shipping + tax;
+  const total = subtotal + shipping;
+
+  // Check if user is verified
+  const isUserVerified = user?.isVerified ?? false;
 
   const {
     register,
@@ -63,13 +71,13 @@ export default function CheckoutPage() {
     resolver: zodResolver(shippingSchema),
   });
 
-  // Redirect if cart is empty
+  // Redirect if cart is empty (but not if order is being completed)
   useEffect(() => {
-    if (items.length === 0) {
+    if (items.length === 0 && !isProcessing && !orderCompleted) {
       toast.error('Your cart is empty');
       router.push('/cart');
     }
-  }, [items.length, router]);
+  }, [items.length, router, isProcessing, orderCompleted]);
 
   // Redirect if not authenticated
   useEffect(() => {
@@ -84,6 +92,7 @@ export default function CheckoutPage() {
     if (user?.addresses && user.addresses.length > 0) {
       const defaultAddress = user.addresses.find((addr) => addr.isDefault) || user.addresses[0];
       if (defaultAddress) {
+        setSelectedAddressId(defaultAddress._id || '');
         setValue('fullName', defaultAddress.fullName);
         setValue('phone', defaultAddress.phone);
         setValue('addressLine1', defaultAddress.addressLine1);
@@ -92,8 +101,25 @@ export default function CheckoutPage() {
         setValue('state', defaultAddress.state);
         setValue('pincode', defaultAddress.pincode);
       }
+    } else {
+      setShowNewAddressForm(true);
     }
   }, [user, setValue]);
+
+  const handleAddressSelect = (addressId: string) => {
+    setSelectedAddressId(addressId);
+    const address = user?.addresses?.find((addr) => addr._id === addressId);
+    if (address) {
+      setValue('fullName', address.fullName);
+      setValue('phone', address.phone);
+      setValue('addressLine1', address.addressLine1);
+      setValue('addressLine2', address.addressLine2 || '');
+      setValue('city', address.city);
+      setValue('state', address.state);
+      setValue('pincode', address.pincode);
+      setShowNewAddressForm(false);
+    }
+  };
 
   const steps = [
     { id: 'shipping', label: 'Shipping', icon: Truck },
@@ -106,10 +132,32 @@ export default function CheckoutPage() {
     setCurrentStep('payment');
   };
 
+  const handleResendVerificationEmail = async () => {
+    try {
+      setIsResendingEmail(true);
+      const response = await axiosInstance.post('/auth/resend-verification');
+      
+      if (response.data.success) {
+        toast.success('Verification email sent! Please check your inbox.');
+      }
+    } catch (error: any) {
+      const errorMessage = error.response?.data?.message || 'Failed to send verification email';
+      toast.error(errorMessage);
+    } finally {
+      setIsResendingEmail(false);
+    }
+  };
+
   const handlePlaceOrder = async () => {
     if (!shippingData) {
       toast.error('Please complete shipping details');
       setCurrentStep('shipping');
+      return;
+    }
+
+    // Check if user is verified before allowing order
+    if (!isUserVerified) {
+      toast.error('Please verify your email address before placing an order');
       return;
     }
 
@@ -137,7 +185,11 @@ export default function CheckoutPage() {
       };
 
       const response = await axiosInstance.post('/orders', orderData);
-      const order = response.data.data;
+      const order = response.data.data.order;
+      
+      console.log('Order created:', order);
+      console.log('Order ID:', order._id);
+      console.log('Order Number:', order.orderNumber);
 
       // If Razorpay payment, initiate payment flow
       if (paymentMethod === 'razorpay') {
@@ -157,6 +209,8 @@ export default function CheckoutPage() {
             const { id: razorpayOrderId, amount, currency } = paymentRes.data.data;
             const keyId = paymentRes.data.keyId;
 
+            console.log('Razorpay Order Created:', { razorpayOrderId, amount, currency, keyId });
+
             // Open Razorpay checkout
             const options = {
               key: keyId,
@@ -171,7 +225,14 @@ export default function CheckoutPage() {
                 contact: shippingData.phone,
               },
               theme: {
-                color: '#d97706',
+                color: '#7e1219',
+              },
+              modal: {
+                ondismiss: function () {
+                  console.log('Payment modal dismissed');
+                  setIsProcessing(false);
+                  toast.info('Payment cancelled');
+                },
               },
               handler: async function (response: {
                 razorpay_order_id: string;
@@ -179,6 +240,7 @@ export default function CheckoutPage() {
                 razorpay_signature: string;
               }) {
                 try {
+                  console.log('Payment successful:', response);
                   // Verify payment
                   await axiosInstance.post('/payment/verify', {
                     razorpay_order_id: response.razorpay_order_id,
@@ -188,23 +250,21 @@ export default function CheckoutPage() {
                   });
 
                   clearCart();
+                  setOrderCompleted(true);
                   toast.success('Payment successful! Order placed.');
-                  router.push(`/orders/${order._id || order.orderNumber}`);
+                  router.push(`/thank-you?orderId=${order._id}&orderNumber=${order.orderNumber}`);
                 } catch (error) {
                   console.error('Payment verification failed:', error);
                   toast.error('Payment verification failed. Please contact support.');
-                }
-              },
-              modal: {
-                ondismiss: function () {
                   setIsProcessing(false);
-                  toast.info('Payment cancelled');
-                },
+                }
               },
             };
 
+            console.log('Opening Razorpay modal with options:', options);
             const razorpay = new (window as any).Razorpay(options);
             razorpay.open();
+            console.log('Razorpay modal opened');
           } catch (error) {
             console.error('Razorpay initialization failed:', error);
             toast.error('Failed to initiate payment');
@@ -212,6 +272,7 @@ export default function CheckoutPage() {
           }
         };
         script.onerror = () => {
+          console.error('Failed to load Razorpay script');
           toast.error('Payment gateway failed to load');
           setIsProcessing(false);
         };
@@ -219,8 +280,9 @@ export default function CheckoutPage() {
       } else {
         // COD - Order placed successfully
         clearCart();
+        setOrderCompleted(true);
         toast.success('Order placed successfully!');
-        router.push(`/orders/${order._id || order.orderNumber}`);
+        router.push(`/thank-you?orderId=${order._id}&orderNumber=${order.orderNumber}`);
       }
     } catch (error) {
       console.error('Order placement failed:', error);
@@ -241,6 +303,47 @@ export default function CheckoutPage() {
   return (
     <ClientLayout>
       <div className="max-w-7xl mx-auto px-4 py-8">
+        {/* Email Verification Warning */}
+        {!isUserVerified && (
+          <motion.div
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="mb-6 bg-amber-50 border border-amber-200 rounded-lg p-4"
+          >
+            <div className="flex items-start gap-3">
+              <AlertCircle className="h-5 w-5 text-amber-600 flex-shrink-0 mt-0.5" />
+              <div className="flex-1">
+                <h3 className="font-medium text-amber-900 mb-1">
+                  Email Verification Required
+                </h3>
+                <p className="text-sm text-amber-800 mb-3">
+                  You need to verify your email address before you can place an order. 
+                  Please check your inbox for the verification link.
+                </p>
+                <Button
+                  onClick={handleResendVerificationEmail}
+                  disabled={isResendingEmail}
+                  size="sm"
+                  variant="outline"
+                  className="text-amber-700 border-amber-300 hover:bg-amber-100"
+                >
+                  {isResendingEmail ? (
+                    <>
+                      <Loader2 className="h-3 w-3 mr-2 animate-spin" />
+                      Sending...
+                    </>
+                  ) : (
+                    <>
+                      <Mail className="h-3 w-3 mr-2" />
+                      Resend Verification Email
+                    </>
+                  )}
+                </Button>
+              </div>
+            </div>
+          </motion.div>
+        )}
+
         {/* Back Button */}
         <Button
           variant="ghost"
@@ -319,10 +422,81 @@ export default function CheckoutPage() {
                     Shipping Address
                   </h2>
 
-                  <form
-                    onSubmit={handleSubmit(onShippingSubmit)}
-                    className="space-y-4"
-                  >
+                  {/* Saved Addresses */}
+                  {user?.addresses && user.addresses.length > 0 && (
+                    <div className="mb-8">
+                      <h3 className="text-sm font-medium text-gray-700 mb-4">
+                        Saved Addresses
+                      </h3>
+                      <div className="space-y-3">
+                        {user.addresses.map((address) => (
+                          <div
+                            key={address._id}
+                            onClick={() => handleAddressSelect(address._id || '')}
+                            className={`border-2 p-4 cursor-pointer transition-all ${
+                              selectedAddressId === address._id
+                                ? 'border-[#7e1219] bg-red-50/30'
+                                : 'border-gray-200 hover:border-gray-300'
+                            }`}
+                          >
+                            <div className="flex items-start justify-between">
+                              <div className="flex-1">
+                                <div className="flex items-center gap-2 mb-2">
+                                  <p className="font-medium text-gray-900">
+                                    {address.fullName}
+                                  </p>
+                                  {address.isDefault && (
+                                    <span className="text-xs bg-[#7e1219] text-white px-2 py-0.5 rounded">
+                                      Default
+                                    </span>
+                                  )}
+                                </div>
+                                <p className="text-sm text-gray-600">
+                                  {address.addressLine1}
+                                  {address.addressLine2 && `, ${address.addressLine2}`}
+                                </p>
+                                <p className="text-sm text-gray-600">
+                                  {address.city}, {address.state} - {address.pincode}
+                                </p>
+                                <p className="text-sm text-gray-600 mt-1">
+                                  Phone: {address.phone}
+                                </p>
+                              </div>
+                              <div className="ml-4">
+                                <div
+                                  className={`w-5 h-5 rounded-full border-2 flex items-center justify-center ${
+                                    selectedAddressId === address._id
+                                      ? 'border-[#7e1219]'
+                                      : 'border-gray-300'
+                                  }`}
+                                >
+                                  {selectedAddressId === address._id && (
+                                    <div className="w-3 h-3 rounded-full bg-[#7e1219]" />
+                                  )}
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+
+                      <Button
+                        type="button"
+                        variant="outline"
+                        onClick={() => setShowNewAddressForm(!showNewAddressForm)}
+                        className="mt-4 w-full"
+                      >
+                        {showNewAddressForm ? 'Cancel' : '+ Add New Address'}
+                      </Button>
+                    </div>
+                  )}
+
+                  {/* Address Form */}
+                  {(showNewAddressForm || !user?.addresses || user.addresses.length === 0) && (
+                    <form
+                      onSubmit={handleSubmit(onShippingSubmit)}
+                      className="space-y-4"
+                    >
                     <div>
                       <Label htmlFor="fullName" className="text-xs font-light uppercase tracking-wider text-gray-600">Full Name *</Label>
                       <Input
@@ -429,6 +603,32 @@ export default function CheckoutPage() {
                       Continue to Payment
                     </Button>
                   </form>
+                  )}
+
+                  {/* Continue button for saved address */}
+                  {!showNewAddressForm && user?.addresses && user.addresses.length > 0 && selectedAddressId && (
+                    <Button
+                      onClick={() => {
+                        const address = user.addresses?.find((addr) => addr._id === selectedAddressId);
+                        if (address) {
+                          onShippingSubmit({
+                            fullName: address.fullName,
+                            phone: address.phone,
+                            addressLine1: address.addressLine1,
+                            addressLine2: address.addressLine2 || '',
+                            city: address.city,
+                            state: address.state,
+                            pincode: address.pincode,
+                          });
+                        }
+                      }}
+                      className="w-full h-12 text-white text-xs tracking-wider uppercase font-light"
+                      size="lg"
+                      style={{ backgroundColor: '#7e1219' }}
+                    >
+                      Continue to Payment
+                    </Button>
+                  )}
                 </motion.div>
               )}
 
@@ -467,14 +667,14 @@ export default function CheckoutPage() {
                       </div>
                     </div>
 
-                    <div className="flex items-start space-x-3 p-4 border-2 border-gray-200 rounded-lg hover:border-amber-500 transition-colors cursor-pointer opacity-50">
-                      <RadioGroupItem value="razorpay" id="razorpay" disabled />
+                    <div className="flex items-start space-x-3 p-4 border-2 border-gray-200 rounded-lg hover:border-amber-500 transition-colors cursor-pointer">
+                      <RadioGroupItem value="razorpay" id="razorpay" />
                       <div className="flex-1">
                         <Label
                           htmlFor="razorpay"
                           className="text-base font-medium cursor-pointer"
                         >
-                          Online Payment (Coming Soon)
+                          Online Payment
                         </Label>
                         <p className="text-sm text-gray-600 mt-1">
                           Pay securely using UPI, Cards, or Net Banking
@@ -618,12 +818,18 @@ export default function CheckoutPage() {
                       className="flex-1 h-12 text-white text-xs tracking-wider uppercase font-light"
                       style={{ backgroundColor: '#7e1219' }}
                       size="lg"
-                      disabled={isProcessing}
+                      disabled={isProcessing || !isUserVerified}
+                      title={!isUserVerified ? 'Please verify your email to place an order' : ''}
                     >
                       {isProcessing ? (
                         <>
                           <Loader2 className="h-4 w-4 mr-2 animate-spin" />
                           Placing Order...
+                        </>
+                      ) : !isUserVerified ? (
+                        <>
+                          <AlertCircle className="h-4 w-4 mr-2" />
+                          Email Verification Required
                         </>
                       ) : (
                         'Place Order'
@@ -656,13 +862,6 @@ export default function CheckoutPage() {
                     ) : (
                       `₹${shipping.toLocaleString('en-IN')}`
                     )}
-                  </span>
-                </div>
-
-                <div className="flex justify-between text-gray-600 font-light">
-                  <span className="text-xs uppercase tracking-wider">Tax (GST 18%)</span>
-                  <span className="text-sm">
-                    ₹{tax.toLocaleString('en-IN', { maximumFractionDigits: 0 })}
                   </span>
                 </div>
 

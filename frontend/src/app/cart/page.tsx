@@ -5,16 +5,18 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Minus, Plus, Trash2, ShoppingBag, ArrowRight, Tag } from 'lucide-react';
+import { Minus, Plus, Trash2, ShoppingBag, ArrowRight, Tag, Heart } from 'lucide-react';
 import { ClientLayout } from '@/components/client/client-layout';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { useCartStore } from '@/store/cart-store';
+import { useWishlistStore } from '@/store/wishlist-store';
 import { toast } from 'sonner';
 
 export default function CartPage() {
   const router = useRouter();
   const { items, updateQuantity, removeItem, getSubtotal } = useCartStore();
+  const { addItem: addToWishlist, isInWishlist } = useWishlistStore();
   const [couponCode, setCouponCode] = useState('');
   const [appliedCoupon, setAppliedCoupon] = useState<string | null>(null);
   const [discount, setDiscount] = useState(0);
@@ -41,6 +43,23 @@ export default function CartPage() {
     removeItem(productId);
     toast.success('Removed from cart', {
       description: productName,
+    });
+  };
+
+  const handleMoveToWishlist = (item: typeof items[0]) => {
+    if (isInWishlist(item.product._id)) {
+      toast.info('Already in wishlist');
+      return;
+    }
+    
+    addToWishlist(item.product);
+    removeItem(item.product._id);
+    toast.success('Moved to wishlist', {
+      description: item.product.name,
+      action: {
+        label: 'View',
+        onClick: () => router.push('/account/wishlist'),
+      },
     });
   };
 
@@ -109,17 +128,30 @@ export default function CartPage() {
             <p className="text-gray-500 mb-8 max-w-md mx-auto font-light">
               Discover our curated collection of luxury jewelry
             </p>
-            <Button
-              asChild
-              size="lg"
-              className="h-12 px-8 text-white text-xs tracking-wider uppercase font-light"
-              style={{ backgroundColor: '#7e1219' }}
-            >
-              <Link href="/shop">
-                Start Shopping
-                <ArrowRight className="ml-2 h-4 w-4" />
-              </Link>
-            </Button>
+            <div className="flex flex-col sm:flex-row gap-4 items-center justify-center">
+              <Button
+                asChild
+                size="lg"
+                className="h-12 px-8 text-white text-xs tracking-wider uppercase font-light"
+                style={{ backgroundColor: '#7e1219' }}
+              >
+                <Link href="/shop">
+                  Start Shopping
+                  <ArrowRight className="ml-2 h-4 w-4" />
+                </Link>
+              </Button>
+              <Button
+                asChild
+                variant="outline"
+                size="lg"
+                className="h-12 px-8 text-xs tracking-wider uppercase font-light"
+              >
+                <Link href="/account/wishlist">
+                  <Heart className="mr-2 h-4 w-4" />
+                  View Wishlist
+                </Link>
+              </Button>
+            </div>
           </motion.div>
         </div>
       </ClientLayout>
@@ -279,6 +311,17 @@ export default function CartPage() {
                           Maximum available quantity
                         </p>
                       )}
+
+                      {/* Move to Wishlist Button */}
+                      <div className="mt-4 pt-4 border-t border-gray-100">
+                        <button
+                          onClick={() => handleMoveToWishlist(item)}
+                          className="flex items-center gap-2 text-sm text-gray-600 hover:text-rose-600 transition-colors"
+                        >
+                          <Heart className="h-4 w-4" />
+                          <span>Move to Wishlist</span>
+                        </button>
+                      </div>
                     </div>
                   </div>
                 </motion.div>
@@ -342,16 +385,7 @@ export default function CartPage() {
                   </div>
                 )}
                 
-                {!appliedCoupon && (
-                  <div className="text-xs text-gray-500 space-y-1">
-                    <p className="font-medium">Available coupons:</p>
-                    <p><span className="font-mono bg-gray-200 px-1 rounded">SAVE10</span> - 10% off</p>
-                    <p><span className="font-mono bg-gray-200 px-1 rounded">SAVE15</span> - 15% off</p>
-                    <p><span className="font-mono bg-gray-200 px-1 rounded">SAVE20</span> - 20% off</p>
-                    <p><span className="font-mono bg-gray-200 px-1 rounded">FLAT500</span> - ₹500 off</p>
-                    <p><span className="font-mono bg-gray-200 px-1 rounded">FLAT1000</span> - ₹1000 off</p>
-                  </div>
-                )}
+            
               </div>
 
               {/* Price Breakdown */}

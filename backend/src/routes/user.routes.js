@@ -8,11 +8,24 @@ const {
   toggleUserStatus,
   deleteUser,
   getUserStats,
+  updateProfile,
+  getProfile,
+  changePassword,
 } = require('../controllers/userController');
 const { protect, admin } = require('../middleware/auth.middleware');
 
 // All routes require authentication and admin role
 router.use(protect);
+
+// Profile routes (for authenticated users, must be before admin middleware)
+router.route('/profile')
+  .get(getProfile)
+  .put(updateProfile);
+
+// Change password route
+router.put('/change-password', changePassword);
+
+// Admin-only routes
 router.use(admin);
 
 // Stats route (must be before :id routes)

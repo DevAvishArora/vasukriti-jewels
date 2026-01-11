@@ -17,7 +17,8 @@ import {
   SelectValue,
 } from '@/components/ui/select';
 import { Alert, AlertDescription } from '@/components/ui/alert';
-import { Loader2, ArrowLeft, Plus, X, Save } from 'lucide-react';
+import { Loader2, ArrowLeft, Save } from 'lucide-react';
+import { ImageUpload } from '@/components/admin/ImageUpload';
 
 interface Category {
   _id: string;
@@ -160,34 +161,6 @@ export default function EditProductPage() {
     } finally {
       setLoading(false);
     }
-  };
-
-  const addImageField = () => {
-    setFormData({
-      ...formData,
-      images: [...formData.images, { url: '', alt: '', isPrimary: false }],
-    });
-  };
-
-  const removeImageField = (index: number) => {
-    const newImages = formData.images.filter((_, i) => i !== index);
-    setFormData({ ...formData, images: newImages });
-  };
-
-  const updateImageField = (index: number, field: string, value: string | boolean) => {
-    const newImages = formData.images.map((img, i) => {
-      if (i === index) {
-        if (field === 'isPrimary' && value === true) {
-          return { ...img, [field]: value };
-        }
-        return { ...img, [field]: value };
-      }
-      if (field === 'isPrimary' && value === true) {
-        return { ...img, isPrimary: false };
-      }
-      return img;
-    });
-    setFormData({ ...formData, images: newImages });
   };
 
   if (fetching) {
@@ -414,56 +387,17 @@ export default function EditProductPage() {
         {/* Images */}
         <Card className="mb-6">
           <CardHeader>
-            <div className="flex items-center justify-between">
-              <CardTitle>Product Images</CardTitle>
-              <Button type="button" variant="outline" size="sm" onClick={addImageField}>
-                <Plus className="h-4 w-4 mr-2" />
-                Add Image
-              </Button>
-            </div>
+            <CardTitle>Product Images</CardTitle>
           </CardHeader>
-          <CardContent className="space-y-4">
-            {formData.images.map((image, index) => (
-              <div key={index} className="border rounded-lg p-4 space-y-3">
-                <div className="flex items-center justify-between">
-                  <Label>Image {index + 1}</Label>
-                  {formData.images.length > 1 && (
-                    <Button
-                      type="button"
-                      variant="ghost"
-                      size="sm"
-                      onClick={() => removeImageField(index)}
-                    >
-                      <X className="h-4 w-4" />
-                    </Button>
-                  )}
-                </div>
-
-                <div className="space-y-3">
-                  <Input
-                    placeholder="Image URL *"
-                    value={image.url}
-                    onChange={(e) => updateImageField(index, 'url', e.target.value)}
-                    required={index === 0}
-                  />
-                  <Input
-                    placeholder="Alt text"
-                    value={image.alt}
-                    onChange={(e) => updateImageField(index, 'alt', e.target.value)}
-                  />
-                  <div className="flex items-center gap-2">
-                    <input
-                      type="checkbox"
-                      id={`primary-${index}`}
-                      checked={image.isPrimary}
-                      onChange={(e) => updateImageField(index, 'isPrimary', e.target.checked)}
-                      className="h-4 w-4"
-                    />
-                    <Label htmlFor={`primary-${index}`}>Set as primary image</Label>
-                  </div>
-                </div>
-              </div>
-            ))}
+          <CardContent>
+            <ImageUpload
+              label="Product Images"
+              value={formData.images}
+              onChange={(images) => setFormData({ ...formData, images })}
+              maxImages={10}
+              required={true}
+              folder="products"
+            />
           </CardContent>
         </Card>
 

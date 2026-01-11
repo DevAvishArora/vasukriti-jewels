@@ -1,10 +1,10 @@
-# Vasukriti Jewels - Premium Online Jewelry Store
+# Vasukriti - Premium Online Jewelry Store
 
 A full-stack eCommerce platform for premium jewelry built with Next.js 14, Express.js, MongoDB, and modern web technologies.
 
 ## 🎯 Project Overview
 
-Vasukriti Jewels is a luxurious online jewelry store featuring:
+Vasukriti is a luxurious online jewelry store featuring:
 - 🎨 Modern, responsive design with light/dark mode
 - 🛍️ Complete shopping cart and checkout flow
 - 💳 Integrated payment processing (Razorpay)
@@ -162,7 +162,7 @@ NEXT_PUBLIC_API_URL=http://localhost:5000/api
 NEXT_PUBLIC_APP_URL=http://localhost:3000
 NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME=your-cloud-name
 NEXT_PUBLIC_RAZORPAY_KEY_ID=your-razorpay-key-id
-NEXT_PUBLIC_SITE_NAME=Vasukriti Jewels
+NEXT_PUBLIC_SITE_NAME=Vasukriti
 ```
 
 ## 📚 API Documentation
@@ -252,7 +252,7 @@ This project is private and proprietary.
 
 ## 👥 Authors
 
-- Development Team - Vasukriti Jewels
+- Development Team - Vasukriti
 
 ## 🙏 Acknowledgments
 

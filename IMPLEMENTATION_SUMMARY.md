@@ -2,7 +2,7 @@
 
 ## ✅ What Has Been Completed
 
-Congratulations! The foundation of **Vasukriti Jewels** eCommerce platform has been successfully set up. Here's a comprehensive summary of what's been implemented:
+Congratulations! The foundation of **Vasukriti** eCommerce platform has been successfully set up. Here's a comprehensive summary of what's been implemented:
 
 ### 🎯 Project Structure
 

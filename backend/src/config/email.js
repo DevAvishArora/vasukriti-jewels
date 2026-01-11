@@ -2,8 +2,20 @@ const nodemailer = require('nodemailer');
 
 // Create reusable transporter
 const createTransporter = () => {
-  // For development, you can use Gmail or Ethereal (test email service)
-  // For production, use SendGrid, AWS SES, or other professional email service
+  // Check if using Ethereal or custom SMTP
+  if (process.env.EMAIL_HOST && process.env.EMAIL_HOST !== 'smtp.gmail.com') {
+    // Ethereal or other SMTP service
+    console.log(`📧 Using email service: ${process.env.EMAIL_HOST}`);
+    return nodemailer.createTransport({
+      host: process.env.EMAIL_HOST,
+      port: Number.parseInt(process.env.EMAIL_PORT) || 587,
+      secure: false, // true for 465, false for other ports
+      auth: {
+        user: process.env.EMAIL_USER,
+        pass: process.env.EMAIL_PASS,
+      },
+    });
+  }
   
   if (process.env.NODE_ENV === 'production') {
     // Production configuration (SendGrid example)
@@ -20,6 +32,7 @@ const createTransporter = () => {
 
   // Development configuration (Gmail example)
   // Note: For Gmail, you need to enable "Less secure app access" or use App Password
+  console.log('📧 Using Gmail service');
   return nodemailer.createTransport({
     service: 'gmail',
     auth: {
@@ -34,9 +47,14 @@ const transporter = createTransporter();
 // Verify transporter configuration
 transporter.verify((error, success) => {
   if (error) {
-    console.error('Email transporter verification failed:', error);
+    console.error('❌ Email transporter verification failed:', error.message);
+    console.error('💡 Tip: Run "node setup-ethereal.js" to get test email credentials');
   } else {
     console.log('✅ Email service is ready');
+    if (process.env.EMAIL_HOST === 'smtp.ethereal.email') {
+      console.log('📧 Using Ethereal Email (test mode)');
+      console.log('   Emails won\'t be delivered but can be viewed at: https://ethereal.email');
+    }
   }
 });
 

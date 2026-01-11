@@ -18,7 +18,8 @@ import {
   LogOut,
   Store,
   Layers,
-  X
+  X,
+  Palette
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useAuthStore } from '@/store/auth-store';
@@ -83,6 +84,11 @@ const navItems = [
     href: '/admin/reviews',
     icon: MessageSquare,
   },
+  {
+    title: 'CMS',
+    href: '/admin/cms',
+    icon: Palette,
+  },
  
   {
     title: 'Settings',
@@ -116,7 +122,7 @@ export function Sidebar({ isMobileOpen = false, onMobileClose }: SidebarProps) {
             <Store className="h-6 w-6" />
           </div>
           <div>
-            <h1 className="text-lg font-bold">Vasukriti Jewels</h1>
+            <h1 className="text-lg font-bold">Vasukriti</h1>
             <p className="text-xs text-gray-400">Admin Panel</p>
           </div>
         </Link>

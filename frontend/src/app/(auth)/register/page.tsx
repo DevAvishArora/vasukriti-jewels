@@ -104,7 +104,7 @@ export default function RegisterPage() {
               Create Account
             </h2>
             <p className="text-xs font-light text-gray-400 uppercase tracking-wider">
-              Join Vasukriti Jewels today
+              Join Vasukriti today
             </p>
           </div>
 

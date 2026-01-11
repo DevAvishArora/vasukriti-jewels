@@ -162,6 +162,14 @@ const createOrder = async (req, res, next) => {
       couponCode,
     } = req.body;
 
+    // Check if user email is verified
+    if (!req.user.isVerified) {
+      return res.status(403).json({
+        success: false,
+        message: 'Please verify your email address before placing an order. Check your inbox for the verification link.',
+      });
+    }
+
     if (!items || items.length === 0) {
       return res.status(400).json({
         success: false,
@@ -208,16 +216,13 @@ const createOrder = async (req, res, next) => {
       });
     }
 
-    // Calculate tax (18% GST)
-    const tax = subtotal * 0.18;
-
     // Calculate shipping (free above 5000, otherwise 200)
     const shippingCharge = subtotal >= 5000 ? 0 : 200;
 
     // Apply coupon discount (to be implemented with Coupon model)
     const discount = 0;
 
-    const totalAmount = subtotal + tax + shippingCharge - discount;
+    const totalAmount = subtotal + shippingCharge - discount;
 
     // Generate order number
     const date = new Date();
@@ -237,7 +242,7 @@ const createOrder = async (req, res, next) => {
       subtotal,
       discount,
       shippingCharge,
-      tax,
+      tax: 0,
       totalAmount,
       paymentStatus: 'pending',
       orderStatus: 'pending',

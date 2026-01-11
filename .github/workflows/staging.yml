@@ -1,0 +1,32 @@
+name: Staging Deployment
+
+on:
+  push:
+    branches: [staging]
+  pull_request:
+    branches: [staging]
+
+env:
+  NODE_VERSION: '18'
+
+jobs:
+  deploy-staging:
+    name: Deploy to Staging
+    runs-on: ubuntu-latest
+    
+    steps:
+      - uses: actions/checkout@v3
+      
+      - name: Deploy Info
+        run: |
+          echo "Deploying to Staging Environment"
+          echo "Backend: Render auto-deploys on push to staging"
+          echo "Frontend: Vercel auto-deploys on push to staging"
+          
+      - name: Trigger Render Staging Deploy
+        run: |
+          if [ -n "${{ secrets.RENDER_DEPLOY_HOOK_STAGING }}" ]; then
+            curl -X POST ${{ secrets.RENDER_DEPLOY_HOOK_STAGING }}
+          else
+            echo "RENDER_DEPLOY_HOOK_STAGING not configured"
+          fi
