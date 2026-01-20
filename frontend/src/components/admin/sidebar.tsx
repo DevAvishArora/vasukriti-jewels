@@ -19,7 +19,8 @@ import {
   Store,
   Layers,
   X,
-  Palette
+  Palette,
+  FileText
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useAuthStore } from '@/store/auth-store';

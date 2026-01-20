@@ -39,13 +39,15 @@ interface Product {
   price: number;
   discountPrice?: number;
   category: string | { _id: string; name: string };
-  material: string;
+  materials: string;
   purity?: string;
   weight?: number;
   stock: number;
   sku: string;
   images: Image[];
   tags: string[];
+  specifications: { label: string; value: string }[];
+  precautions?: string;
   isActive: boolean;
 }
 
@@ -65,13 +67,15 @@ export default function EditProductPage() {
     price: '',
     discountPrice: '',
     category: '',
-    material: 'Gold',
+    material: '',
     purity: '',
     weight: '',
     stockQuantity: '',
     sku: '',
     images: [{ url: '', alt: '', isPrimary: true }] as Image[],
     tags: '',
+    specifications: [] as { label: string; value: string }[],
+    precautions: '',
     isActive: true,
   });
 
@@ -106,13 +110,15 @@ export default function EditProductPage() {
         price: product.price.toString(),
         discountPrice: product.discountPrice?.toString() || '',
         category: categoryId,
-        material: product.material || 'Gold',
+        material: product.materials || '',
         purity: product.purity || '',
         weight: product.weight?.toString() || '',
         stockQuantity: product.stock?.toString() || '0',
         sku: product.sku,
         images: product.images.length > 0 ? product.images : [{ url: '', alt: '', isPrimary: true }],
         tags: product.tags.join(', '),
+        specifications: product.specifications || [],
+        precautions: product.precautions || '',
         isActive: product.isActive,
       });
     } catch (error) {
@@ -136,13 +142,15 @@ export default function EditProductPage() {
         price: Number(formData.price),
         discountPrice: formData.discountPrice ? Number(formData.discountPrice) : undefined,
         category: formData.category,
-        material: formData.material,
+        materials: formData.material,
         purity: formData.purity || undefined,
         weight: formData.weight ? Number(formData.weight) : undefined,
         stock: Number(formData.stockQuantity),
         sku: formData.sku,
         images: formData.images.filter((img) => img.url),
         tags: formData.tags.split(',').map((tag) => tag.trim()).filter(Boolean),
+        specifications: formData.specifications.filter(spec => spec.label && spec.value),
+        precautions: formData.precautions,
         isActive: formData.isActive,
       };
 
@@ -330,23 +338,13 @@ export default function EditProductPage() {
           <CardContent className="space-y-4">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
               <div>
-                <Label htmlFor="material">Material *</Label>
-                <Select
+                <Label htmlFor="material">Material</Label>
+                <Input
+                  id="material"
                   value={formData.material}
-                  onValueChange={(value) => setFormData({ ...formData, material: value })}
-                  required
-                >
-                  <SelectTrigger>
-                    <SelectValue />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="Gold">Gold</SelectItem>
-                    <SelectItem value="Silver">Silver</SelectItem>
-                    <SelectItem value="Platinum">Platinum</SelectItem>
-                    <SelectItem value="Diamond">Diamond</SelectItem>
-                    <SelectItem value="Gemstone">Gemstone</SelectItem>
-                  </SelectContent>
-                </Select>
+                  onChange={(e) => setFormData({ ...formData, material: e.target.value })}
+                  placeholder="e.g., 22K Gold, Silver, Diamond"
+                />
               </div>
 
               <div>
@@ -381,6 +379,88 @@ export default function EditProductPage() {
                 placeholder="e.g., wedding, traditional, bridal"
               />
             </div>
+          </CardContent>
+        </Card>
+
+        {/* Care & Precautions */}
+        <Card className="mb-6">
+          <CardHeader>
+            <CardTitle>Care & Precautions</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div>
+              <Label htmlFor="precautions">Care Instructions & Precautions</Label>
+              <Textarea
+                id="precautions"
+                value={formData.precautions}
+                onChange={(e) => setFormData({ ...formData, precautions: e.target.value })}
+                placeholder="e.g., Avoid contact with water and chemicals. Store in a soft cloth pouch. Clean with a soft brush."
+                rows={5}
+              />
+            </div>
+          </CardContent>
+        </Card>
+
+        {/* Specifications */}
+        <Card className="mb-6">
+          <CardHeader>
+            <CardTitle>Specifications</CardTitle>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            {formData.specifications.map((spec, index) => (
+              <div key={index} className="flex gap-4 items-end">
+                <div className="flex-1">
+                  <Label htmlFor={`spec-label-${index}`}>Label</Label>
+                  <Input
+                    id={`spec-label-${index}`}
+                    value={spec.label}
+                    onChange={(e) => {
+                      const newSpecs = [...formData.specifications];
+                      newSpecs[index].label = e.target.value;
+                      setFormData({ ...formData, specifications: newSpecs });
+                    }}
+                    placeholder="e.g., Stone Type, Purity, Dimensions"
+                  />
+                </div>
+                <div className="flex-1">
+                  <Label htmlFor={`spec-value-${index}`}>Value</Label>
+                  <Input
+                    id={`spec-value-${index}`}
+                    value={spec.value}
+                    onChange={(e) => {
+                      const newSpecs = [...formData.specifications];
+                      newSpecs[index].value = e.target.value;
+                      setFormData({ ...formData, specifications: newSpecs });
+                    }}
+                    placeholder="e.g., Diamond, 22K, 10mm x 8mm"
+                  />
+                </div>
+                <Button
+                  type="button"
+                  variant="outline"
+                  size="sm"
+                  onClick={() => {
+                    const newSpecs = formData.specifications.filter((_, i) => i !== index);
+                    setFormData({ ...formData, specifications: newSpecs });
+                  }}
+                  className="mb-0"
+                >
+                  Remove
+                </Button>
+              </div>
+            ))}
+            <Button
+              type="button"
+              variant="outline"
+              onClick={() => {
+                setFormData({
+                  ...formData,
+                  specifications: [...formData.specifications, { label: '', value: '' }],
+                });
+              }}
+            >
+              Add Specification
+            </Button>
           </CardContent>
         </Card>
 

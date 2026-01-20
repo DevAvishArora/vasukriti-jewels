@@ -20,14 +20,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from '@/components/ui/table';
+import { ResponsiveTable } from '@/components/ui/responsive-table';
 import {
   Dialog,
   DialogContent,
@@ -191,16 +184,16 @@ export default function CouponsPage() {
   };
 
   return (
-    <div className="p-8">
+    <div className="space-y-6">
       <div className="mb-8">
-        <div className="flex justify-between items-center mb-6">
-          <div>
-            <h1 className="text-3xl font-bold">Coupons & Discounts</h1>
+        <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between mb-6">
+          <div className="min-w-0">
+            <h1 className="text-2xl sm:text-3xl font-bold truncate">Coupons & Discounts</h1>
             <p className="text-muted-foreground mt-1">
               Manage promotional codes and discounts
             </p>
           </div>
-          <Button onClick={() => router.push('/admin/coupons/create')}>
+          <Button onClick={() => router.push('/admin/coupons/create')} className="flex-shrink-0 w-full sm:w-auto">
             <Plus className="mr-2 h-4 w-4" />
             Create Coupon
           </Button>
@@ -257,7 +250,7 @@ export default function CouponsPage() {
         )}
 
         <Card>
-          <CardHeader>
+          <CardHeader className="px-4 sm:px-6">
             <div className="flex flex-col md:flex-row gap-4">
               <div className="flex-1 relative">
                 <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
@@ -292,7 +285,7 @@ export default function CouponsPage() {
               </Select>
             </div>
           </CardHeader>
-          <CardContent>
+          <CardContent className="px-0 sm:px-6">
             {loading ? (
               <div className="text-center py-8">Loading...</div>
             ) : coupons.length === 0 ? (
@@ -301,81 +294,130 @@ export default function CouponsPage() {
               </div>
             ) : (
               <>
-                <Table>
-                  <TableHeader>
-                    <TableRow>
-                      <TableHead>Code</TableHead>
-                      <TableHead>Description</TableHead>
-                      <TableHead>Discount</TableHead>
-                      <TableHead>Valid Period</TableHead>
-                      <TableHead>Usage</TableHead>
-                      <TableHead>Status</TableHead>
-                      <TableHead>Active</TableHead>
-                      <TableHead className="text-right">Actions</TableHead>
-                    </TableRow>
-                  </TableHeader>
-                  <TableBody>
-                    {coupons.map((coupon) => (
-                      <TableRow key={coupon._id}>
-                        <TableCell className="font-mono font-semibold">
-                          {coupon.code}
-                        </TableCell>
-                        <TableCell className="max-w-[200px] truncate">
-                          {coupon.description}
-                        </TableCell>
-                        <TableCell>
-                          {coupon.discountType === 'percentage'
-                            ? `${coupon.discountValue}%`
-                            : `₹${coupon.discountValue}`}
+                <ResponsiveTable
+                  data={coupons}
+                  columns={[
+                    {
+                      key: 'code',
+                      label: 'Code',
+                      mobileLabel: 'Coupon',
+                      render: (coupon) => (
+                        <div>
+                          <p className="font-mono font-semibold">{coupon.code}</p>
+                          <p className="text-sm text-gray-500 truncate max-w-[200px]">{coupon.description}</p>
+                        </div>
+                      ),
+                    },
+                    {
+                      key: 'description',
+                      label: 'Description',
+                      mobileLabel: 'Description',
+                      hideOnMobile: true,
+                      render: (coupon) => (
+                        <span className="truncate max-w-[200px] block">{coupon.description}</span>
+                      ),
+                    },
+                    {
+                      key: 'discount',
+                      label: 'Discount',
+                      mobileLabel: 'Discount',
+                      render: (coupon) => (
+                        <div>
+                          <div>
+                            {coupon.discountType === 'percentage'
+                              ? `${coupon.discountValue}%`
+                              : `₹${coupon.discountValue}`}
+                          </div>
                           {coupon.maximumDiscount && (
-                            <span className="text-xs text-muted-foreground ml-1">
+                            <span className="text-xs text-muted-foreground">
                               (max ₹{coupon.maximumDiscount})
                             </span>
                           )}
-                        </TableCell>
-                        <TableCell className="text-sm">
+                        </div>
+                      ),
+                    },
+                    {
+                      key: 'validPeriod',
+                      label: 'Valid Period',
+                      mobileLabel: 'Valid Period',
+                      hideOnMobile: true,
+                      render: (coupon) => (
+                        <div className="text-sm">
                           <div>{formatDate(coupon.validFrom)}</div>
                           <div className="text-muted-foreground">
                             to {formatDate(coupon.validUntil)}
                           </div>
-                        </TableCell>
-                        <TableCell>
+                        </div>
+                      ),
+                    },
+                    {
+                      key: 'usage',
+                      label: 'Usage',
+                      mobileLabel: 'Usage',
+                      render: (coupon) => (
+                        <span>
                           {coupon.usedCount}
                           {coupon.usageLimit && ` / ${coupon.usageLimit}`}
-                        </TableCell>
-                        <TableCell>{getStatusBadge(coupon)}</TableCell>
-                        <TableCell>
-                          <Switch
-                            checked={coupon.isActive}
-                            onCheckedChange={() =>
-                              toggleCouponStatus(coupon._id)
-                            }
-                          />
-                        </TableCell>
-                        <TableCell className="text-right">
-                          <div className="flex justify-end gap-2">
-                            <Button
-                              variant="ghost"
-                              size="sm"
-                              onClick={() =>
-                                router.push(`/admin/coupons/${coupon._id}/edit`)
-                              }
-                            >
-                              <Edit className="h-4 w-4" />
-                            </Button>
-                            <Button
-                              variant="ghost"
-                              size="sm"
-                              onClick={() => openDeleteDialog(coupon)}
-                            >
-                              <Trash2 className="h-4 w-4 text-destructive" />
-                            </Button>
-                          </div>
-                        </TableCell>
-                      </TableRow>
-                    ))}
-                  </TableBody>
-                </Table>
+                        </span>
+                      ),
+                    },
+                    {
+                      key: 'status',
+                      label: 'Status',
+                      mobileLabel: 'Status',
+                      render: (coupon) => getStatusBadge(coupon),
+                    },
+                    {
+                      key: 'active',
+                      label: 'Active',
+                      mobileLabel: 'Active',
+                      hideOnMobile: true,
+                      render: (coupon) => (
+                        <Switch
+                          checked={coupon.isActive}
+                          onCheckedChange={() => toggleCouponStatus(coupon._id)}
+                          onClick={(e) => e.stopPropagation()}
+                        />
+                      ),
+                    },
+                    {
+                      key: 'actions',
+                      label: 'Actions',
+                      mobileLabel: 'Actions',
+                      className: 'text-right',
+                      render: (coupon) => (
+                        <div className="flex justify-end gap-2">
+                          <Button
+                            variant="ghost"
+                            size="sm"
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              router.push(`/admin/coupons/${coupon._id}/edit`);
+                            }}
+                          >
+                            <Edit className="h-4 w-4" />
+                          </Button>
+                          <Button
+                            variant="ghost"
+                            size="sm"
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              openDeleteDialog(coupon);
+                            }}
+                          >
+                            <Trash2 className="h-4 w-4 text-destructive" />
+                          </Button>
+                        </div>
+                      ),
+                    },
+                  ]}
+                  keyExtractor={(coupon) => coupon._id}
+                  loading={loading}
+                  loadingMessage="Loading coupons..."
+                  emptyMessage="No coupons found"
+                  mobileCardView={true}
+                  onRowClick={(coupon) => router.push(`/admin/coupons/${coupon._id}/edit`)}
+                />
 
                 {totalPages > 1 && (
                   <div className="flex items-center justify-between mt-4">

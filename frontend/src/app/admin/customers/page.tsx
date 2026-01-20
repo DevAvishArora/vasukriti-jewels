@@ -13,14 +13,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from '@/components/ui/table';
+import { ResponsiveTable } from '@/components/ui/responsive-table';
 import { Badge } from '@/components/ui/badge';
 import { Search, Eye, Users, TrendingUp, UserCheck, UserX } from 'lucide-react';
 
@@ -104,11 +97,13 @@ export default function CustomersPage() {
   };
 
   return (
-    <div className="p-8">
+    <div className="space-y-6">
       {/* Header */}
       <div className="mb-6">
-        <h1 className="text-3xl font-bold text-gray-900">Customers</h1>
-        <p className="text-sm text-gray-500 mt-1">Manage your customer base</p>
+        <div className="min-w-0">
+          <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 truncate">Customers</h1>
+          <p className="text-sm text-gray-500 mt-1">Manage your customer base</p>
+        </div>
       </div>
 
       {/* Stats Cards */}
@@ -164,7 +159,7 @@ export default function CustomersPage() {
 
       {/* Filters */}
       <Card className="mb-6">
-        <CardContent className="pt-6">
+        <CardContent className="px-0 sm:px-6 pt-6">
           <form onSubmit={handleSearch} className="flex flex-col md:flex-row gap-4">
             <div className="flex-1">
               <div className="relative">
@@ -207,10 +202,10 @@ export default function CustomersPage() {
 
       {/* Customers Table */}
       <Card>
-        <CardHeader>
+        <CardHeader className="px-4 sm:px-6">
           <CardTitle>Customer List</CardTitle>
         </CardHeader>
-        <CardContent>
+        <CardContent className="px-0 sm:px-6">
           {loading ? (
             <div className="text-center py-8 text-gray-500">Loading customers...</div>
           ) : customers.length === 0 ? (
@@ -219,64 +214,103 @@ export default function CustomersPage() {
               <p className="mt-4 text-gray-500">No customers found</p>
             </div>
           ) : (
-            <div className="overflow-x-auto">
-              <Table>
-                <TableHeader>
-                  <TableRow>
-                    <TableHead>Customer</TableHead>
-                    <TableHead>Email</TableHead>
-                    <TableHead>Phone</TableHead>
-                    <TableHead>Orders</TableHead>
-                    <TableHead>Total Spent</TableHead>
-                    <TableHead>Status</TableHead>
-                    <TableHead>Joined</TableHead>
-                    <TableHead className="text-right">Actions</TableHead>
-                  </TableRow>
-                </TableHeader>
-                <TableBody>
-                  {customers.map((customer) => (
-                    <TableRow key={customer._id}>
-                      <TableCell>
-                        <div className="flex items-center gap-2">
-                          <div className="h-8 w-8 rounded-full bg-gradient-to-br from-amber-500 to-rose-500 flex items-center justify-center text-white font-medium">
-                            {customer.fullName.charAt(0).toUpperCase()}
-                          </div>
-                          <div>
-                            <p className="font-medium">{customer.fullName}</p>
-                            {customer.isVerified && (
-                              <Badge variant="outline" className="text-xs border-blue-500 text-blue-600">
-                                Verified
-                              </Badge>
-                            )}
-                          </div>
-                        </div>
-                      </TableCell>
-                      <TableCell>{customer.email}</TableCell>
-                      <TableCell>{customer.phone || 'N/A'}</TableCell>
-                      <TableCell>
-                        <Badge variant="secondary">{customer.orderCount}</Badge>
-                      </TableCell>
-                      <TableCell className="font-medium">
-                        {formatCurrency(customer.totalSpent)}
-                      </TableCell>
-                      <TableCell>
-                        <Badge variant={customer.isActive ? 'default' : 'secondary'}>
-                          {customer.isActive ? 'Active' : 'Inactive'}
-                        </Badge>
-                      </TableCell>
-                      <TableCell>{formatDate(customer.createdAt)}</TableCell>
-                      <TableCell className="text-right">
-                        <Link href={`/admin/customers/${customer._id}`}>
-                          <Button variant="ghost" size="sm">
-                            <Eye className="h-4 w-4" />
-                          </Button>
-                        </Link>
-                      </TableCell>
-                    </TableRow>
-                  ))}
-                </TableBody>
-              </Table>
-            </div>
+            <ResponsiveTable
+              data={customers}
+              columns={[
+                {
+                  key: 'customer',
+                  label: 'Customer',
+                  mobileLabel: 'Customer',
+                  render: (customer) => (
+                    <div className="flex items-center gap-2">
+                      <div className="h-8 w-8 rounded-full bg-gradient-to-br from-amber-500 to-rose-500 flex items-center justify-center text-white font-medium flex-shrink-0">
+                        {customer.fullName.charAt(0).toUpperCase()}
+                      </div>
+                      <div className="min-w-0">
+                        <p className="font-medium truncate">{customer.fullName}</p>
+                        {customer.isVerified && (
+                          <Badge variant="outline" className="text-xs border-blue-500 text-blue-600">
+                            Verified
+                          </Badge>
+                        )}
+                      </div>
+                    </div>
+                  ),
+                },
+                {
+                  key: 'email',
+                  label: 'Email',
+                  mobileLabel: 'Email',
+                  hideOnMobile: true,
+                  render: (customer) => customer.email,
+                },
+                {
+                  key: 'phone',
+                  label: 'Phone',
+                  mobileLabel: 'Phone',
+                  hideOnMobile: true,
+                  render: (customer) => customer.phone || 'N/A',
+                },
+                {
+                  key: 'orders',
+                  label: 'Orders',
+                  mobileLabel: 'Orders',
+                  render: (customer) => (
+                    <Badge variant="secondary">{customer.orderCount}</Badge>
+                  ),
+                },
+                {
+                  key: 'totalSpent',
+                  label: 'Total Spent',
+                  mobileLabel: 'Spent',
+                  render: (customer) => (
+                    <span className="font-medium">{formatCurrency(customer.totalSpent)}</span>
+                  ),
+                },
+                {
+                  key: 'status',
+                  label: 'Status',
+                  mobileLabel: 'Status',
+                  render: (customer) => (
+                    <Badge variant={customer.isActive ? 'default' : 'secondary'}>
+                      {customer.isActive ? 'Active' : 'Inactive'}
+                    </Badge>
+                  ),
+                },
+                {
+                  key: 'joined',
+                  label: 'Joined',
+                  mobileLabel: 'Joined',
+                  hideOnMobile: true,
+                  render: (customer) => formatDate(customer.createdAt),
+                },
+                {
+                  key: 'actions',
+                  label: 'Actions',
+                  mobileLabel: 'Actions',
+                  className: 'text-right',
+                  render: (customer) => (
+                    <Link href={`/admin/customers/${customer._id}`}>
+                      <Button
+                        variant="ghost"
+                        size="sm"
+                        onClick={(e) => e.stopPropagation()}
+                      >
+                        <Eye className="h-4 w-4" />
+                      </Button>
+                    </Link>
+                  ),
+                },
+              ]}
+              keyExtractor={(customer) => customer._id}
+              loading={loading}
+              loadingMessage="Loading customers..."
+              emptyMessage="No customers found"
+              mobileCardView={true}
+              onRowClick={(customer) => {
+                globalThis.location.href = `/admin/customers/${customer._id}`;
+              }}
+            />
           )}
         </CardContent>
       </Card>

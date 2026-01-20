@@ -13,14 +13,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from '@/components/ui/table';
+import { ResponsiveTable } from '@/components/ui/responsive-table';
 import {
   Dialog,
   DialogContent,
@@ -185,14 +178,14 @@ export default function InventoryPage() {
   }
 
   return (
-    <div className="p-8">
+    <div className="space-y-6">
       {/* Header */}
-      <div className="mb-6 flex items-center justify-between">
-        <div>
-          <h1 className="text-3xl font-bold text-gray-900">Inventory Management</h1>
+      <div className="mb-6 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+        <div className="min-w-0">
+          <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 truncate">Inventory Management</h1>
           <p className="text-sm text-gray-500 mt-1">Track and manage product stock levels</p>
         </div>
-        <Button onClick={handleExport} variant="outline">
+        <Button onClick={handleExport} variant="outline" className="flex-shrink-0 w-full sm:w-auto">
           <Download className="h-4 w-4 mr-2" />
           Export CSV
         </Button>
@@ -247,7 +240,7 @@ export default function InventoryPage() {
 
       {/* Filters */}
       <Card className="mb-6">
-        <CardContent className="pt-6">
+        <CardContent className="px-0 sm:px-6 pt-6">
           <div className="flex flex-col md:flex-row gap-4">
             <div className="flex-1 flex gap-2">
               <Input
@@ -279,61 +272,115 @@ export default function InventoryPage() {
 
       {/* Inventory Table */}
       <Card>
-        <CardContent className="pt-6">
-          <Table>
-            <TableHeader>
-              <TableRow>
-                <TableHead>Product</TableHead>
-                <TableHead>SKU</TableHead>
-                <TableHead>Category</TableHead>
-                <TableHead>Price</TableHead>
-                <TableHead>Stock</TableHead>
-                <TableHead>Status</TableHead>
-                <TableHead>Value</TableHead>
-                <TableHead className="text-right">Actions</TableHead>
-              </TableRow>
-            </TableHeader>
-            <TableBody>
-              {products.map((product) => (
-                <TableRow key={product._id}>
-                  <TableCell>
-                    <div className="flex items-center gap-3">
-                      {product.images && product.images[0] && (
-                        <Image
-                          src={product.images[0].url}
-                          alt={product.images[0].alt || product.name}
-                          width={40}
-                          height={40}
-                          className="rounded object-cover"
-                        />
-                      )}
-                      <span className="font-medium">{product.name}</span>
+        <CardContent className="px-0 sm:px-6 pt-6">
+          <ResponsiveTable
+            data={products}
+            columns={[
+              {
+                key: 'product',
+                label: 'Product',
+                mobileLabel: 'Product',
+                render: (product) => (
+                  <div className="flex items-center gap-3 min-w-[200px]">
+                    {product.images && product.images[0] ? (
+                      <Image
+                        src={product.images[0].url}
+                        alt={product.images[0].alt || product.name}
+                        width={40}
+                        height={40}
+                        className="rounded object-cover flex-shrink-0"
+                      />
+                    ) : (
+                      <div className="w-10 h-10 bg-gray-200 rounded flex items-center justify-center flex-shrink-0">
+                        <Package className="h-5 w-5 text-gray-400" />
+                      </div>
+                    )}
+                    <div className="min-w-0">
+                      <span className="font-medium truncate block">{product.name}</span>
+                      <span className="font-mono text-sm text-gray-500 block">{product.sku}</span>
                     </div>
-                  </TableCell>
-                  <TableCell className="font-mono text-sm">{product.sku}</TableCell>
-                  <TableCell>{product.category?.name || '-'}</TableCell>
-                  <TableCell>{formatCurrency(product.price)}</TableCell>
-                  <TableCell className="font-bold">{product.stock}</TableCell>
-                  <TableCell>{getStockBadge(product.stock)}</TableCell>
-                  <TableCell>{formatCurrency(product.price * product.stock)}</TableCell>
-                  <TableCell className="text-right">
-                    <div className="flex justify-end gap-2">
-                      <Button
-                        variant="ghost"
-                        size="sm"
-                        onClick={() => openUpdateDialog(product)}
-                      >
-                        <Edit className="h-4 w-4" />
-                      </Button>
-                      <Button variant="ghost" size="sm">
-                        <History className="h-4 w-4" />
-                      </Button>
-                    </div>
-                  </TableCell>
-                </TableRow>
-              ))}
-            </TableBody>
-          </Table>
+                  </div>
+                ),
+              },
+              {
+                key: 'sku',
+                label: 'SKU',
+                mobileLabel: 'SKU',
+                hideOnMobile: true,
+                render: (product) => (
+                  <span className="font-mono text-sm">{product.sku}</span>
+                ),
+              },
+              {
+                key: 'category',
+                label: 'Category',
+                mobileLabel: 'Category',
+                hideOnMobile: true,
+                render: (product) => product.category?.name || '-',
+              },
+              {
+                key: 'price',
+                label: 'Price',
+                mobileLabel: 'Price',
+                render: (product) => formatCurrency(product.price),
+              },
+              {
+                key: 'stock',
+                label: 'Stock',
+                mobileLabel: 'Stock',
+                render: (product) => (
+                  <span className="font-bold">{product.stock}</span>
+                ),
+              },
+              {
+                key: 'status',
+                label: 'Status',
+                mobileLabel: 'Status',
+                render: (product) => getStockBadge(product.stock),
+              },
+              {
+                key: 'value',
+                label: 'Value',
+                mobileLabel: 'Value',
+                hideOnMobile: true,
+                render: (product) => formatCurrency(product.price * product.stock),
+              },
+              {
+                key: 'actions',
+                label: 'Actions',
+                mobileLabel: 'Actions',
+                className: 'text-right',
+                render: (product) => (
+                  <div className="flex justify-end gap-2">
+                    <Button
+                      variant="ghost"
+                      size="sm"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        openUpdateDialog(product);
+                      }}
+                    >
+                      <Edit className="h-4 w-4" />
+                    </Button>
+                    <Button
+                      variant="ghost"
+                      size="sm"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                      }}
+                    >
+                      <History className="h-4 w-4" />
+                    </Button>
+                  </div>
+                ),
+              },
+            ]}
+            keyExtractor={(product) => product._id}
+            loading={loading && products.length === 0}
+            loadingMessage="Loading inventory..."
+            emptyMessage="No products found"
+            mobileCardView={true}
+          />
 
           {/* Pagination */}
           {pagination.pages > 1 && (

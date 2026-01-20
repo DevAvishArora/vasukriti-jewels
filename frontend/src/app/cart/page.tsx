@@ -26,12 +26,11 @@ export default function CartPage() {
   
   const getShipping = (amount: number) => {
     if (amount === 0) return 0;
-    return amount >= 5000 ? 0 : 200;
+    return amount >= 3500 ? 0 : 200;
   };
   
   const shipping = getShipping(subtotal);
-  const tax = subtotal * 0.18; // 18% GST
-  const total = subtotal - discount + shipping + tax;
+  const total = subtotal - discount + shipping;
 
   const handleQuantityChange = (productId: string, newQuantity: number) => {
     if (newQuantity >= 1) {
@@ -306,11 +305,11 @@ export default function CartPage() {
                       </div>
 
                       {/* Stock Warning */}
-                      {item.quantity >= item.product.stock && (
+                      {/* {item.quantity >= item.product.stock && (
                         <p className="text-sm text-orange-600 mt-2">
                           Maximum available quantity
                         </p>
-                      )}
+                      )} */}
 
                       {/* Move to Wishlist Button */}
                       <div className="mt-4 pt-4 border-t border-gray-100">
@@ -413,17 +412,12 @@ export default function CartPage() {
                   </span>
                 </div>
 
-                {subtotal > 0 && subtotal < 5000 && (
+                {/* {subtotal > 0 && subtotal < 3500 && (
                   <p className="text-xs text-gray-500">
-                    Add ₹{(5000 - subtotal).toLocaleString('en-IN')} more for
+                    Add ₹{(3500 - subtotal).toLocaleString('en-IN')} more for
                     free shipping
                   </p>
-                )}
-
-                <div className="flex justify-between text-gray-600 font-light">
-                  <span className="text-xs uppercase tracking-wider">Tax (GST 18%)</span>
-                  <span className="text-sm">₹{tax.toLocaleString('en-IN', { maximumFractionDigits: 0 })}</span>
-                </div>
+                )} */}
 
                 <div className="flex justify-between text-base font-light text-gray-900 border-t border-gray-200 pt-4">
                   <span className="uppercase tracking-wider">Total</span>
@@ -461,7 +455,7 @@ export default function CartPage() {
                 </p>
                 <p className="flex items-center gap-2">
                   <span className="text-gray-400">✓</span>
-                  Free shipping on orders over ₹5,000
+                  Free shipping on orders over ₹3,500
                 </p>
                 <p className="flex items-center gap-2">
                   <span className="text-gray-400">✓</span>

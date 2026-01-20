@@ -97,7 +97,8 @@ const productSchema = new mongoose.Schema(
       size: Number,
     },
     specifications: [specificationSchema],
-    materials: [String],
+    materials: String,
+    precautions: String,
     weight: {
       type: Number,
       min: 0,

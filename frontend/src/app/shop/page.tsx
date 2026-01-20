@@ -17,8 +17,6 @@ interface FilterState {
   categories: string[];
   minPrice: number;
   maxPrice: number;
-  materials: string[];
-  colors: string[];
 }
 
 function ShopContent() {
@@ -28,9 +26,7 @@ function ShopContent() {
   const [filters, setFilters] = useState<FilterState>({
     categories: [],
     minPrice: 0,
-    maxPrice: 100000,
-    materials: [],
-    colors: [],
+    maxPrice: 5000,
   });
   const [sort, setSort] = useState('-createdAt');
   const [gridCols, setGridCols] = useState<'3' | '4'>('4');
@@ -78,14 +74,8 @@ function ShopContent() {
         if (filters.minPrice > 0) {
           params.append('minPrice', filters.minPrice.toString());
         }
-        if (filters.maxPrice < 100000) {
+        if (filters.maxPrice < 5000) {
           params.append('maxPrice', filters.maxPrice.toString());
-        }
-        if (filters.materials.length > 0) {
-          params.append('material', filters.materials.join(','));
-        }
-        if (filters.colors.length > 0) {
-          params.append('color', filters.colors.join(','));
         }
 
         const response = await axiosInstance.get(`/products?${params}`);
@@ -115,19 +105,15 @@ function ShopContent() {
     setFilters({
       categories: [],
       minPrice: 0,
-      maxPrice: 100000,
-      materials: [],
-      colors: [],
+      maxPrice: 5000,
     });
     setPage(1);
   };
 
   const hasActiveFilters =
     filters.categories.length > 0 ||
-    filters.materials.length > 0 ||
-    filters.colors.length > 0 ||
     filters.minPrice > 0 ||
-    filters.maxPrice < 100000;
+    filters.maxPrice < 5000;
 
   return (
     <ClientLayout>
@@ -150,6 +136,7 @@ function ShopContent() {
                 filters={filters}
                 onFilterChange={handleFilterChange}
                 onClearFilters={clearFilters}
+                maxPrice={5000}
               />
             </div>
           </aside>
@@ -167,7 +154,7 @@ function ShopContent() {
                       Filters
                       {hasActiveFilters && (
                         <span className="ml-2 text-white text-xs w-5 h-5 flex items-center justify-center" style={{ backgroundColor: '#7e1219' }}>
-                          {filters.categories.length + filters.materials.length}
+                          {filters.categories.length}
                         </span>
                       )}
                     </Button>
@@ -178,6 +165,7 @@ function ShopContent() {
                         filters={filters}
                         onFilterChange={handleFilterChange}
                         onClearFilters={clearFilters}
+                        maxPrice={5000}
                       />
                     </div>
                   </SheetContent>
@@ -252,20 +240,7 @@ function ShopContent() {
                     </button>
                   </div>
                 )}
-                {filters.materials.length > 0 && (
-                  <div className="flex items-center gap-1 px-3 py-1 bg-gray-100 text-gray-700 text-xs font-light">
-                    <span>{filters.materials.length} Materials</span>
-                    <button
-                      onClick={() =>
-                        handleFilterChange({ ...filters, materials: [] })
-                      }
-                      className="ml-1 hover:text-gray-900"
-                    >
-                      <X className="h-3 w-3" />
-                    </button>
-                  </div>
-                )}
-                {(filters.minPrice > 0 || filters.maxPrice < 100000) && (
+                {(filters.minPrice > 0 || filters.maxPrice < 5000) && (
                   <div className="flex items-center gap-1 px-3 py-1 bg-gray-100 text-gray-700 text-xs font-light">
                     <span>
                       ₹{filters.minPrice.toLocaleString('en-IN')} - ₹
@@ -276,7 +251,7 @@ function ShopContent() {
                         handleFilterChange({
                           ...filters,
                           minPrice: 0,
-                          maxPrice: 100000,
+                          maxPrice: 5000,
                         })
                       }
                       className="ml-1 hover:text-gray-900"

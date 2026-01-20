@@ -20,14 +20,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from '@/components/ui/table';
+import { ResponsiveTable } from '@/components/ui/responsive-table';
 import {
   Dialog,
   DialogContent,
@@ -283,11 +276,11 @@ export default function ReviewsPage() {
   };
 
   return (
-    <div className="p-8">
+    <div className="space-y-6">
       <div className="mb-8">
-        <div className="flex justify-between items-center mb-6">
-          <div>
-            <h1 className="text-3xl font-bold">Review Management</h1>
+        <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between mb-6">
+          <div className="min-w-0">
+            <h1 className="text-2xl sm:text-3xl font-bold truncate">Review Management</h1>
             <p className="text-muted-foreground mt-1">
               Moderate and respond to customer reviews
             </p>
@@ -355,7 +348,7 @@ export default function ReviewsPage() {
         )}
 
         <Card>
-          <CardHeader>
+          <CardHeader className="px-4 sm:px-6">
             <div className="flex flex-col md:flex-row gap-4">
               <div className="flex-1 relative">
                 <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
@@ -392,7 +385,7 @@ export default function ReviewsPage() {
               </Select>
             </div>
           </CardHeader>
-          <CardContent>
+          <CardContent className="px-0 sm:px-6">
             {loading ? (
               <div className="text-center py-8">Loading...</div>
             ) : reviews.length === 0 ? (
@@ -401,108 +394,151 @@ export default function ReviewsPage() {
               </div>
             ) : (
               <>
-                <Table>
-                  <TableHeader>
-                    <TableRow>
-                      <TableHead>Product</TableHead>
-                      <TableHead>Customer</TableHead>
-                      <TableHead>Rating</TableHead>
-                      <TableHead>Review</TableHead>
-                      <TableHead>Status</TableHead>
-                      <TableHead>Date</TableHead>
-                      <TableHead className="text-right">Actions</TableHead>
-                    </TableRow>
-                  </TableHeader>
-                  <TableBody>
-                    {reviews.map((review) => (
-                      <TableRow key={review._id}>
-                        <TableCell>
+                <ResponsiveTable
+                  data={reviews}
+                  columns={[
+                    {
+                      key: 'product',
+                      label: 'Product',
+                      mobileLabel: 'Review',
+                      render: (review) => (
+                        <div>
                           <div className="font-medium max-w-[200px] truncate">
                             {review.product?.name || 'Unknown Product'}
                           </div>
-                        </TableCell>
-                        <TableCell>
-                          <div>
-                            <div className="font-medium">
-                              {review.user?.fullName || 'Unknown User'}
-                            </div>
-                            <div className="text-xs text-muted-foreground">
-                              {review.isVerifiedPurchase && (
-                                <Badge variant="secondary" className="text-xs">
-                                  Verified Purchase
-                                </Badge>
-                              )}
-                            </div>
+                          <div className="text-sm text-gray-500 truncate">
+                            {review.user?.fullName || 'Unknown User'}
                           </div>
-                        </TableCell>
-                        <TableCell>{renderStars(review.rating)}</TableCell>
-                        <TableCell>
-                          <div className="max-w-[300px]">
-                            <div className="font-medium truncate">
-                              {review.title}
-                            </div>
-                            <div className="text-sm text-muted-foreground truncate">
-                              {review.comment}
-                            </div>
-                            {review.helpful > 0 && (
-                              <div className="text-xs text-muted-foreground mt-1">
-                                {review.helpful} found helpful
-                              </div>
-                            )}
+                          {review.isVerifiedPurchase && (
+                            <Badge variant="secondary" className="text-xs mt-1">
+                              Verified Purchase
+                            </Badge>
+                          )}
+                        </div>
+                      ),
+                    },
+                    {
+                      key: 'customer',
+                      label: 'Customer',
+                      mobileLabel: 'Customer',
+                      hideOnMobile: true,
+                      render: (review) => (
+                        <div>
+                          <div className="font-medium">
+                            {review.user?.fullName || 'Unknown User'}
                           </div>
-                        </TableCell>
-                        <TableCell>{getStatusBadge(review.status)}</TableCell>
-                        <TableCell className="text-sm">
-                          {formatDate(review.createdAt)}
-                        </TableCell>
-                        <TableCell className="text-right">
-                          <div className="flex justify-end gap-2">
-                            {review.status === 'pending' && (
-                              <>
-                                <Button
-                                  variant="ghost"
-                                  size="sm"
-                                  onClick={() =>
-                                    openStatusDialog(review, 'approved')
-                                  }
-                                  className="text-green-600 hover:text-green-700"
-                                >
-                                  <CheckCircle className="h-4 w-4" />
-                                </Button>
-                                <Button
-                                  variant="ghost"
-                                  size="sm"
-                                  onClick={() =>
-                                    openStatusDialog(review, 'rejected')
-                                  }
-                                  className="text-red-600 hover:text-red-700"
-                                >
-                                  <XCircle className="h-4 w-4" />
-                                </Button>
-                              </>
-                            )}
-                            {review.status === 'approved' && (
+                          {review.isVerifiedPurchase && (
+                            <Badge variant="secondary" className="text-xs">
+                              Verified Purchase
+                            </Badge>
+                          )}
+                        </div>
+                      ),
+                    },
+                    {
+                      key: 'rating',
+                      label: 'Rating',
+                      mobileLabel: 'Rating',
+                      render: (review) => renderStars(review.rating),
+                    },
+                    {
+                      key: 'review',
+                      label: 'Review',
+                      mobileLabel: 'Review',
+                      render: (review) => (
+                        <div className="max-w-[300px]">
+                          <div className="font-medium truncate">{review.title}</div>
+                          <div className="text-sm text-muted-foreground truncate">
+                            {review.comment}
+                          </div>
+                          {review.helpful > 0 && (
+                            <div className="text-xs text-muted-foreground mt-1">
+                              {review.helpful} found helpful
+                            </div>
+                          )}
+                        </div>
+                      ),
+                    },
+                    {
+                      key: 'status',
+                      label: 'Status',
+                      mobileLabel: 'Status',
+                      render: (review) => getStatusBadge(review.status),
+                    },
+                    {
+                      key: 'date',
+                      label: 'Date',
+                      mobileLabel: 'Date',
+                      hideOnMobile: true,
+                      render: (review) => (
+                        <span className="text-sm">{formatDate(review.createdAt)}</span>
+                      ),
+                    },
+                    {
+                      key: 'actions',
+                      label: 'Actions',
+                      mobileLabel: 'Actions',
+                      className: 'text-right',
+                      render: (review) => (
+                        <div className="flex justify-end gap-2">
+                          {review.status === 'pending' && (
+                            <>
                               <Button
                                 variant="ghost"
                                 size="sm"
-                                onClick={() => openResponseDialog(review)}
+                                onClick={(e) => {
+                                  e.stopPropagation();
+                                  openStatusDialog(review, 'approved');
+                                }}
+                                className="text-green-600 hover:text-green-700"
                               >
-                                <MessageSquare className="h-4 w-4" />
+                                <CheckCircle className="h-4 w-4" />
                               </Button>
-                            )}
+                              <Button
+                                variant="ghost"
+                                size="sm"
+                                onClick={(e) => {
+                                  e.stopPropagation();
+                                  openStatusDialog(review, 'rejected');
+                                }}
+                                className="text-red-600 hover:text-red-700"
+                              >
+                                <XCircle className="h-4 w-4" />
+                              </Button>
+                            </>
+                          )}
+                          {review.status === 'approved' && (
                             <Button
                               variant="ghost"
                               size="sm"
-                              onClick={() => openDeleteDialog(review)}
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                openResponseDialog(review);
+                              }}
                             >
-                              <Trash2 className="h-4 w-4 text-destructive" />
+                              <MessageSquare className="h-4 w-4" />
                             </Button>
-                          </div>
-                        </TableCell>
-                      </TableRow>
-                    ))}
-                  </TableBody>
-                </Table>
+                          )}
+                          <Button
+                            variant="ghost"
+                            size="sm"
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              openDeleteDialog(review);
+                            }}
+                          >
+                            <Trash2 className="h-4 w-4 text-destructive" />
+                          </Button>
+                        </div>
+                      ),
+                    },
+                  ]}
+                  keyExtractor={(review) => review._id}
+                  loading={loading}
+                  loadingMessage="Loading reviews..."
+                  emptyMessage="No reviews found"
+                  mobileCardView={true}
+                />
 
                 {totalPages > 1 && (
                   <div className="flex items-center justify-between mt-4">

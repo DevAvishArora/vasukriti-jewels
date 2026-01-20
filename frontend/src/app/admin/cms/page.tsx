@@ -12,6 +12,8 @@ import {
   Settings,
   Save,
   Palette,
+  BookOpen,
+  Award,
 } from 'lucide-react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -40,13 +42,31 @@ export default function CMSPage() {
       stats: { active: 3, draft: 1 },
     },
     {
-      id: 'static-content',
-      title: 'Static Content',
-      description: 'Update About, Brand Story, and other pages',
-      icon: FileText,
-      href: '/admin/cms/static-content',
-      color: 'bg-green-500',
-      stats: { sections: 10, updated: 3 },
+      id: 'why-choose-us',
+      title: 'Why Choose Us',
+      description: 'Manage features and benefits section',
+      icon: Settings,
+      href: '/admin/why-choose-us',
+      color: 'bg-indigo-500',
+      stats: { active: 4, draft: 0 },
+    },
+    {
+      id: 'about-us',
+      title: 'About Us',
+      description: 'Manage About Us page content and design',
+      icon: BookOpen,
+      href: '/admin/cms/about',
+      color: 'bg-emerald-500',
+      stats: { sections: 5, updated: 1 },
+    },
+    {
+      id: 'brand-story',
+      title: 'The Vasukriti Legacy',
+      description: 'Edit brand story and heritage content',
+      icon: Award,
+      href: '/admin/cms/brand-story',
+      color: 'bg-amber-500',
+      stats: { sections: 6, updated: 2 },
     },
     {
       id: 'faq',

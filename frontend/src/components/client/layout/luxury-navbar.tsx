@@ -84,7 +84,7 @@ export function LuxuryNavbar({ onMobileMenuToggle }: LuxuryNavbarProps) {
             {/* Mobile Menu Button */}
             <button
               onClick={onMobileMenuToggle}
-              className="lg:hidden p-2 hover:bg-gray-100 rounded-md transition-colors"
+              className="lg:hidden p-2 hover:bg-gray-100 rounded-md transition-colors flex-shrink-0"
               aria-label="Open menu"
             >
               <Menu className="h-6 w-6 text-gray-900" />
@@ -160,10 +160,10 @@ export function LuxuryNavbar({ onMobileMenuToggle }: LuxuryNavbarProps) {
                 <Search className="h-5 w-5 text-gray-900" />
               </button>
 
-              {/* Wishlist */}
+              {/* Wishlist - Hidden on mobile */}
               <Link
                 href="/account/wishlist"
-                className="relative p-2 hover:opacity-60 transition-opacity touch-target"
+                className="hidden sm:flex relative p-2 hover:opacity-60 transition-opacity touch-target"
                 aria-label="Wishlist"
               >
                 <Heart className="h-5 w-5 text-gray-900" />
@@ -188,9 +188,9 @@ export function LuxuryNavbar({ onMobileMenuToggle }: LuxuryNavbarProps) {
                 )}
               </button>
 
-              {/* Profile/Auth */}
+              {/* Profile/Auth - Hidden on mobile */}
               {isAuthenticated ? (
-                <div className="relative">
+                <div className="relative hidden lg:block">
                   <button
                     onClick={() => setShowProfileMenu(!showProfileMenu)}
                     className="flex items-center gap-2 px-3 py-2 hover:bg-gray-100 rounded-full transition-colors"
@@ -234,7 +234,7 @@ export function LuxuryNavbar({ onMobileMenuToggle }: LuxuryNavbarProps) {
                           </Link>
                           
                           <Link
-                            href="/account/settings"
+                            href="/account/profile"
                             className="flex items-center gap-3 px-4 py-2 text-sm text-charcoal-800 hover:bg-champagne-50 rounded-soft transition-elegant"
                             onClick={() => setShowProfileMenu(false)}
                           >

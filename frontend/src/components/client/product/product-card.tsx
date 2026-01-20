@@ -135,12 +135,12 @@ export function ProductCard({ product, index = 0, showNewBadge = false }: Produc
             )}
           </div>
 
-          {/* Stock Warning */}
+          {/* Stock Warning
           {product.stock > 0 && product.stock <= 5 && (
             <p className="text-xs text-gray-500 pt-1">
               Only {product.stock} left
             </p>
-          )}
+          )} */}
         </div>
       </Link>
     </motion.div>

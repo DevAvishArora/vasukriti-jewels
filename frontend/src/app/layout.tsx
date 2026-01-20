@@ -53,9 +53,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="scroll-smooth">
+    <html lang="en" className="scroll-smooth overflow-x-hidden">
       <body
-        className={`${inter.variable} ${manrope.variable} ${dmSans.variable} ${playfair.variable} ${cormorant.variable} font-sans antialiased bg-ivory-50 text-charcoal-900`}
+        className={`${inter.variable} ${manrope.variable} ${dmSans.variable} ${playfair.variable} ${cormorant.variable} font-sans antialiased bg-ivory-50 text-charcoal-900 overflow-x-hidden`}
       >
         <AuthProvider>
           {/* Global hidden audio element (controlled from header via events) */}

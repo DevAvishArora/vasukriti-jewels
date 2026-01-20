@@ -81,6 +81,8 @@ app.use('/api/contact', require('./routes/contact.routes'));
 app.use('/api/payment', require('./routes/payment.routes'));
 app.use('/api/cms', require('./routes/cmsRoutes'));
 app.use('/api/upload', require('./routes/upload.routes'));
+app.use('/api/page-content', require('./routes/pageContent'));
+app.use('/api/why-choose-us', require('./routes/whyChooseUs.routes'));
 
 // Root route
 app.get('/', (req, res) => {

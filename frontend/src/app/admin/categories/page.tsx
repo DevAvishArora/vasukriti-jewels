@@ -8,14 +8,7 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
 import { Alert, AlertDescription } from '@/components/ui/alert';
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from '@/components/ui/table';
+import { ResponsiveTable } from '@/components/ui/responsive-table';
 import { Badge } from '@/components/ui/badge';
 import { Plus, Search, Edit, Trash2, FolderTree, Loader2 } from 'lucide-react';
 import Image from 'next/image';
@@ -124,12 +117,12 @@ export default function CategoriesPage() {
   );
 
   return (
-    <div className="p-8">
+    <div className="space-y-6">
       {/* Header */}
       <div className="mb-6">
-        <div className="flex items-center justify-between">
-          <div>
-            <h1 className="text-3xl font-bold text-gray-900">Categories</h1>
+        <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+          <div className="min-w-0">
+            <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 truncate">Categories</h1>
             <p className="text-sm text-gray-500 mt-1">Organize your product categories</p>
           </div>
           <Button
@@ -142,7 +135,7 @@ export default function CategoriesPage() {
               setShowForm(!showForm);
             }}
             style={{ backgroundColor: '#7e1219' }}
-            className="hover:opacity-90"
+            className="hover:opacity-90 flex-shrink-0 w-full sm:w-auto"
           >
             <Plus className="h-4 w-4 mr-2" />
             {showForm ? 'Cancel' : 'Add Category'}
@@ -234,7 +227,7 @@ export default function CategoriesPage() {
 
       {/* Categories List */}
       <Card>
-        <CardHeader>
+        <CardHeader className="px-4 sm:px-6">
           <div className="flex items-center justify-between">
             <CardTitle>All Categories ({filteredCategories.length})</CardTitle>
             <div className="relative w-64">
@@ -248,7 +241,7 @@ export default function CategoriesPage() {
             </div>
           </div>
         </CardHeader>
-        <CardContent>
+        <CardContent className="px-0 sm:px-6">
           {loading ? (
             <div className="text-center py-12">
               <FolderTree className="h-12 w-12 mx-auto text-gray-400 animate-pulse" />
@@ -268,23 +261,17 @@ export default function CategoriesPage() {
                   </Button>
                 </div>
               ) : (
-                <Table>
-                  <TableHeader>
-                    <TableRow>
-                      <TableHead>Image</TableHead>
-                      <TableHead>Name</TableHead>
-                      <TableHead>Slug</TableHead>
-                      <TableHead>Description</TableHead>
-                      <TableHead>Status</TableHead>
-                      <TableHead className="text-right">Actions</TableHead>
-                    </TableRow>
-                  </TableHeader>
-                  <TableBody>
-                    {filteredCategories.map((category) => (
-                      <TableRow key={category._id}>
-                        <TableCell>
+                <ResponsiveTable
+                  data={filteredCategories}
+                  columns={[
+                    {
+                      key: 'image',
+                      label: 'Image',
+                      mobileLabel: 'Category',
+                      render: (category) => (
+                        <div className="flex items-center gap-3">
                           {category.image?.url ? (
-                            <div className="relative w-16 h-16 rounded overflow-hidden bg-gray-100">
+                            <div className="relative w-12 h-12 rounded overflow-hidden bg-gray-100 flex-shrink-0">
                               <Image
                                 src={category.image.url}
                                 alt={category.name}
@@ -293,41 +280,89 @@ export default function CategoriesPage() {
                               />
                             </div>
                           ) : (
-                            <div className="w-16 h-16 rounded bg-gray-100 flex items-center justify-center">
+                            <div className="w-12 h-12 rounded bg-gray-100 flex items-center justify-center flex-shrink-0">
                               <FolderTree className="h-6 w-6 text-gray-400" />
                             </div>
                           )}
-                        </TableCell>
-                        <TableCell className="font-medium">{category.name}</TableCell>
-                        <TableCell className="text-gray-500">{category.slug}</TableCell>
-                        <TableCell className="max-w-md">
-                          <p className="text-sm text-gray-600 truncate">
-                            {category.description || 'No description'}
-                          </p>
-                        </TableCell>
-                        <TableCell>
-                          <Badge variant={category.isActive ? 'default' : 'secondary'}>
-                            {category.isActive ? 'Active' : 'Inactive'}
-                          </Badge>
-                        </TableCell>
-                        <TableCell className="text-right">
-                          <div className="flex items-center justify-end gap-2">
-                            <Button variant="ghost" size="sm" onClick={() => handleEdit(category)}>
-                              <Edit className="h-4 w-4" />
-                            </Button>
-                            <Button
-                              variant="ghost"
-                              size="sm"
-                              onClick={() => handleDelete(category._id)}
-                            >
-                              <Trash2 className="h-4 w-4 text-red-600" />
-                            </Button>
+                          <div className="min-w-0">
+                            <p className="font-medium truncate">{category.name}</p>
+                            <p className="text-sm text-gray-500 truncate">{category.slug}</p>
                           </div>
-                        </TableCell>
-                      </TableRow>
-                    ))}
-                  </TableBody>
-                </Table>
+                        </div>
+                      ),
+                    },
+                    {
+                      key: 'name',
+                      label: 'Name',
+                      mobileLabel: 'Name',
+                      hideOnMobile: true,
+                      render: (category) => category.name,
+                    },
+                    {
+                      key: 'slug',
+                      label: 'Slug',
+                      mobileLabel: 'Slug',
+                      hideOnMobile: true,
+                      render: (category) => category.slug,
+                    },
+                    {
+                      key: 'description',
+                      label: 'Description',
+                      mobileLabel: 'Description',
+                      hideOnMobile: true,
+                      render: (category) => (
+                        <p className="text-sm text-gray-600 truncate max-w-md">
+                          {category.description || 'No description'}
+                        </p>
+                      ),
+                    },
+                    {
+                      key: 'status',
+                      label: 'Status',
+                      mobileLabel: 'Status',
+                      render: (category) => (
+                        <Badge variant={category.isActive ? 'default' : 'secondary'}>
+                          {category.isActive ? 'Active' : 'Inactive'}
+                        </Badge>
+                      ),
+                    },
+                    {
+                      key: 'actions',
+                      label: 'Actions',
+                      mobileLabel: 'Actions',
+                      className: 'text-right',
+                      render: (category) => (
+                        <div className="flex items-center justify-end gap-2">
+                          <Button
+                            variant="ghost"
+                            size="sm"
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              handleEdit(category);
+                            }}
+                          >
+                            <Edit className="h-4 w-4" />
+                          </Button>
+                          <Button
+                            variant="ghost"
+                            size="sm"
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              handleDelete(category._id);
+                            }}
+                          >
+                            <Trash2 className="h-4 w-4 text-red-600" />
+                          </Button>
+                        </div>
+                      ),
+                    },
+                  ]}
+                  keyExtractor={(category) => category._id}
+                  loading={false}
+                  loadingMessage="Loading categories..."
+                  emptyMessage="No categories found"
+                  mobileCardView={true}
+                />
               )}
             </>
           )}

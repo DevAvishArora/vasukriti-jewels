@@ -235,7 +235,7 @@ export function MobileNav({ isOpen, onClose }: MobileNavProps) {
           <Link
             href="/"
             className={cn(
-              'flex flex-col items-center justify-center gap-1 px-3 py-2 text-xs font-medium transition-colors',
+              'flex flex-col items-center justify-center gap-1 px-4 py-2 text-xs font-medium transition-colors',
               pathname === '/'
                 ? 'text-amber-600'
                 : 'text-gray-600 hover:text-amber-600'
@@ -247,7 +247,7 @@ export function MobileNav({ isOpen, onClose }: MobileNavProps) {
           <Link
             href="/shop"
             className={cn(
-              'flex flex-col items-center justify-center gap-1 px-3 py-2 text-xs font-medium transition-colors',
+              'flex flex-col items-center justify-center gap-1 px-4 py-2 text-xs font-medium transition-colors',
               pathname === '/shop'
                 ? 'text-amber-600'
                 : 'text-gray-600 hover:text-amber-600'
@@ -257,21 +257,9 @@ export function MobileNav({ isOpen, onClose }: MobileNavProps) {
             <span>Shop</span>
           </Link>
           <Link
-            href="/account/wishlist"
-            className={cn(
-              'flex flex-col items-center justify-center gap-1 px-3 py-2 text-xs font-medium transition-colors',
-              pathname === '/account/wishlist'
-                ? 'text-amber-600'
-                : 'text-gray-600 hover:text-amber-600'
-            )}
-          >
-            <Heart className="h-5 w-5" />
-            <span>Wishlist</span>
-          </Link>
-          <Link
             href="/account"
             className={cn(
-              'flex flex-col items-center justify-center gap-1 px-3 py-2 text-xs font-medium transition-colors',
+              'flex flex-col items-center justify-center gap-1 px-4 py-2 text-xs font-medium transition-colors',
               pathname?.startsWith('/account')
                 ? 'text-amber-600'
                 : 'text-gray-600 hover:text-amber-600'

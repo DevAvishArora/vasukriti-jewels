@@ -652,7 +652,7 @@ export default function CheckoutPage() {
                     }
                     className="space-y-4"
                   >
-                    <div className="flex items-start space-x-3 p-4 border-2 border-gray-200 rounded-lg hover:border-amber-500 transition-colors cursor-pointer">
+                    {/* <div className="flex items-start space-x-3 p-4 border-2 border-gray-200 rounded-lg hover:border-amber-500 transition-colors cursor-pointer">
                       <RadioGroupItem value="cod" id="cod" />
                       <div className="flex-1">
                         <Label
@@ -665,7 +665,7 @@ export default function CheckoutPage() {
                           Pay with cash when you receive your order
                         </p>
                       </div>
-                    </div>
+                    </div> */}
 
                     <div className="flex items-start space-x-3 p-4 border-2 border-gray-200 rounded-lg hover:border-amber-500 transition-colors cursor-pointer">
                       <RadioGroupItem value="razorpay" id="razorpay" />

@@ -12,15 +12,8 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from '@/components/ui/table';
 import { Badge } from '@/components/ui/badge';
+import { ResponsiveTable } from '@/components/ui/responsive-table';
 import {
   Users,
   Search,
@@ -159,16 +152,16 @@ export default function UsersPage() {
   }
 
   return (
-    <div className="p-8">
+    <div className="space-y-6">
       {/* Header */}
-      <div className="mb-6 flex items-center justify-between">
-        <div>
-          <h1 className="text-3xl font-bold text-gray-900">User Management</h1>
+      <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+        <div className="min-w-0">
+          <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 truncate">User Management</h1>
           <p className="text-sm text-gray-500 mt-1">Manage admin, staff, and customer accounts</p>
         </div>
         <Button
           onClick={() => router.push('/admin/users/create')}
-          className="bg-amber-600 hover:bg-amber-700"
+          className="bg-amber-600 hover:bg-amber-700 flex-shrink-0 w-full sm:w-auto"
         >
           <Plus className="h-4 w-4 mr-2" />
           Add User
@@ -228,7 +221,7 @@ export default function UsersPage() {
 
       {/* Filters */}
       <Card className="mb-6">
-        <CardContent className="pt-6">
+        <CardContent className="px-0 sm:px-6 pt-6">
           <div className="flex flex-col md:flex-row gap-4">
             <div className="flex-1 flex gap-2">
               <Input
@@ -271,88 +264,129 @@ export default function UsersPage() {
 
       {/* Users Table */}
       <Card>
-        <CardContent className="pt-6">
-          <Table>
-            <TableHeader>
-              <TableRow>
-                <TableHead>User</TableHead>
-                <TableHead>Contact</TableHead>
-                <TableHead>Role</TableHead>
-                <TableHead>Status</TableHead>
-                <TableHead>Verified</TableHead>
-                <TableHead>Joined</TableHead>
-                <TableHead className="text-right">Actions</TableHead>
-              </TableRow>
-            </TableHeader>
-            <TableBody>
-              {users.map((user) => (
-                <TableRow key={user._id}>
-                  <TableCell>
-                    <div>
-                      <p className="font-medium">{user.fullName}</p>
-                      <p className="text-sm text-gray-500">{user.email}</p>
-                    </div>
-                  </TableCell>
-                  <TableCell>{user.phone || '-'}</TableCell>
-                  <TableCell>
-                    <Badge className={getRoleBadge(user.role)}>{user.role}</Badge>
-                  </TableCell>
-                  <TableCell>
-                    {user.isActive ? (
-                      <Badge className="bg-green-100 text-green-800">Active</Badge>
-                    ) : (
-                      <Badge className="bg-red-100 text-red-800">Inactive</Badge>
-                    )}
-                  </TableCell>
-                  <TableCell>
-                    {user.isEmailVerified ? (
-                      <Badge className="bg-blue-100 text-blue-800">Verified</Badge>
-                    ) : (
-                      <Badge className="bg-yellow-100 text-yellow-800">Pending</Badge>
-                    )}
-                  </TableCell>
-                  <TableCell>{new Date(user.createdAt).toLocaleDateString()}</TableCell>
-                  <TableCell className="text-right">
-                    <div className="flex justify-end gap-2">
-                      <Button
-                        variant="ghost"
-                        size="sm"
-                        onClick={() => router.push(`/admin/users/${user._id}`)}
-                      >
-                        <Eye className="h-4 w-4" />
-                      </Button>
-                      <Button
-                        variant="ghost"
-                        size="sm"
-                        onClick={() => router.push(`/admin/users/${user._id}/edit`)}
-                      >
-                        <Edit className="h-4 w-4" />
-                      </Button>
-                      <Button
-                        variant="ghost"
-                        size="sm"
-                        onClick={() => handleToggleStatus(user._id)}
-                      >
-                        {user.isActive ? (
-                          <ToggleRight className="h-4 w-4 text-green-600" />
-                        ) : (
-                          <ToggleLeft className="h-4 w-4 text-gray-400" />
-                        )}
-                      </Button>
-                      <Button
-                        variant="ghost"
-                        size="sm"
-                        onClick={() => handleDelete(user._id)}
-                        className="text-red-600 hover:text-red-700"
-                      >
-                        <Trash2 className="h-4 w-4" />
-                      </Button>
-                    </div>
-                  </TableCell>
-                </TableRow>
-              ))}
-            </TableBody>
-          </Table>
+        <CardContent className="px-0 sm:px-6 pt-6">
+          <ResponsiveTable
+            data={users}
+            columns={[
+              {
+                key: 'user',
+                label: 'User',
+                mobileLabel: 'User',
+                render: (user) => (
+                  <div>
+                    <p className="font-medium truncate">{user.fullName}</p>
+                    <p className="text-sm text-gray-500 truncate">{user.email}</p>
+                  </div>
+                ),
+              },
+              {
+                key: 'contact',
+                label: 'Contact',
+                mobileLabel: 'Contact',
+                hideOnMobile: true,
+                render: (user) => user.phone || '-',
+              },
+              {
+                key: 'role',
+                label: 'Role',
+                mobileLabel: 'Role',
+                render: (user) => <Badge className={getRoleBadge(user.role)}>{user.role}</Badge>,
+              },
+              {
+                key: 'status',
+                label: 'Status',
+                mobileLabel: 'Status',
+                render: (user) => (
+                  user.isActive ? (
+                    <Badge className="bg-green-100 text-green-800">Active</Badge>
+                  ) : (
+                    <Badge className="bg-red-100 text-red-800">Inactive</Badge>
+                  )
+                ),
+              },
+              {
+                key: 'verified',
+                label: 'Verified',
+                mobileLabel: 'Verified',
+                hideOnMobile: true,
+                render: (user) => (
+                  user.isEmailVerified ? (
+                    <Badge className="bg-blue-100 text-blue-800">Verified</Badge>
+                  ) : (
+                    <Badge className="bg-yellow-100 text-yellow-800">Pending</Badge>
+                  )
+                ),
+              },
+              {
+                key: 'joined',
+                label: 'Joined',
+                mobileLabel: 'Joined',
+                hideOnMobile: true,
+                render: (user) => new Date(user.createdAt).toLocaleDateString(),
+              },
+              {
+                key: 'actions',
+                label: 'Actions',
+                mobileLabel: 'Actions',
+                className: 'text-right',
+                render: (user) => (
+                  <div className="flex justify-end gap-2">
+                    <Button
+                      variant="ghost"
+                      size="sm"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        router.push(`/admin/users/${user._id}`);
+                      }}
+                    >
+                      <Eye className="h-4 w-4" />
+                    </Button>
+                    <Button
+                      variant="ghost"
+                      size="sm"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        router.push(`/admin/users/${user._id}/edit`);
+                      }}
+                    >
+                      <Edit className="h-4 w-4" />
+                    </Button>
+                    <Button
+                      variant="ghost"
+                      size="sm"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        handleToggleStatus(user._id);
+                      }}
+                    >
+                      {user.isActive ? (
+                        <ToggleRight className="h-4 w-4 text-green-600" />
+                      ) : (
+                        <ToggleLeft className="h-4 w-4 text-gray-400" />
+                      )}
+                    </Button>
+                    <Button
+                      variant="ghost"
+                      size="sm"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        handleDelete(user._id);
+                      }}
+                      className="text-red-600 hover:text-red-700"
+                    >
+                      <Trash2 className="h-4 w-4" />
+                    </Button>
+                  </div>
+                ),
+              },
+            ]}
+            keyExtractor={(user) => user._id}
+            loading={loading}
+            loadingMessage="Loading users..."
+            emptyMessage="No users found"
+            mobileCardView={true}
+            onRowClick={(user) => router.push(`/admin/users/${user._id}`)}
+          />
 
           {/* Pagination */}
           {pagination.pages > 1 && (

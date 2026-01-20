@@ -1,7 +1,7 @@
 'use client';
 // Orders Management Page
 import { useEffect, useState } from 'react';
-import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import axiosInstance from '@/lib/axios-instance';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -13,16 +13,9 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from '@/components/ui/table';
 import { Badge } from '@/components/ui/badge';
 import { Search, Eye, Package, Clock, Truck, CheckCircle, XCircle } from 'lucide-react';
+import { ResponsiveTable, type Column } from '@/components/ui/responsive-table';
 
 interface Order {
   _id: string;
@@ -42,6 +35,7 @@ interface Order {
 }
 
 export default function OrdersPage() {
+  const router = useRouter();
   const [orders, setOrders] = useState<Order[]>([]);
   const [loading, setLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState('');
@@ -123,20 +117,116 @@ export default function OrdersPage() {
     fetchOrders();
   };
 
+  const columns: Column<Order>[] = [
+    {
+      key: 'orderNumber',
+      label: 'Order #',
+      mobileLabel: 'Order',
+      render: (order) => (
+        <span className="font-medium">{order.orderNumber}</span>
+      ),
+    },
+    {
+      key: 'customer',
+      label: 'Customer',
+      mobileLabel: 'Customer',
+      render: (order) => (
+        <div>
+          <p className="font-medium truncate">{order.user?.fullName}</p>
+          <p className="text-sm text-gray-500 truncate">{order.user?.email}</p>
+        </div>
+      ),
+    },
+    {
+      key: 'items',
+      label: 'Items',
+      mobileLabel: 'Items',
+      hideOnMobile: true,
+      render: (order) => (
+        <span className="text-sm text-gray-600">
+          {order.items?.length} item(s)
+        </span>
+      ),
+    },
+    {
+      key: 'total',
+      label: 'Total',
+      mobileLabel: 'Total',
+      render: (order) => (
+        <span className="font-semibold">₹{order.totalAmount?.toLocaleString()}</span>
+      ),
+    },
+    {
+      key: 'orderStatus',
+      label: 'Order Status',
+      mobileLabel: 'Status',
+      render: (order) => (
+        <Badge className={getStatusColor(order.orderStatus)}>
+          <span className="flex items-center gap-1">
+            {getStatusIcon(order.orderStatus)}
+            {order.orderStatus}
+          </span>
+        </Badge>
+      ),
+    },
+    {
+      key: 'paymentStatus',
+      label: 'Payment',
+      mobileLabel: 'Payment',
+      hideOnMobile: true,
+      render: (order) => (
+        <Badge className={getPaymentColor(order.paymentStatus)}>
+          {order.paymentStatus}
+        </Badge>
+      ),
+    },
+    {
+      key: 'date',
+      label: 'Date',
+      mobileLabel: 'Date',
+      hideOnMobile: true,
+      render: (order) => (
+        new Date(order.createdAt).toLocaleDateString('en-IN', {
+          day: '2-digit',
+          month: 'short',
+          year: 'numeric',
+        })
+      ),
+    },
+    {
+      key: 'actions',
+      label: 'Actions',
+      mobileLabel: 'Actions',
+      className: 'text-right',
+      render: (order) => (
+        <Button
+          variant="ghost"
+          size="sm"
+          onClick={(e) => {
+            e.stopPropagation();
+            router.push(`/admin/orders/${order._id}`);
+          }}
+        >
+          <Eye className="h-4 w-4" />
+        </Button>
+      ),
+    },
+  ];
+
   return (
-    <div className="p-8">
+    <div className="space-y-6">
       {/* Header */}
-      <div className="mb-6">
-        <h1 className="text-3xl font-bold text-gray-900">Orders</h1>
+      <div className="min-w-0">
+        <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 truncate">Orders</h1>
         <p className="text-sm text-gray-500 mt-1">Manage and track all customer orders</p>
       </div>
 
       {/* Filters */}
-      <Card className="mb-6">
-        <CardHeader>
-          <CardTitle>Filter Orders</CardTitle>
+      <Card>
+        <CardHeader className="px-4 sm:px-6">
+          <CardTitle className="text-lg sm:text-xl">Filter Orders</CardTitle>
         </CardHeader>
-        <CardContent>
+        <CardContent className="px-4 sm:px-6">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
             {/* Search */}
             <div className="relative">
@@ -188,84 +278,20 @@ export default function OrdersPage() {
 
       {/* Orders Table */}
       <Card>
-        <CardHeader>
+        <CardHeader className="px-4 sm:px-6">
           <CardTitle>All Orders ({orders.length})</CardTitle>
         </CardHeader>
-        <CardContent>
-          {loading ? (
-            <div className="text-center py-12">
-              <Package className="h-12 w-12 mx-auto text-gray-400 animate-pulse" />
-              <p className="mt-4 text-gray-500">Loading orders...</p>
-            </div>
-          ) : orders.length === 0 ? (
-            <div className="text-center py-12">
-              <Package className="h-12 w-12 mx-auto text-gray-400" />
-              <p className="mt-4 text-gray-500">No orders found</p>
-            </div>
-          ) : (
-            <Table>
-              <TableHeader>
-                <TableRow>
-                  <TableHead>Order #</TableHead>
-                  <TableHead>Customer</TableHead>
-                  <TableHead>Items</TableHead>
-                  <TableHead>Total</TableHead>
-                  <TableHead>Order Status</TableHead>
-                  <TableHead>Payment</TableHead>
-                  <TableHead>Date</TableHead>
-                  <TableHead className="text-right">Actions</TableHead>
-                </TableRow>
-              </TableHeader>
-              <TableBody>
-                {orders.map((order) => (
-                  <TableRow key={order._id}>
-                    <TableCell className="font-medium">{order.orderNumber}</TableCell>
-                    <TableCell>
-                      <div>
-                        <p className="font-medium">{order.user?.fullName}</p>
-                        <p className="text-sm text-gray-500">{order.user?.email}</p>
-                      </div>
-                    </TableCell>
-                    <TableCell>
-                      <span className="text-sm text-gray-600">
-                        {order.items?.length} item(s)
-                      </span>
-                    </TableCell>
-                    <TableCell className="font-semibold">
-                      ₹{order.totalAmount?.toLocaleString()}
-                    </TableCell>
-                    <TableCell>
-                      <Badge className={getStatusColor(order.orderStatus)}>
-                        <span className="flex items-center gap-1">
-                          {getStatusIcon(order.orderStatus)}
-                          {order.orderStatus}
-                        </span>
-                      </Badge>
-                    </TableCell>
-                    <TableCell>
-                      <Badge className={getPaymentColor(order.paymentStatus)}>
-                        {order.paymentStatus}
-                      </Badge>
-                    </TableCell>
-                    <TableCell>
-                      {new Date(order.createdAt).toLocaleDateString('en-IN', {
-                        day: '2-digit',
-                        month: 'short',
-                        year: 'numeric',
-                      })}
-                    </TableCell>
-                    <TableCell className="text-right">
-                      <Link href={`/admin/orders/${order._id}`}>
-                        <Button variant="ghost" size="sm">
-                          <Eye className="h-4 w-4" />
-                        </Button>
-                      </Link>
-                    </TableCell>
-                  </TableRow>
-                ))}
-              </TableBody>
-            </Table>
-          )}
+        <CardContent className="px-0 sm:px-6">
+          <ResponsiveTable
+            data={orders}
+            columns={columns}
+            keyExtractor={(order) => order._id}
+            loading={loading}
+            loadingMessage="Loading orders..."
+            emptyMessage="No orders found"
+            mobileCardView={true}
+            onRowClick={(order) => router.push(`/admin/orders/${order._id}`)}
+          />
         </CardContent>
       </Card>
     </div>

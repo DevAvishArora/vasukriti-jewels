@@ -4,8 +4,10 @@ import { motion } from 'framer-motion';
 import Image from 'next/image';
 import Link from 'next/link';
 import { ArrowRight, Award, Gem, Shield } from 'lucide-react';
+import { useEffect, useState } from 'react';
+import axiosInstance from '@/lib/axios';
 
-const features = [
+const defaultFeatures = [
   {
     icon: Gem,
     title: 'Handcrafted Excellence',
@@ -23,7 +25,47 @@ const features = [
   },
 ];
 
+interface PageContent {
+  title: string;
+  subtitle?: string;
+  sections: Array<{
+    type: string;
+    content: any;
+    order: number;
+  }>;
+}
+
 export function BrandStory() {
+  const [content, setContent] = useState<PageContent | null>(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchContent = async () => {
+      try {
+        const response = await axiosInstance.get('/page-content/brand-story');
+        setContent(response.data.data);
+      } catch (error) {
+        console.error('Error fetching brand story content:', error);
+        setContent(null);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchContent();
+  }, []);
+
+  // Extract content with proper fallback
+  const displayTitle = content?.title || 'Crafting Timeless Elegance';
+  const displaySubtitle = content?.subtitle || 'Where Heritage Meets Contemporary Design';
+  
+  // Get heading and paragraphs from sections
+  const heading = content?.sections?.find(s => s.type === 'heading')?.content || displayTitle;
+  const paragraphs = content?.sections
+    ?.filter(s => s.type === 'paragraph')
+    .sort((a, b) => a.order - b.order)
+    .map(s => s.content) || [];
+
   return (
     <section className="relative overflow-hidden" style={{ backgroundColor: '#1a1a1a' }}>
       <div className="container mx-auto">
@@ -79,26 +121,48 @@ export function BrandStory() {
 
               {/* Heading */}
               <h2 className="text-3xl lg:text-4xl font-light tracking-wide text-white mb-6">
-                Crafting Timeless
-                <br />
-                Elegance
+                {heading.split('\n').map((line: string, i: number) => (
+                  <span key={i}>
+                    {line}
+                    {i < heading.split('\n').length - 1 && <br />}
+                  </span>
+                ))}
               </h2>
 
               {/* Description */}
-              <p className="text-base font-light text-gray-300 leading-relaxed mb-8">
-                For over three decades, Vasukriti has been synonymous with exceptional 
-                craftsmanship and timeless design. Each piece tells a story of heritage, artistry, 
-                and unwavering commitment to quality.
-              </p>
-
-              <p className="text-sm font-light text-gray-400 leading-relaxed mb-12">
-                Our master artisans blend traditional Indian jewelry-making techniques with 
-                contemporary aesthetics, creating pieces that transcend generations.
-              </p>
+              {paragraphs.length > 0 ? (
+                <>
+                  <p className="text-base font-light text-gray-300 leading-relaxed mb-8">
+                    {paragraphs[0]}
+                  </p>
+                  {paragraphs[1] && (
+                    <p className="text-sm font-light text-gray-400 leading-relaxed mb-12">
+                      {paragraphs[1]}
+                    </p>
+                  )}
+                  {paragraphs[2] && (
+                    <p className="text-sm font-light text-gray-400 leading-relaxed mb-12">
+                      {paragraphs[2]}
+                    </p>
+                  )}
+                </>
+              ) : (
+                <>
+                  <p className="text-base font-light text-gray-300 leading-relaxed mb-8">
+                    For over three decades, Vasukriti has been synonymous with exceptional 
+                    craftsmanship and timeless design. Each piece tells a story of heritage, artistry, 
+                    and unwavering commitment to quality.
+                  </p>
+                  <p className="text-sm font-light text-gray-400 leading-relaxed mb-12">
+                    Our master artisans blend traditional Indian jewelry-making techniques with 
+                    contemporary aesthetics, creating pieces that transcend generations.
+                  </p>
+                </>
+              )}
 
               {/* Features */}
               <div className="space-y-6 mb-12">
-                {features.map((feature, index) => {
+                {defaultFeatures.map((feature, index) => {
                   const Icon = feature.icon;
                   return (
                     <motion.div

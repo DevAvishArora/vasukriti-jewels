@@ -19,7 +19,8 @@ export interface Product {
     size: number;
   };
   specifications?: Specification[];
-  materials?: string[];
+  materials?: string;
+  precautions?: string;
   weight?: number;
   dimensions?: {
     length: number;

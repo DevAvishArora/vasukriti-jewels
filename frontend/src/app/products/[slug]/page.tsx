@@ -39,7 +39,7 @@ export default function ProductDetailsPage() {
   const [loading, setLoading] = useState(true);
   const [quantity, setQuantity] = useState(1);
   const [viewMode, setViewMode] = useState<'images' | '3d'>('images');
-  const [activeTab, setActiveTab] = useState<'description' | 'specifications' | 'reviews'>('description');
+  const [activeTab, setActiveTab] = useState<'description' | 'specifications' | 'care' | 'reviews'>('description');
   const [isShareMenuOpen, setIsShareMenuOpen] = useState(false);
 
   useEffect(() => {
@@ -441,6 +441,16 @@ export default function ProductDetailsPage() {
                 SPECIFICATIONS
               </button>
               <button
+                onClick={() => setActiveTab('care')}
+                className={`pb-3 text-xs tracking-wider transition-colors ${
+                  activeTab === 'care'
+                    ? 'text-black border-b-2 border-black'
+                    : 'text-gray-400 hover:text-gray-600'
+                }`}
+              >
+                CARE & PRECAUTIONS
+              </button>
+              <button
                 onClick={() => setActiveTab('reviews')}
                 className={`pb-3 text-xs tracking-wider transition-colors ${
                   activeTab === 'reviews'
@@ -472,20 +482,37 @@ export default function ProductDetailsPage() {
                   animate={{ opacity: 1, y: 0 }}
                   className="space-y-2"
                 >
-                  {product.specifications && Object.keys(product.specifications).length > 0 ? (
-                    Object.entries(product.specifications).map(([key, value]) => (
+                  {product.specifications && Array.isArray(product.specifications) && product.specifications.length > 0 ? (
+                    product.specifications.map((spec) => (
                       <div
-                        key={key}
+                        key={`${spec.label}-${spec.value}`}
                         className="flex items-center py-2.5 border-b border-gray-100"
                       >
                         <span className="w-1/3 text-xs text-gray-500 uppercase tracking-wider">
-                          {key.replace(/([A-Z])/g, ' $1').trim()}
+                          {spec.label}
                         </span>
-                        <span className="text-sm text-black">{String(value)}</span>
+                        <span className="text-sm text-black">{spec.value}</span>
                       </div>
                     ))
                   ) : (
                     <p className="text-gray-400 text-xs">No specifications available.</p>
+                  )}
+                </motion.div>
+              )}
+
+              {activeTab === 'care' && (
+                <motion.div
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                >
+                  {product.precautions ? (
+                    <div className="prose prose-gray max-w-none">
+                      <p className="text-sm text-gray-600 leading-relaxed whitespace-pre-line">
+                        {product.precautions}
+                      </p>
+                    </div>
+                  ) : (
+                    <p className="text-gray-400 text-xs">No care instructions available.</p>
                   )}
                 </motion.div>
               )}

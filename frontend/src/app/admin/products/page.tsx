@@ -3,20 +3,14 @@
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
+import { useRouter } from 'next/navigation';
 import axiosInstance from '@/lib/axios-instance';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from '@/components/ui/table';
 import { Badge } from '@/components/ui/badge';
 import { Plus, Search, Edit, Trash2, Package, Upload } from 'lucide-react';
+import { ResponsiveTable, type Column } from '@/components/ui/responsive-table';
 
 interface Product {
   _id: string;
@@ -32,6 +26,7 @@ interface Product {
 }
 
 export default function ProductsListPage() {
+  const router = useRouter();
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState('');
@@ -66,26 +61,119 @@ export default function ProductsListPage() {
     product.name.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
+  // Define columns for the responsive table
+  const columns: Column<Product>[] = [
+    {
+      key: 'product',
+      label: 'Product',
+      mobileLabel: 'Product',
+      render: (product) => (
+        <div className="flex items-center gap-3 min-w-[200px]">
+          {product.images?.[0]?.url ? (
+            <Image
+              src={product.images[0].url}
+              alt={product.images[0].alt || product.name}
+              width={48}
+              height={48}
+              className="object-cover rounded flex-shrink-0"
+            />
+          ) : (
+            <div className="w-12 h-12 bg-gray-200 rounded flex items-center justify-center flex-shrink-0">
+              <Package className="h-6 w-6 text-gray-400" />
+            </div>
+          )}
+          <div className="min-w-0">
+            <p className="font-medium truncate">{product.name}</p>
+            <p className="text-sm text-gray-500 truncate">{product.slug}</p>
+          </div>
+        </div>
+      ),
+    },
+    {
+      key: 'category',
+      label: 'Category',
+      mobileLabel: 'Category',
+      hideOnMobile: true,
+      render: (product) => product.category?.name || 'N/A',
+    },
+    {
+      key: 'price',
+      label: 'Price',
+      mobileLabel: 'Price',
+      render: (product) => `₹${product.price?.toLocaleString() || 0}`,
+    },
+    {
+      key: 'stock',
+      label: 'Stock',
+      mobileLabel: 'Stock',
+      render: (product) => (
+        <Badge variant={product.stock > 10 ? 'default' : 'destructive'}>
+          {product.stock || 0}
+        </Badge>
+      ),
+    },
+    {
+      key: 'status',
+      label: 'Status',
+      mobileLabel: 'Status',
+      render: (product) => (
+        <Badge variant={product.isActive ? 'default' : 'secondary'}>
+          {product.isActive ? 'Active' : 'Inactive'}
+        </Badge>
+      ),
+    },
+    {
+      key: 'actions',
+      label: 'Actions',
+      mobileLabel: 'Actions',
+      className: 'text-right',
+      render: (product) => (
+        <div className="flex items-center justify-end gap-2">
+          <Button
+            variant="ghost"
+            size="sm"
+            onClick={(e) => {
+              e.stopPropagation();
+              router.push(`/admin/products/${product._id}`);
+            }}
+          >
+            <Edit className="h-4 w-4" />
+          </Button>
+          <Button
+            variant="ghost"
+            size="sm"
+            onClick={(e) => {
+              e.stopPropagation();
+              handleDelete(product._id);
+            }}
+          >
+            <Trash2 className="h-4 w-4 text-red-600" />
+          </Button>
+        </div>
+      ),
+    },
+  ];
+
   return (
-    <div className="p-8">
+    <div className="space-y-6">
       {/* Header */}
-      <div className="mb-6">
-        <div className="flex items-center justify-between">
-          <div>
-            <h1 className="text-3xl font-bold text-gray-900">Products</h1>
+      <div>
+        <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+          <div className="min-w-0">
+            <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 truncate">Products</h1>
             <p className="text-sm text-gray-500 mt-1">Manage your product catalog</p>
           </div>
-          <div className="flex gap-3">
-            <Link href="/admin/products/bulk-upload">
-              <Button variant="outline" className="border-red-700 text-red-700 hover:bg-red-50">
-                <Upload className="h-4 w-4 mr-2" />
-                Bulk Upload
+          <div className="flex gap-2 sm:gap-3 flex-shrink-0">
+            <Link href="/admin/products/bulk-upload" className="flex-1 sm:flex-initial">
+              <Button variant="outline" className="w-full sm:w-auto border-red-700 text-red-700 hover:bg-red-50 text-xs sm:text-sm">
+                <Upload className="h-4 w-4 sm:mr-2" />
+                <span className="hidden sm:inline">Bulk Upload</span>
               </Button>
             </Link>
-            <Link href="/admin/products/new">
-              <Button className="bg-gradient-to-r from-red-700 to-red-800 hover:from-red-800 hover:to-red-900">
-                <Plus className="h-4 w-4 mr-2" />
-                Add Product
+            <Link href="/admin/products/new" className="flex-1 sm:flex-initial">
+              <Button className="w-full sm:w-auto bg-gradient-to-r from-red-700 to-red-800 hover:from-red-800 hover:to-red-900 text-xs sm:text-sm">
+                <Plus className="h-4 w-4 sm:mr-2" />
+                <span className="hidden sm:inline">Add Product</span>
               </Button>
             </Link>
           </div>
@@ -94,10 +182,10 @@ export default function ProductsListPage() {
 
       {/* Main Content */}
       <Card>
-        <CardHeader>
-          <div className="flex items-center justify-between">
+        <CardHeader className="px-4 sm:px-6">
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
             <CardTitle>All Products ({filteredProducts.length})</CardTitle>
-            <div className="relative w-64">
+            <div className="relative w-full sm:w-64">
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
               <Input
                 placeholder="Search products..."
@@ -108,93 +196,16 @@ export default function ProductsListPage() {
             </div>
           </div>
         </CardHeader>
-        <CardContent>
-          {loading ? (
-            <div className="text-center py-12">
-              <Package className="h-12 w-12 mx-auto text-gray-400 animate-pulse" />
-              <p className="mt-4 text-gray-500">Loading products...</p>
-            </div>
-          ) : (
-            <>
-              {filteredProducts.length === 0 ? (
-                <div className="text-center py-12">
-                  <Package className="h-12 w-12 mx-auto text-gray-400" />
-                  <p className="mt-4 text-gray-500">No products found</p>
-                  <Link href="/admin/products/new">
-                    <Button className="mt-4">Add Your First Product</Button>
-                  </Link>
-                </div>
-              ) : (
-                <Table>
-                  <TableHeader>
-                    <TableRow>
-                      <TableHead>Product</TableHead>
-                      <TableHead>Category</TableHead>
-                      <TableHead>Price</TableHead>
-                      <TableHead>Stock</TableHead>
-                      <TableHead>Status</TableHead>
-                      <TableHead className="text-right">Actions</TableHead>
-                    </TableRow>
-                  </TableHeader>
-                  <TableBody>
-                    {filteredProducts.map((product) => (
-                      <TableRow key={product._id}>
-                        <TableCell>
-                          <div className="flex items-center gap-3">
-                            {product.images?.[0]?.url ? (
-                              <Image
-                                src={product.images[0].url}
-                                alt={product.images[0].alt || product.name}
-                                width={48}
-                                height={48}
-                                className="object-cover rounded"
-                              />
-                            ) : (
-                              <div className="w-12 h-12 bg-gray-200 rounded flex items-center justify-center">
-                                <Package className="h-6 w-6 text-gray-400" />
-                              </div>
-                            )}
-                            <div>
-                              <p className="font-medium">{product.name}</p>
-                              <p className="text-sm text-gray-500">{product.slug}</p>
-                            </div>
-                          </div>
-                        </TableCell>
-                        <TableCell>{product.category?.name || 'N/A'}</TableCell>
-                        <TableCell>₹{product.price?.toLocaleString() || 0}</TableCell>
-                        <TableCell>
-                          <Badge variant={product.stock > 10 ? 'default' : 'destructive'}>
-                            {product.stock || 0}
-                          </Badge>
-                        </TableCell>
-                        <TableCell>
-                          <Badge variant={product.isActive ? 'default' : 'secondary'}>
-                            {product.isActive ? 'Active' : 'Inactive'}
-                          </Badge>
-                        </TableCell>
-                        <TableCell className="text-right">
-                          <div className="flex items-center justify-end gap-2">
-                            <Link href={`/admin/products/${product._id}`}>
-                              <Button variant="ghost" size="sm">
-                                <Edit className="h-4 w-4" />
-                              </Button>
-                            </Link>
-                            <Button
-                              variant="ghost"
-                              size="sm"
-                              onClick={() => handleDelete(product._id)}
-                            >
-                              <Trash2 className="h-4 w-4 text-red-600" />
-                            </Button>
-                          </div>
-                        </TableCell>
-                      </TableRow>
-                    ))}
-                  </TableBody>
-                </Table>
-              )}
-            </>
-          )}
+        <CardContent className="px-0 sm:px-6">
+          <ResponsiveTable
+            data={filteredProducts}
+            columns={columns}
+            keyExtractor={(product) => product._id}
+            loading={loading}
+            loadingMessage="Loading products..."
+            emptyMessage="No products found"
+            mobileCardView={true}
+          />
         </CardContent>
       </Card>
     </div>

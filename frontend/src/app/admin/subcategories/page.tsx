@@ -15,14 +15,7 @@ import {
   SelectValue,
 } from '@/components/ui/select';
 import { Alert, AlertDescription } from '@/components/ui/alert';
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from '@/components/ui/table';
+import { ResponsiveTable } from '@/components/ui/responsive-table';
 import { Badge } from '@/components/ui/badge';
 import { Plus, Search, Edit, Trash2, Layers, Loader2, ArrowLeft } from 'lucide-react';
 import Link from 'next/link';
@@ -138,7 +131,7 @@ export default function SubcategoriesPage() {
   );
 
   return (
-    <div className="p-8">
+    <div className="space-y-6">
       {/* Header */}
       <div className="mb-6">
         <div className="flex items-center gap-4 mb-2">
@@ -149,10 +142,10 @@ export default function SubcategoriesPage() {
             </Button>
           </Link>
         </div>
-        <div className="flex items-center justify-between">
-          <div>
-            <h1 className="text-3xl font-bold text-gray-900 flex items-center gap-2">
-              <Layers className="h-8 w-8" />
+        <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+          <div className="min-w-0">
+            <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 flex items-center gap-2 truncate">
+              <Layers className="h-6 w-6 sm:h-8 sm:w-8 flex-shrink-0" />
               Subcategories
             </h1>
             <p className="text-sm text-gray-500 mt-1">Manage subcategories within parent categories</p>
@@ -166,7 +159,7 @@ export default function SubcategoriesPage() {
               }
               setShowForm(!showForm);
             }}
-            className="bg-gradient-to-r from-red-700 to-red-800 hover:from-red-800 hover:to-red-900"
+            className="bg-gradient-to-r from-red-700 to-red-800 hover:from-red-800 hover:to-red-900 flex-shrink-0 w-full sm:w-auto"
           >
             <Plus className="h-4 w-4 mr-2" />
             {showForm ? 'Cancel' : 'Add Subcategory'}
@@ -244,7 +237,7 @@ export default function SubcategoriesPage() {
                       {editingSubcategoryId ? 'Updating...' : 'Creating...'}
                     </>
                   ) : (
-                    editingSubcategoryId ? 'Update Subcategory' : 'Create Subcategory'
+                    <>{editingSubcategoryId ? 'Update Subcategory' : 'Create Subcategory'}</>
                   )}
                 </Button>
                 <Button
@@ -267,7 +260,7 @@ export default function SubcategoriesPage() {
 
       {/* Subcategories List */}
       <Card>
-        <CardHeader>
+        <CardHeader className="px-4 sm:px-6">
           <div className="flex items-center justify-between">
             <CardTitle>All Subcategories ({filteredSubcategories.length})</CardTitle>
             <div className="relative w-64">
@@ -281,7 +274,7 @@ export default function SubcategoriesPage() {
             </div>
           </div>
         </CardHeader>
-        <CardContent>
+        <CardContent className="px-0 sm:px-6">
           {loading ? (
             <div className="text-center py-12">
               <Layers className="h-12 w-12 mx-auto text-gray-400 animate-pulse" />
@@ -305,56 +298,98 @@ export default function SubcategoriesPage() {
                   )}
                 </div>
               ) : (
-                <Table>
-                  <TableHeader>
-                    <TableRow>
-                      <TableHead>Subcategory Name</TableHead>
-                      <TableHead>Parent Category</TableHead>
-                      <TableHead>Slug</TableHead>
-                      <TableHead>Description</TableHead>
-                      <TableHead>Status</TableHead>
-                      <TableHead className="text-right">Actions</TableHead>
-                    </TableRow>
-                  </TableHeader>
-                  <TableBody>
-                    {filteredSubcategories.map((subcategory) => (
-                      <TableRow key={subcategory._id}>
-                        <TableCell className="font-medium">{subcategory.name}</TableCell>
-                        <TableCell>
-                          <Badge variant="outline" className="bg-red-50 text-red-700 border-red-200">
-                            {subcategory.parentCategory?.name}
-                          </Badge>
-                        </TableCell>
-                        <TableCell className="text-gray-500">{subcategory.slug}</TableCell>
-                        <TableCell className="max-w-md">
-                          <p className="text-sm text-gray-600 truncate">
-                            {subcategory.description || 'No description'}
-                          </p>
-                        </TableCell>
-                        <TableCell>
-                          <Badge variant={subcategory.isActive ? 'default' : 'secondary'}>
-                            {subcategory.isActive ? 'Active' : 'Inactive'}
-                          </Badge>
-                        </TableCell>
-                        <TableCell className="text-right">
-                          <div className="flex items-center justify-end gap-2">
-                            <Button variant="ghost" size="sm" onClick={() => handleEdit(subcategory)}>
-                              <Edit className="h-4 w-4" />
-                            </Button>
-                            <Button
-                              variant="ghost"
-                              size="sm"
-                              onClick={() => handleDelete(subcategory._id)}
-                              className="text-red-600 hover:text-red-700"
-                            >
-                              <Trash2 className="h-4 w-4" />
-                            </Button>
-                          </div>
-                        </TableCell>
-                      </TableRow>
-                    ))}
-                  </TableBody>
-                </Table>
+                <ResponsiveTable
+                  data={filteredSubcategories}
+                  columns={[
+                    {
+                      key: 'name',
+                      label: 'Subcategory Name',
+                      mobileLabel: 'Subcategory',
+                      render: (subcategory) => (
+                        <div>
+                          <p className="font-medium">{subcategory.name}</p>
+                          <p className="text-sm text-gray-500">{subcategory.slug}</p>
+                        </div>
+                      ),
+                    },
+                    {
+                      key: 'parent',
+                      label: 'Parent Category',
+                      mobileLabel: 'Parent',
+                      render: (subcategory) => (
+                        <Badge variant="outline" className="bg-red-50 text-red-700 border-red-200">
+                          {subcategory.parentCategory?.name}
+                        </Badge>
+                      ),
+                    },
+                    {
+                      key: 'slug',
+                      label: 'Slug',
+                      mobileLabel: 'Slug',
+                      hideOnMobile: true,
+                      render: (subcategory) => (
+                        <span className="text-gray-500">{subcategory.slug}</span>
+                      ),
+                    },
+                    {
+                      key: 'description',
+                      label: 'Description',
+                      mobileLabel: 'Description',
+                      hideOnMobile: true,
+                      render: (subcategory) => (
+                        <p className="text-sm text-gray-600 truncate max-w-md">
+                          {subcategory.description || 'No description'}
+                        </p>
+                      ),
+                    },
+                    {
+                      key: 'status',
+                      label: 'Status',
+                      mobileLabel: 'Status',
+                      render: (subcategory) => (
+                        <Badge variant={subcategory.isActive ? 'default' : 'secondary'}>
+                          {subcategory.isActive ? 'Active' : 'Inactive'}
+                        </Badge>
+                      ),
+                    },
+                    {
+                      key: 'actions',
+                      label: 'Actions',
+                      mobileLabel: 'Actions',
+                      className: 'text-right',
+                      render: (subcategory) => (
+                        <div className="flex items-center justify-end gap-2">
+                          <Button
+                            variant="ghost"
+                            size="sm"
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              handleEdit(subcategory);
+                            }}
+                          >
+                            <Edit className="h-4 w-4" />
+                          </Button>
+                          <Button
+                            variant="ghost"
+                            size="sm"
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              handleDelete(subcategory._id);
+                            }}
+                            className="text-red-600 hover:text-red-700"
+                          >
+                            <Trash2 className="h-4 w-4" />
+                          </Button>
+                        </div>
+                      ),
+                    },
+                  ]}
+                  keyExtractor={(subcategory) => subcategory._id}
+                  loading={false}
+                  loadingMessage="Loading subcategories..."
+                  emptyMessage="No subcategories found"
+                  mobileCardView={true}
+                />
               )}
             </>
           )}

@@ -36,13 +36,15 @@ export default function NewProductPage() {
     price: '',
     discountPrice: '',
     category: '',
-    material: 'Gold',
+    material: '',
     purity: '',
     weight: '',
     stockQuantity: '',
     sku: '',
     images: [] as { url: string; alt?: string; isPrimary?: boolean; publicId?: string }[],
     tags: '',
+    specifications: [] as { label: string; value: string }[],
+    precautions: '',
   });
 
   useEffect(() => {
@@ -70,13 +72,15 @@ export default function NewProductPage() {
         price: Number(formData.price),
         discountPrice: formData.discountPrice ? Number(formData.discountPrice) : undefined,
         category: formData.category,
-        material: formData.material,
+        materials: formData.material,
         purity: formData.purity,
         weight: formData.weight ? Number(formData.weight) : undefined,
-        stockQuantity: Number(formData.stockQuantity),
+        stock: Number(formData.stockQuantity),
         sku: formData.sku,
         images: formData.images.filter((img) => img.url),
         tags: formData.tags.split(',').map((tag) => tag.trim()).filter(Boolean),
+        specifications: formData.specifications.filter(spec => spec.label && spec.value),
+        precautions: formData.precautions,
       };
 
       await axiosInstance.post('/products', productData);
@@ -230,23 +234,13 @@ export default function NewProductPage() {
           <CardContent className="space-y-4">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
               <div>
-                <Label htmlFor="material">Material *</Label>
-                <Select
+                <Label htmlFor="material">Material</Label>
+                <Input
+                  id="material"
                   value={formData.material}
-                  onValueChange={(value) => setFormData({ ...formData, material: value })}
-                  required
-                >
-                  <SelectTrigger>
-                    <SelectValue />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="Gold">Gold</SelectItem>
-                    <SelectItem value="Silver">Silver</SelectItem>
-                    <SelectItem value="Platinum">Platinum</SelectItem>
-                    <SelectItem value="Diamond">Diamond</SelectItem>
-                    <SelectItem value="Gemstone">Gemstone</SelectItem>
-                  </SelectContent>
-                </Select>
+                  onChange={(e) => setFormData({ ...formData, material: e.target.value })}
+                  placeholder="e.g., 22K Gold, Silver, Diamond"
+                />
               </div>
 
               <div>
@@ -281,6 +275,88 @@ export default function NewProductPage() {
                 placeholder="e.g., wedding, traditional, bridal"
               />
             </div>
+          </CardContent>
+        </Card>
+
+        {/* Care & Precautions */}
+        <Card className="mb-6">
+          <CardHeader>
+            <CardTitle>Care & Precautions</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div>
+              <Label htmlFor="precautions">Care Instructions & Precautions</Label>
+              <Textarea
+                id="precautions"
+                value={formData.precautions}
+                onChange={(e) => setFormData({ ...formData, precautions: e.target.value })}
+                placeholder="e.g., Avoid contact with water and chemicals. Store in a soft cloth pouch. Clean with a soft brush."
+                rows={5}
+              />
+            </div>
+          </CardContent>
+        </Card>
+
+        {/* Specifications */}
+        <Card className="mb-6">
+          <CardHeader>
+            <CardTitle>Specifications</CardTitle>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            {formData.specifications.map((spec, index) => (
+              <div key={index} className="flex gap-4 items-end">
+                <div className="flex-1">
+                  <Label htmlFor={`spec-label-${index}`}>Label</Label>
+                  <Input
+                    id={`spec-label-${index}`}
+                    value={spec.label}
+                    onChange={(e) => {
+                      const newSpecs = [...formData.specifications];
+                      newSpecs[index].label = e.target.value;
+                      setFormData({ ...formData, specifications: newSpecs });
+                    }}
+                    placeholder="e.g., Stone Type, Purity, Dimensions"
+                  />
+                </div>
+                <div className="flex-1">
+                  <Label htmlFor={`spec-value-${index}`}>Value</Label>
+                  <Input
+                    id={`spec-value-${index}`}
+                    value={spec.value}
+                    onChange={(e) => {
+                      const newSpecs = [...formData.specifications];
+                      newSpecs[index].value = e.target.value;
+                      setFormData({ ...formData, specifications: newSpecs });
+                    }}
+                    placeholder="e.g., Diamond, 22K, 10mm x 8mm"
+                  />
+                </div>
+                <Button
+                  type="button"
+                  variant="outline"
+                  size="sm"
+                  onClick={() => {
+                    const newSpecs = formData.specifications.filter((_, i) => i !== index);
+                    setFormData({ ...formData, specifications: newSpecs });
+                  }}
+                  className="mb-0"
+                >
+                  Remove
+                </Button>
+              </div>
+            ))}
+            <Button
+              type="button"
+              variant="outline"
+              onClick={() => {
+                setFormData({
+                  ...formData,
+                  specifications: [...formData.specifications, { label: '', value: '' }],
+                });
+              }}
+            >
+              Add Specification
+            </Button>
           </CardContent>
         </Card>
 
