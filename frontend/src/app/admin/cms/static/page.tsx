@@ -1177,7 +1177,7 @@ export default function StaticContentManagement() {
               )}
 
               {/* Design Options - Available for About page only, not for brand-story (keep it simple) */}
-              {editingContent.page === 'about' && (
+              {editingContent && editingContent.page === 'about' && (
               <div className="border-t-2 border-gray-200 pt-4 mt-6">
                 <div className="flex items-center justify-between mb-4">
                   <h4 className="text-sm font-bold text-gray-800 flex items-center gap-2">
