@@ -61,12 +61,12 @@ export default function CMSPage() {
     },
     {
       id: 'brand-story',
-      title: 'The Vasukriti Legacy',
-      description: 'Edit brand story and heritage content',
+      title: 'Brand Story',
+      description: 'Edit brand story section - image and text',
       icon: Award,
       href: '/admin/cms/brand-story',
       color: 'bg-amber-500',
-      stats: { sections: 6, updated: 2 },
+      stats: { sections: 3, updated: 0 },
     },
     {
       id: 'faq',

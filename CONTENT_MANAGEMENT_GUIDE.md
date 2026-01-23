@@ -16,7 +16,7 @@ Your static pages (About Us, Brand Story, Why Choose Us) are now fully manageabl
   - `PATCH /api/page-content/:page/toggle` - Activate/deactivate page (admin only)
 
 ### ✅ Admin Dashboard
-- **Location**: `/admin/content`
+- **Location**: `/admin/cms/static` or `/admin/cms/brand-story`
 - **Features**:
   - List all manageable pages
   - Edit page title, subtitle, and sections
@@ -47,8 +47,8 @@ Default content has been seeded for:
 
 ### 1. Access the Content Manager
 1. Login to admin dashboard: http://localhost:3000/admin
-2. Click on "Content" in the sidebar
-3. You'll see all manageable pages
+2. Click on "CMS" in the sidebar
+3. Select the page you want to edit (e.g., "The Vasukriti Legacy" for brand story)
 
 ### 2. Edit a Page
 1. Click the "Edit" button on any page card
@@ -155,26 +155,25 @@ Each page has metadata fields:
 ## Common Tasks
 
 ### Update About Us Page
-1. Go to `/admin/content`
-2. Click "Edit" on "About Vasukriti Jewels"
+1. Go to `/admin/cms`
+2. Click "About Us" card
 3. Modify sections as needed
 4. Click "Save Changes"
 5. Visit `/about` to see changes
 
 ### Change Homepage Brand Story
-1. Go to `/admin/content`
-2. Click "Edit" on "The Vasukriti Legacy"
-3. Update the first 2 paragraphs (they appear on homepage)
+1. Go to `/admin/cms`
+2. Click "The Vasukriti Legacy" card
+3. Update the content sections (first 3 paragraphs appear on homepage)
 4. Save changes
-5. Visit homepage to see updated content
+5. Visit homepage to see updated content immediately
 
 ### Add New Features to "Why Choose Us"
-1. Go to `/admin/content`
-2. Click "Edit" on "Why Choose Vasukriti"
-3. In the list section, add new items (one per line)
-4. Or edit existing items
-5. Save changes
-6. View on homepage
+1. Go to `/admin/cms`
+2. Click "Why Choose Us" card
+3. Add or edit feature items
+4. Save changes
+5. View on homepage
 
 ## Troubleshooting
 

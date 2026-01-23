@@ -211,6 +211,42 @@ const settingsSchema = new mongoose.Schema(
         default: 'We are currently under maintenance. Please check back soon.',
       },
     },
+
+    // Brand Story Content
+    brandStory: {
+      image: {
+        type: String,
+        default: '/images/brand-story.png',
+      },
+      heading: {
+        type: String,
+        default: 'Crafting Timeless Elegance',
+      },
+      paragraph1: {
+        type: String,
+        default: 'For over three decades, Vasukriti has been synonymous with exceptional craftsmanship and timeless design. Each piece tells a story of heritage, artistry, and unwavering commitment to quality.',
+      },
+      paragraph2: {
+        type: String,
+        default: 'Our master artisans blend traditional Indian jewelry-making techniques with contemporary aesthetics, creating pieces that transcend generations.',
+      },
+      features: [{
+        icon: {
+          type: String,
+          default: 'Gem',
+        },
+        title: String,
+        description: String,
+      }],
+      ctaText: {
+        type: String,
+        default: 'Discover Our Story',
+      },
+      ctaLink: {
+        type: String,
+        default: '/about',
+      },
+    },
   },
   {
     timestamps: true,

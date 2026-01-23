@@ -324,9 +324,9 @@ export default function StaticContentManagement() {
 
   // Simple Template Designs for Brand Story Section
   const BRAND_STORY_TEMPLATES = {
-    classic: {
-      name: '🏛️ Classic Heritage',
-      description: 'Traditional dark theme - matches current design',
+    current: {
+      name: '🎨 Current Design (Default)',
+      description: 'Matches the homepage design perfectly - Dark elegant theme',
       color: 'slate',
       sections: [
         {

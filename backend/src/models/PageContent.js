@@ -67,6 +67,28 @@ const pageContentSchema = new mongoose.Schema({
   subtitle: {
     type: String,
   },
+  layout: {
+    type: String,
+    enum: ['default', 'imageRight', 'centered'],
+    default: 'default',
+  },
+  image: {
+    type: String,
+  },
+  features: [{
+    icon: String,
+    title: String,
+    description: String,
+    order: Number,
+  }],
+  ctaText: {
+    type: String,
+    default: 'Discover Our Story',
+  },
+  ctaLink: {
+    type: String,
+    default: '/about',
+  },
   sections: [contentBlockSchema],
   metadata: {
     seoTitle: String,

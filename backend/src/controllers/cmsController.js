@@ -1,4 +1,5 @@
 const PromotionalBar = require('../models/PromotionalBar');
+const Settings = require('../models/Settings');
 
 // Get active promotional bar
 exports.getActivePromotionalBar = async (req, res) => {
@@ -193,3 +194,83 @@ exports.publishPromotionalBar = async (req, res) => {
     });
   }
 };
+
+// @desc    Get brand story content
+// @route   GET /api/cms/brand-story
+// @access  Public
+exports.getBrandStory = async (req, res) => {
+  try {
+    const settings = await Settings.findOne();
+    
+    const brandStory = {
+      image: settings?.brandStory?.image || '/images/brand-story.png',
+      heading: settings?.brandStory?.heading || 'Crafting Timeless Elegance',
+      paragraph1: settings?.brandStory?.paragraph1 || 'For over three decades, Vasukriti has been synonymous with exceptional craftsmanship and timeless design. Each piece tells a story of heritage, artistry, and unwavering commitment to quality.',
+      paragraph2: settings?.brandStory?.paragraph2 || 'Our master artisans blend traditional Indian jewelry-making techniques with contemporary aesthetics, creating pieces that transcend generations.',
+      features: settings?.brandStory?.features || [
+        { icon: 'Gem', title: 'Handcrafted Excellence', description: 'Every piece meticulously crafted by master artisans' },
+        { icon: 'Shield', title: 'BIS Hallmarked', description: 'Certified purity and quality guaranteed' },
+        { icon: 'Award', title: 'Heritage Design', description: 'Traditional craftsmanship meets modern elegance' },
+      ],
+      ctaText: settings?.brandStory?.ctaText || 'Discover Our Story',
+      ctaLink: settings?.brandStory?.ctaLink || '/about',
+    };
+
+    res.status(200).json({
+      success: true,
+      data: brandStory,
+    });
+  } catch (error) {
+    console.error('Error fetching brand story:', error);
+    res.status(500).json({
+      success: false,
+      message: 'Error fetching brand story content',
+      error: error.message,
+    });
+  }
+};
+
+// @desc    Update brand story content
+// @route   POST /api/cms/brand-story
+// @access  Private/Admin
+exports.updateBrandStory = async (req, res) => {
+  try {
+    const { image, heading, paragraph1, paragraph2, features, ctaText, ctaLink } = req.body;
+
+    let settings = await Settings.findOne();
+    
+    if (!settings) {
+      settings = new Settings({});
+    }
+
+    settings.brandStory = {
+      image: image || '/images/brand-story.png',
+      heading: heading || 'Crafting Timeless Elegance',
+      paragraph1: paragraph1 || '',
+      paragraph2: paragraph2 || '',
+      features: features || [
+        { icon: 'Gem', title: 'Handcrafted Excellence', description: 'Every piece meticulously crafted by master artisans' },
+        { icon: 'Shield', title: 'BIS Hallmarked', description: 'Certified purity and quality guaranteed' },
+        { icon: 'Award', title: 'Heritage Design', description: 'Traditional craftsmanship meets modern elegance' },
+      ],
+      ctaText: ctaText || 'Discover Our Story',
+      ctaLink: ctaLink || '/about',
+    };
+
+    await settings.save();
+
+    res.status(200).json({
+      success: true,
+      message: 'Brand story updated successfully',
+      data: settings.brandStory,
+    });
+  } catch (error) {
+    console.error('Error updating brand story:', error);
+    res.status(500).json({
+      success: false,
+      message: 'Error updating brand story content',
+      error: error.message,
+    });
+  }
+};
+

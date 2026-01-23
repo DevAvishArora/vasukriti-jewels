@@ -11,6 +11,8 @@ const {
   updatePromotionalBar,
   deletePromotionalBar,
   publishPromotionalBar,
+  getBrandStory,
+  updateBrandStory,
 } = require('../controllers/cmsController');
 
 const {
@@ -80,5 +82,12 @@ router.put('/faq/:id', protect, admin, updateFAQ);
 router.delete('/faq/:id', protect, admin, deleteFAQ);
 router.post('/faq/order', protect, admin, updateFAQOrder);
 router.post('/faq/:id/publish', protect, admin, publishFAQ);
+
+// ==================== BRAND STORY ROUTES ====================
+// Public route
+router.get('/brand-story', getBrandStory);
+
+// Admin route
+router.post('/brand-story', protect, admin, updateBrandStory);
 
 module.exports = router;
