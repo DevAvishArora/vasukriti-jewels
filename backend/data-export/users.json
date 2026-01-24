@@ -1,0 +1,31 @@
+[
+  {
+    "_id": "691711b9c514768fe7b1f20b",
+    "fullName": "Avish",
+    "email": "admin@vasukritijewels.com",
+    "password": "$2b$10$RXpt/1WwiY3OIOhuPUyZxexR28805GafoXaz.31U0BaOxwPQpEHXW",
+    "phone": "6375300236",
+    "avatar": "",
+    "role": "admin",
+    "wishlist": [],
+    "isActive": true,
+    "isVerified": true,
+    "addresses": [
+      {
+        "label": "home",
+        "fullName": "Avish Arora",
+        "phone": "6375300236",
+        "addressLine1": "House no. 101,darpan greens",
+        "addressLine2": "",
+        "city": "Mohali",
+        "state": "Select State",
+        "pincode": "335001",
+        "isDefault": true,
+        "_id": "6953b0ba99014b8c797d3772"
+      }
+    ],
+    "createdAt": "2025-11-14T11:25:45.556Z",
+    "updatedAt": "2026-01-12T19:10:34.104Z",
+    "__v": 1
+  }
+]

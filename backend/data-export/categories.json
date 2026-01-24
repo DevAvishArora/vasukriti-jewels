@@ -1,0 +1,104 @@
+[
+  {
+    "_id": "6963fb25390836809e4ae399",
+    "name": "Earrings",
+    "description": "Anti-Tarnish Daily Wear Earrings.",
+    "image": {
+      "url": "https://res.cloudinary.com/dyhutb5oh/image/upload/v1768207154/categories/htcg5hwdrnjhqn4ev3eu.png",
+      "publicId": "categories/htcg5hwdrnjhqn4ev3eu"
+    },
+    "parentCategory": null,
+    "subCategories": [],
+    "displayOrder": 0,
+    "isActive": true,
+    "createdAt": "2026-01-11T19:33:57.820Z",
+    "updatedAt": "2026-01-12T08:39:37.331Z",
+    "slug": "earrings",
+    "__v": 0
+  },
+  {
+    "_id": "6964a02a077cfc3d1437e077",
+    "name": "Necklace",
+    "description": "Anti-Tarnish Daily Wear Necklace.",
+    "image": {
+      "url": "https://res.cloudinary.com/dyhutb5oh/image/upload/v1768207867/categories/rkm3agtbrqq4ouwsjpde.png",
+      "publicId": "categories/rkm3agtbrqq4ouwsjpde"
+    },
+    "parentCategory": null,
+    "subCategories": [],
+    "displayOrder": 0,
+    "isActive": true,
+    "createdAt": "2026-01-12T07:18:02.801Z",
+    "updatedAt": "2026-01-12T08:58:47.601Z",
+    "slug": "necklace",
+    "__v": 0
+  },
+  {
+    "_id": "6964a5895f8d291f40392a05",
+    "name": "Rings",
+    "description": "Anti-Tarnish Daily Wear Rings.",
+    "image": {
+      "url": "https://res.cloudinary.com/dyhutb5oh/image/upload/v1768207365/categories/mskpjdp9rihfef98rkhp.png",
+      "publicId": "categories/mskpjdp9rihfef98rkhp"
+    },
+    "parentCategory": null,
+    "subCategories": [],
+    "displayOrder": 0,
+    "isActive": true,
+    "createdAt": "2026-01-12T07:40:57.455Z",
+    "updatedAt": "2026-01-12T09:00:01.423Z",
+    "slug": "rings",
+    "__v": 0
+  },
+  {
+    "_id": "6964a9005f8d291f40392a23",
+    "name": "Bracelets",
+    "description": "Anti-Tarnish Daily Wear Bracelets.",
+    "image": {
+      "url": "https://res.cloudinary.com/dyhutb5oh/image/upload/v1768208153/categories/gqjcq3fiffinfkgbfffd.png",
+      "publicId": "categories/gqjcq3fiffinfkgbfffd"
+    },
+    "parentCategory": null,
+    "subCategories": [],
+    "displayOrder": 0,
+    "isActive": true,
+    "createdAt": "2026-01-12T07:55:44.789Z",
+    "updatedAt": "2026-01-12T08:56:20.905Z",
+    "slug": "bracelets",
+    "__v": 0
+  },
+  {
+    "_id": "6964acb05f8d291f40392a65",
+    "name": "Bangle Bracelets",
+    "description": "Anti-Tarnish Daily Wear Bangle Bracelets.",
+    "image": {
+      "url": "https://res.cloudinary.com/dyhutb5oh/image/upload/v1768205470/categories/cubrn18t61red4tccjmx.png",
+      "publicId": "categories/cubrn18t61red4tccjmx"
+    },
+    "parentCategory": null,
+    "subCategories": [],
+    "displayOrder": 0,
+    "isActive": true,
+    "createdAt": "2026-01-12T08:11:28.539Z",
+    "updatedAt": "2026-01-12T08:11:28.539Z",
+    "slug": "bangle-bracelets",
+    "__v": 0
+  },
+  {
+    "_id": "6964bb9cf3742bb6a31d3cd6",
+    "name": "All Products",
+    "description": "All Anti-Tarnish Daily Wears.",
+    "image": {
+      "url": "https://res.cloudinary.com/dyhutb5oh/image/upload/v1768209292/categories/hrcl1vsixoryyagrphz9.png",
+      "publicId": "categories/hrcl1vsixoryyagrphz9"
+    },
+    "parentCategory": null,
+    "subCategories": [],
+    "displayOrder": 0,
+    "isActive": false,
+    "createdAt": "2026-01-12T09:15:08.785Z",
+    "updatedAt": "2026-01-19T17:34:53.402Z",
+    "slug": "all-products",
+    "__v": 0
+  }
+]

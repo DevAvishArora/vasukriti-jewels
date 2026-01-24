@@ -1,0 +1,1616 @@
+[
+  {
+    "_id": "696480123e9bad822d52374f",
+    "name": "Tiered Coin Earring",
+    "description": "Tiered coin earrings designed for effortless daily wear. Waterproof, anti-tarnish, and lightweight.\nAvoid spraying perfume or body spray, and avoid exposure to harsh chemicals.",
+    "category": "6963fb25390836809e4ae399",
+    "price": 950,
+    "comparePrice": 0,
+    "discount": 0,
+    "sku": "ER001",
+    "stock": 1,
+    "lowStockThreshold": 10,
+    "images": [
+      {
+        "url": "https://res.cloudinary.com/dyhutb5oh/image/upload/v1768194042/products/phi83xmhci6taiboihc8.png",
+        "publicId": "products/phi83xmhci6taiboihc8",
+        "alt": "",
+        "isPrimary": true,
+        "_id": "696480123e9bad822d523750"
+      },
+      {
+        "url": "https://res.cloudinary.com/dyhutb5oh/image/upload/v1768194042/products/cyamm4k5kjthfzi5zcef.png",
+        "publicId": "products/cyamm4k5kjthfzi5zcef",
+        "alt": "",
+        "isPrimary": false,
+        "_id": "696480123e9bad822d523751"
+      }
+    ],
+    "materials": [],
+    "tags": [],
+    "isFeatured": false,
+    "isTrending": false,
+    "isNewArrival": false,
+    "rating": {
+      "average": 0,
+      "count": 0
+    },
+    "reviews": [],
+    "metaKeywords": [],
+    "isActive": true,
+    "specifications": [],
+    "createdAt": "2026-01-12T05:01:06.964Z",
+    "updatedAt": "2026-01-12T05:36:24.032Z",
+    "slug": "tiered-coin-earring",
+    "__v": 0
+  },
+  {
+    "_id": "696483be3e9bad822d52378c",
+    "name": "Swirl Studs Earring",
+    "description": "Elegant swirl stud earrings designed for effortless daily wear. Waterproof, anti-tarnish, and lightweight.\nAvoid spraying with Perfume/body spray and avoid exposure to harsh chemicals.",
+    "category": "6963fb25390836809e4ae399",
+    "price": 700,
+    "comparePrice": 0,
+    "discount": 0,
+    "sku": "ER002",
+    "stock": 1,
+    "lowStockThreshold": 10,
+    "images": [
+      {
+        "url": "https://res.cloudinary.com/dyhutb5oh/image/upload/v1768194975/products/xgruc84qfdflo5wdiika.png",
+        "publicId": "products/xgruc84qfdflo5wdiika",
+        "alt": "",
+        "isPrimary": true,
+        "_id": "696483be3e9bad822d52378d"
+      },
+      {
+        "url": "https://res.cloudinary.com/dyhutb5oh/image/upload/v1768194975/products/bsqpsqusgkmzanue7ylk.png",
+        "publicId": "products/bsqpsqusgkmzanue7ylk",
+        "alt": "",
+        "isPrimary": false,
+        "_id": "696483be3e9bad822d52378e"
+      },
+      {
+        "url": "https://res.cloudinary.com/dyhutb5oh/image/upload/v1768194975/products/dau68daxtf2sa50q7hed.png",
+        "publicId": "products/dau68daxtf2sa50q7hed",
+        "alt": "",
+        "isPrimary": false,
+        "_id": "696483be3e9bad822d52378f"
+      }
+    ],
+    "materials": [],
+    "tags": [],
+    "isFeatured": false,
+    "isTrending": false,
+    "isNewArrival": false,
+    "rating": {
+      "average": 0,
+      "count": 0
+    },
+    "reviews": [],
+    "metaKeywords": [],
+    "isActive": true,
+    "specifications": [],
+    "createdAt": "2026-01-12T05:16:46.295Z",
+    "updatedAt": "2026-01-12T05:16:46.295Z",
+    "slug": "swirl-studs-earring",
+    "__v": 0
+  },
+  {
+    "_id": "696486393e9bad822d52379e",
+    "name": "Triangle Hoop Earring",
+    "description": "Modern triangle hoop earrings designed for everyday wear. Avoid spraying perfume or body spray, and avoid exposure to harsh chemicals.",
+    "category": "6963fb25390836809e4ae399",
+    "price": 200,
+    "comparePrice": 0,
+    "discount": 0,
+    "sku": "ER003",
+    "stock": 1,
+    "lowStockThreshold": 10,
+    "images": [
+      {
+        "url": "https://res.cloudinary.com/dyhutb5oh/image/upload/v1768195591/products/ficuwjqji3hklogcokxk.png",
+        "publicId": "products/ficuwjqji3hklogcokxk",
+        "alt": "",
+        "isPrimary": true,
+        "_id": "696486393e9bad822d52379f"
+      },
+      {
+        "url": "https://res.cloudinary.com/dyhutb5oh/image/upload/v1768195591/products/u0cygrpz6ssjsxihcb6k.png",
+        "publicId": "products/u0cygrpz6ssjsxihcb6k",
+        "alt": "",
+        "isPrimary": false,
+        "_id": "696486393e9bad822d5237a0"
+      },
+      {
+        "url": "https://res.cloudinary.com/dyhutb5oh/image/upload/v1768195592/products/iy4wngjodycqwrhkknbg.png",
+        "publicId": "products/iy4wngjodycqwrhkknbg",
+        "alt": "",
+        "isPrimary": false,
+        "_id": "696486393e9bad822d5237a1"
+      }
+    ],
+    "materials": [],
+    "tags": [],
+    "isFeatured": false,
+    "isTrending": false,
+    "isNewArrival": false,
+    "rating": {
+      "average": 0,
+      "count": 0
+    },
+    "reviews": [],
+    "metaKeywords": [],
+    "isActive": true,
+    "specifications": [],
+    "createdAt": "2026-01-12T05:27:21.730Z",
+    "updatedAt": "2026-01-12T05:37:59.403Z",
+    "slug": "triangle-hoop-earring",
+    "__v": 0
+  },
+  {
+    "_id": "696489d73e9bad822d523821",
+    "name": "Puffy Hoop Earring",
+    "description": "Bold puffy hoop earrings crafted for everyday wear. Waterproof, anti-tarnish, and lightweight. \nAvoid spraying perfume or body spray, and avoid exposure to harsh chemicals.",
+    "category": "6963fb25390836809e4ae399",
+    "price": 850,
+    "comparePrice": 0,
+    "discount": 0,
+    "sku": "ER004",
+    "stock": 1,
+    "lowStockThreshold": 10,
+    "images": [
+      {
+        "url": "https://res.cloudinary.com/dyhutb5oh/image/upload/v1768196557/products/dxyiv3es9ntb7mbmhtmj.png",
+        "publicId": "products/dxyiv3es9ntb7mbmhtmj",
+        "alt": "",
+        "isPrimary": true,
+        "_id": "696489d73e9bad822d523822"
+      },
+      {
+        "url": "https://res.cloudinary.com/dyhutb5oh/image/upload/v1768196557/products/qqqh6svqzmy1hxyackgo.png",
+        "publicId": "products/qqqh6svqzmy1hxyackgo",
+        "alt": "",
+        "isPrimary": false,
+        "_id": "696489d73e9bad822d523823"
+      },
+      {
+        "url": "https://res.cloudinary.com/dyhutb5oh/image/upload/v1768196557/products/ktor9dumiocga1rzxo6s.png",
+        "publicId": "products/ktor9dumiocga1rzxo6s",
+        "alt": "",
+        "isPrimary": false,
+        "_id": "696489d73e9bad822d523824"
+      }
+    ],
+    "materials": [],
+    "tags": [],
+    "isFeatured": false,
+    "isTrending": false,
+    "isNewArrival": false,
+    "rating": {
+      "average": 0,
+      "count": 0
+    },
+    "reviews": [],
+    "metaKeywords": [],
+    "isActive": true,
+    "specifications": [],
+    "createdAt": "2026-01-12T05:42:47.718Z",
+    "updatedAt": "2026-01-12T05:42:47.718Z",
+    "slug": "puffy-hoop-earring",
+    "__v": 0
+  },
+  {
+    "_id": "69649c54077cfc3d1437e053",
+    "name": "Real-Four Leaf Clover Earring",
+    "description": "Real four-leaf clover earrings crafted for everyday elegance. Waterproof, anti-tarnish, and lightweight.\nAvoid spraying perfume or body spray, and avoid exposure to harsh chemicals.",
+    "category": "6963fb25390836809e4ae399",
+    "price": 450,
+    "comparePrice": 0,
+    "discount": 0,
+    "sku": "ER005",
+    "stock": 1,
+    "lowStockThreshold": 10,
+    "images": [
+      {
+        "url": "https://res.cloudinary.com/dyhutb5oh/image/upload/v1768201196/products/rwcqzuforbbld6qtiseu.png",
+        "publicId": "products/rwcqzuforbbld6qtiseu",
+        "alt": "",
+        "isPrimary": true,
+        "_id": "69649c54077cfc3d1437e054"
+      },
+      {
+        "url": "https://res.cloudinary.com/dyhutb5oh/image/upload/v1768201196/products/fzvmcj3dfay1dxpizcol.png",
+        "publicId": "products/fzvmcj3dfay1dxpizcol",
+        "alt": "",
+        "isPrimary": false,
+        "_id": "69649c54077cfc3d1437e055"
+      },
+      {
+        "url": "https://res.cloudinary.com/dyhutb5oh/image/upload/v1768201196/products/pnrmlljjswvpeppqgajh.png",
+        "publicId": "products/pnrmlljjswvpeppqgajh",
+        "alt": "",
+        "isPrimary": false,
+        "_id": "69649c54077cfc3d1437e056"
+      },
+      {
+        "url": "https://res.cloudinary.com/dyhutb5oh/image/upload/v1768201195/products/e3ndswyzgqpmmlp0is0k.png",
+        "publicId": "products/e3ndswyzgqpmmlp0is0k",
+        "alt": "",
+        "isPrimary": false,
+        "_id": "69649c54077cfc3d1437e057"
+      }
+    ],
+    "materials": [],
+    "tags": [],
+    "isFeatured": false,
+    "isTrending": false,
+    "isNewArrival": false,
+    "rating": {
+      "average": 0,
+      "count": 0
+    },
+    "reviews": [],
+    "metaKeywords": [],
+    "isActive": true,
+    "specifications": [],
+    "createdAt": "2026-01-12T07:01:40.856Z",
+    "updatedAt": "2026-01-12T07:01:40.856Z",
+    "slug": "real-four-leaf-clover-earring",
+    "__v": 0
+  },
+  {
+    "_id": "6964c2fdf3742bb6a31d3d0f",
+    "name": "Hammered Vintage Hoop Earring",
+    "description": "Textured hammered hoop earrings with a vintage touch. Waterproof, anti-tarnish, and perfect for daily wear.\nAvoid spraying perfume or body spray, and avoid exposure to harsh chemicals.",
+    "category": "6963fb25390836809e4ae399",
+    "price": 250,
+    "comparePrice": 0,
+    "discount": 0,
+    "sku": "ER006",
+    "stock": 1,
+    "lowStockThreshold": 10,
+    "images": [
+      {
+        "url": "https://res.cloudinary.com/dyhutb5oh/image/upload/v1768210911/products/n1vdegktziiqf3prb47e.png",
+        "publicId": "products/n1vdegktziiqf3prb47e",
+        "alt": "",
+        "isPrimary": true,
+        "_id": "6964c2fdf3742bb6a31d3d10"
+      },
+      {
+        "url": "https://res.cloudinary.com/dyhutb5oh/image/upload/v1768210911/products/phcembqqfm8xnmf2zrxo.png",
+        "publicId": "products/phcembqqfm8xnmf2zrxo",
+        "alt": "",
+        "isPrimary": false,
+        "_id": "6964c2fdf3742bb6a31d3d11"
+      },
+      {
+        "url": "https://res.cloudinary.com/dyhutb5oh/image/upload/v1768210911/products/sjluslpgqvwscenb78uj.png",
+        "publicId": "products/sjluslpgqvwscenb78uj",
+        "alt": "",
+        "isPrimary": false,
+        "_id": "6964c2fdf3742bb6a31d3d12"
+      },
+      {
+        "url": "https://res.cloudinary.com/dyhutb5oh/image/upload/v1768210911/products/xejvhukj1cax6wiiekqv.png",
+        "publicId": "products/xejvhukj1cax6wiiekqv",
+        "alt": "",
+        "isPrimary": false,
+        "_id": "6964c2fdf3742bb6a31d3d13"
+      }
+    ],
+    "materials": [],
+    "tags": [],
+    "isFeatured": false,
+    "isTrending": false,
+    "isNewArrival": false,
+    "rating": {
+      "average": 0,
+      "count": 0
+    },
+    "reviews": [],
+    "metaKeywords": [],
+    "isActive": true,
+    "specifications": [],
+    "createdAt": "2026-01-12T09:46:37.071Z",
+    "updatedAt": "2026-01-12T09:46:37.071Z",
+    "slug": "hammered-vintage-hoop-earring",
+    "__v": 0
+  },
+  {
+    "_id": "6964c4f4f3742bb6a31d3d22",
+    "name": "Gold Ball Studs Earring",
+    "description": "Classic gold ball stud earrings designed for effortless daily wear. Waterproof, anti-tarnish, and lightweight.\nAvoid spraying perfume or body spray, and avoid exposure to harsh chemicals.",
+    "category": "6963fb25390836809e4ae399",
+    "price": 500,
+    "comparePrice": 0,
+    "discount": 0,
+    "sku": "ER007",
+    "stock": 1,
+    "lowStockThreshold": 10,
+    "images": [
+      {
+        "url": "https://res.cloudinary.com/dyhutb5oh/image/upload/v1768211391/products/loowen2ldnuo8hj4j1wr.png",
+        "publicId": "products/loowen2ldnuo8hj4j1wr",
+        "alt": "",
+        "isPrimary": true,
+        "_id": "6964c4f4f3742bb6a31d3d23"
+      },
+      {
+        "url": "https://res.cloudinary.com/dyhutb5oh/image/upload/v1768211392/products/o1w5up9x6syppuvvt5is.png",
+        "publicId": "products/o1w5up9x6syppuvvt5is",
+        "alt": "",
+        "isPrimary": false,
+        "_id": "6964c4f4f3742bb6a31d3d24"
+      },
+      {
+        "url": "https://res.cloudinary.com/dyhutb5oh/image/upload/v1768211391/products/gjyuuwrrks0gphjvuk9x.jpg",
+        "publicId": "products/gjyuuwrrks0gphjvuk9x",
+        "alt": "",
+        "isPrimary": false,
+        "_id": "6964c4f4f3742bb6a31d3d25"
+      }
+    ],
+    "materials": [],
+    "tags": [],
+    "isFeatured": false,
+    "isTrending": false,
+    "isNewArrival": false,
+    "rating": {
+      "average": 0,
+      "count": 0
+    },
+    "reviews": [],
+    "metaKeywords": [],
+    "isActive": true,
+    "specifications": [],
+    "createdAt": "2026-01-12T09:55:00.724Z",
+    "updatedAt": "2026-01-12T09:55:00.724Z",
+    "slug": "gold-ball-studs-earring",
+    "__v": 0
+  },
+  {
+    "_id": "6964c6aff3742bb6a31d3d38",
+    "name": "Thin Tube Hoop Earring",
+    "description": "Sleek thin tube hoop earrings designed for effortless daily wear. Waterproof, anti-tarnish, and lightweight.\nAvoid spraying perfume or body spray, and avoid exposure to harsh chemicals.",
+    "category": "6963fb25390836809e4ae399",
+    "price": 500,
+    "comparePrice": 0,
+    "discount": 0,
+    "sku": "ER008",
+    "stock": 1,
+    "lowStockThreshold": 10,
+    "images": [
+      {
+        "url": "https://res.cloudinary.com/dyhutb5oh/image/upload/v1768212115/products/bnpf0ttormz5dzt5nb8u.png",
+        "publicId": "products/bnpf0ttormz5dzt5nb8u",
+        "alt": "",
+        "isPrimary": true,
+        "_id": "6964c6aff3742bb6a31d3d39"
+      },
+      {
+        "url": "https://res.cloudinary.com/dyhutb5oh/image/upload/v1768212115/products/oo5tlnwzpt7u29j6j7vv.png",
+        "publicId": "products/oo5tlnwzpt7u29j6j7vv",
+        "alt": "",
+        "isPrimary": false,
+        "_id": "6964c6aff3742bb6a31d3d3a"
+      },
+      {
+        "url": "https://res.cloudinary.com/dyhutb5oh/image/upload/v1768212115/products/f8skyrdnfjs6dnp0htce.png",
+        "publicId": "products/f8skyrdnfjs6dnp0htce",
+        "alt": "",
+        "isPrimary": false,
+        "_id": "6964c6aff3742bb6a31d3d3b"
+      },
+      {
+        "url": "https://res.cloudinary.com/dyhutb5oh/image/upload/v1768212116/products/nysbh65wgozdqjqqmrhq.png",
+        "publicId": "products/nysbh65wgozdqjqqmrhq",
+        "alt": "",
+        "isPrimary": false,
+        "_id": "6964c6aff3742bb6a31d3d3c"
+      }
+    ],
+    "materials": [],
+    "tags": [],
+    "isFeatured": false,
+    "isTrending": false,
+    "isNewArrival": false,
+    "rating": {
+      "average": 0,
+      "count": 0
+    },
+    "reviews": [],
+    "metaKeywords": [],
+    "isActive": true,
+    "specifications": [],
+    "createdAt": "2026-01-12T10:02:23.235Z",
+    "updatedAt": "2026-01-12T10:02:23.235Z",
+    "slug": "thin-tube-hoop-earring",
+    "__v": 0
+  },
+  {
+    "_id": "6964c8a5f3742bb6a31d3d5c",
+    "name": "Chunky Square Hoop Earring",
+    "description": "Bold chunky square hoop earrings designed for statement daily wear. Waterproof, anti-tarnish, and lightweight.\nAvoid spraying perfume or body spray, and avoid exposure to harsh chemicals.",
+    "category": "6963fb25390836809e4ae399",
+    "price": 200,
+    "comparePrice": 0,
+    "discount": 0,
+    "sku": "ER009",
+    "stock": 1,
+    "lowStockThreshold": 10,
+    "images": [
+      {
+        "url": "https://res.cloudinary.com/dyhutb5oh/image/upload/v1768212575/products/vd5w87txeouuyeb4elrd.png",
+        "publicId": "products/vd5w87txeouuyeb4elrd",
+        "alt": "",
+        "isPrimary": true,
+        "_id": "6964c8a5f3742bb6a31d3d5d"
+      },
+      {
+        "url": "https://res.cloudinary.com/dyhutb5oh/image/upload/v1768212574/products/ui4xnipcgotiqlrazeqf.png",
+        "publicId": "products/ui4xnipcgotiqlrazeqf",
+        "alt": "",
+        "isPrimary": false,
+        "_id": "6964c8a5f3742bb6a31d3d5e"
+      },
+      {
+        "url": "https://res.cloudinary.com/dyhutb5oh/image/upload/v1768212575/products/jeayuukvajxqlnv4zgmt.png",
+        "publicId": "products/jeayuukvajxqlnv4zgmt",
+        "alt": "",
+        "isPrimary": false,
+        "_id": "6964c8a5f3742bb6a31d3d5f"
+      },
+      {
+        "url": "https://res.cloudinary.com/dyhutb5oh/image/upload/v1768212575/products/rlbik0incwwbowdwupkh.png",
+        "publicId": "products/rlbik0incwwbowdwupkh",
+        "alt": "",
+        "isPrimary": false,
+        "_id": "6964c8a5f3742bb6a31d3d60"
+      }
+    ],
+    "materials": [],
+    "tags": [],
+    "isFeatured": false,
+    "isTrending": false,
+    "isNewArrival": false,
+    "rating": {
+      "average": 0,
+      "count": 0
+    },
+    "reviews": [],
+    "metaKeywords": [],
+    "isActive": true,
+    "specifications": [],
+    "createdAt": "2026-01-12T10:10:45.432Z",
+    "updatedAt": "2026-01-12T10:10:45.432Z",
+    "slug": "chunky-square-hoop-earring",
+    "__v": 0
+  },
+  {
+    "_id": "696520a9b97a9a2d466b2270",
+    "name": "Geometric Vintage Statement Studs Earring",
+    "description": "Bold geometric vintage studs designed to elevate everyday looks. Waterproof, anti-tarnish, and lightweight.\nAvoid spraying perfume or body spray, and avoid exposure to harsh chemicals.",
+    "category": "6963fb25390836809e4ae399",
+    "price": 1000,
+    "comparePrice": 0,
+    "discount": 0,
+    "sku": "ER010",
+    "stock": 0,
+    "lowStockThreshold": 10,
+    "images": [
+      {
+        "url": "https://res.cloudinary.com/dyhutb5oh/image/upload/v1768233077/products/mkzwmleadwpaygiloekn.png",
+        "publicId": "products/mkzwmleadwpaygiloekn",
+        "alt": "",
+        "isPrimary": false,
+        "_id": "696520a9b97a9a2d466b2271"
+      },
+      {
+        "url": "https://res.cloudinary.com/dyhutb5oh/image/upload/v1768233075/products/zd2tk1pkgw5exjhwsnl4.png",
+        "publicId": "products/zd2tk1pkgw5exjhwsnl4",
+        "alt": "",
+        "isPrimary": false,
+        "_id": "696520a9b97a9a2d466b2272"
+      },
+      {
+        "url": "https://res.cloudinary.com/dyhutb5oh/image/upload/v1768233075/products/nj2yjjsrynwg7xkhik78.png",
+        "publicId": "products/nj2yjjsrynwg7xkhik78",
+        "alt": "",
+        "isPrimary": false,
+        "_id": "696520a9b97a9a2d466b2273"
+      },
+      {
+        "url": "https://res.cloudinary.com/dyhutb5oh/image/upload/v1768235133/products/lvftukdnkdxyx6vbjw2a.png",
+        "publicId": "products/lvftukdnkdxyx6vbjw2a",
+        "alt": "",
+        "isPrimary": true,
+        "_id": "696520a9b97a9a2d466b2274"
+      }
+    ],
+    "materials": [],
+    "tags": [],
+    "isFeatured": false,
+    "isTrending": false,
+    "isNewArrival": false,
+    "rating": {
+      "average": 0,
+      "count": 0
+    },
+    "reviews": [],
+    "metaKeywords": [],
+    "isActive": true,
+    "specifications": [],
+    "createdAt": "2026-01-12T16:26:17.085Z",
+    "updatedAt": "2026-01-19T18:00:30.605Z",
+    "slug": "geometric-vintage-statement-studs-earring",
+    "__v": 0
+  },
+  {
+    "_id": "696522b8b97a9a2d466b2294",
+    "name": "Daisy Flower Earring",
+    "description": "Delicate daisy flower earrings designed for everyday charm. Waterproof, anti-tarnish, and lightweight.\nAvoid spraying perfume or body spray, and avoid exposure to harsh chemicals.",
+    "category": "6963fb25390836809e4ae399",
+    "price": 550,
+    "comparePrice": 0,
+    "discount": 0,
+    "sku": "ER011",
+    "stock": 1,
+    "lowStockThreshold": 10,
+    "images": [
+      {
+        "url": "https://res.cloudinary.com/dyhutb5oh/image/upload/v1768235661/products/poq1fnptxwqswgupcwi7.png",
+        "publicId": "products/poq1fnptxwqswgupcwi7",
+        "alt": "",
+        "isPrimary": true,
+        "_id": "696522b8b97a9a2d466b2295"
+      },
+      {
+        "url": "https://res.cloudinary.com/dyhutb5oh/image/upload/v1768235661/products/uqg9cmkdk7lhcqhfaadk.png",
+        "publicId": "products/uqg9cmkdk7lhcqhfaadk",
+        "alt": "",
+        "isPrimary": false,
+        "_id": "696522b8b97a9a2d466b2296"
+      },
+      {
+        "url": "https://res.cloudinary.com/dyhutb5oh/image/upload/v1768235660/products/lclftryv8ntff75qsrdu.png",
+        "publicId": "products/lclftryv8ntff75qsrdu",
+        "alt": "",
+        "isPrimary": false,
+        "_id": "696522b8b97a9a2d466b2297"
+      },
+      {
+        "url": "https://res.cloudinary.com/dyhutb5oh/image/upload/v1768235662/products/c5hbzdynzxaaqfelsmun.png",
+        "publicId": "products/c5hbzdynzxaaqfelsmun",
+        "alt": "",
+        "isPrimary": false,
+        "_id": "696522b8b97a9a2d466b2298"
+      }
+    ],
+    "materials": [],
+    "tags": [],
+    "isFeatured": false,
+    "isTrending": false,
+    "isNewArrival": false,
+    "rating": {
+      "average": 0,
+      "count": 0
+    },
+    "reviews": [],
+    "metaKeywords": [],
+    "isActive": true,
+    "specifications": [],
+    "createdAt": "2026-01-12T16:35:04.636Z",
+    "updatedAt": "2026-01-12T16:35:04.636Z",
+    "slug": "daisy-flower-earring",
+    "__v": 0
+  },
+  {
+    "_id": "696a0d6d91201fa1d47da895",
+    "name": "Interlocking Hoop Studs Earring",
+    "description": "Modern interlocking hoop stud earrings designed for everyday elegance. Waterproof, anti-tarnish, and lightweight.\nAvoid spraying perfume or body spray, and avoid exposure to harsh chemicals.",
+    "category": "6963fb25390836809e4ae399",
+    "price": 850,
+    "comparePrice": 0,
+    "discount": 0,
+    "sku": "ER012",
+    "stock": 1,
+    "lowStockThreshold": 10,
+    "images": [
+      {
+        "url": "https://res.cloudinary.com/dyhutb5oh/image/upload/v1768557833/products/mlaqar80yn1f7e8i0b6i.png",
+        "publicId": "products/mlaqar80yn1f7e8i0b6i",
+        "alt": "",
+        "isPrimary": false,
+        "_id": "696a0d6d91201fa1d47da896"
+      },
+      {
+        "url": "https://res.cloudinary.com/dyhutb5oh/image/upload/v1768557833/products/voetja51wcklk6u2sfnb.png",
+        "publicId": "products/voetja51wcklk6u2sfnb",
+        "alt": "",
+        "isPrimary": false,
+        "_id": "696a0d6d91201fa1d47da897"
+      },
+      {
+        "url": "https://res.cloudinary.com/dyhutb5oh/image/upload/v1768557833/products/zyrlvcolsuu9n57l2o6n.png",
+        "publicId": "products/zyrlvcolsuu9n57l2o6n",
+        "alt": "",
+        "isPrimary": true,
+        "_id": "696a0d6d91201fa1d47da898"
+      },
+      {
+        "url": "https://res.cloudinary.com/dyhutb5oh/image/upload/v1768557833/products/sts2hkrauga5a1jtspmb.png",
+        "publicId": "products/sts2hkrauga5a1jtspmb",
+        "alt": "",
+        "isPrimary": false,
+        "_id": "696a0d6d91201fa1d47da899"
+      },
+      {
+        "url": "https://res.cloudinary.com/dyhutb5oh/image/upload/v1768557833/products/elmtbxnybsaivfiyheoz.png",
+        "publicId": "products/elmtbxnybsaivfiyheoz",
+        "alt": "",
+        "isPrimary": false,
+        "_id": "696a0d6d91201fa1d47da89a"
+      }
+    ],
+    "materials": [],
+    "tags": [],
+    "isFeatured": false,
+    "isTrending": false,
+    "isNewArrival": false,
+    "rating": {
+      "average": 0,
+      "count": 0
+    },
+    "reviews": [],
+    "metaKeywords": [],
+    "isActive": true,
+    "specifications": [],
+    "createdAt": "2026-01-16T10:05:33.758Z",
+    "updatedAt": "2026-01-16T10:05:33.758Z",
+    "slug": "interlocking-hoop-studs-earring",
+    "__v": 0
+  },
+  {
+    "_id": "696a0e4391201fa1d47da8a9",
+    "name": "Hammered Dome Studs Earring",
+    "description": "Textured hammered dome stud earrings crafted for effortless daily wear. Waterproof, anti-tarnish, and lightweight.\nAvoid spraying perfume or body spray, and avoid exposure to harsh chemicals.",
+    "category": "6963fb25390836809e4ae399",
+    "price": 200,
+    "comparePrice": 0,
+    "discount": 0,
+    "sku": "ER013",
+    "stock": 1,
+    "lowStockThreshold": 10,
+    "images": [
+      {
+        "url": "https://res.cloudinary.com/dyhutb5oh/image/upload/v1768558103/products/mdjimigtczxvvjyvevdm.png",
+        "publicId": "products/mdjimigtczxvvjyvevdm",
+        "alt": "",
+        "isPrimary": true,
+        "_id": "696a0e4391201fa1d47da8aa"
+      },
+      {
+        "url": "https://res.cloudinary.com/dyhutb5oh/image/upload/v1768558103/products/xtiwa4nbwmeonbgoztq9.png",
+        "publicId": "products/xtiwa4nbwmeonbgoztq9",
+        "alt": "",
+        "isPrimary": false,
+        "_id": "696a0e4391201fa1d47da8ab"
+      },
+      {
+        "url": "https://res.cloudinary.com/dyhutb5oh/image/upload/v1768558103/products/qjkvznhsce0nzrkmaqsi.png",
+        "publicId": "products/qjkvznhsce0nzrkmaqsi",
+        "alt": "",
+        "isPrimary": false,
+        "_id": "696a0e4391201fa1d47da8ac"
+      }
+    ],
+    "materials": [],
+    "tags": [],
+    "isFeatured": false,
+    "isTrending": false,
+    "isNewArrival": false,
+    "rating": {
+      "average": 0,
+      "count": 0
+    },
+    "reviews": [],
+    "metaKeywords": [],
+    "isActive": true,
+    "specifications": [],
+    "createdAt": "2026-01-16T10:09:07.043Z",
+    "updatedAt": "2026-01-16T10:09:07.043Z",
+    "slug": "hammered-dome-studs-earring",
+    "__v": 0
+  },
+  {
+    "_id": "696a0f0d91201fa1d47da8bd",
+    "name": "Thick Tube Hoops Earring",
+    "description": "Bold, thick tube hoop earrings designed for confident daily wear. Waterproof, anti-tarnish, and lightweight.\nAvoid spraying perfume or body spray, and avoid exposure to harsh chemicals.",
+    "category": "6963fb25390836809e4ae399",
+    "price": 200,
+    "comparePrice": 0,
+    "discount": 0,
+    "sku": "ER014",
+    "stock": 1,
+    "lowStockThreshold": 10,
+    "images": [
+      {
+        "url": "https://res.cloudinary.com/dyhutb5oh/image/upload/v1768558324/products/g7vb5dvqiywxuqysaol9.png",
+        "publicId": "products/g7vb5dvqiywxuqysaol9",
+        "alt": "",
+        "isPrimary": true,
+        "_id": "696a0f0d91201fa1d47da8be"
+      },
+      {
+        "url": "https://res.cloudinary.com/dyhutb5oh/image/upload/v1768558324/products/oqv3vq4f2bzpqroblfqr.png",
+        "publicId": "products/oqv3vq4f2bzpqroblfqr",
+        "alt": "",
+        "isPrimary": false,
+        "_id": "696a0f0d91201fa1d47da8bf"
+      },
+      {
+        "url": "https://res.cloudinary.com/dyhutb5oh/image/upload/v1768558324/products/oiqrmftqitvhp0zjgnfs.png",
+        "publicId": "products/oiqrmftqitvhp0zjgnfs",
+        "alt": "",
+        "isPrimary": false,
+        "_id": "696a0f0d91201fa1d47da8c0"
+      }
+    ],
+    "materials": [],
+    "tags": [],
+    "isFeatured": false,
+    "isTrending": false,
+    "isNewArrival": false,
+    "rating": {
+      "average": 0,
+      "count": 0
+    },
+    "reviews": [],
+    "metaKeywords": [],
+    "isActive": true,
+    "specifications": [],
+    "createdAt": "2026-01-16T10:12:29.448Z",
+    "updatedAt": "2026-01-16T10:12:29.448Z",
+    "slug": "thick-tube-hoops-earring",
+    "__v": 0
+  },
+  {
+    "_id": "696a0f9e91201fa1d47da8d1",
+    "name": "Chunky Hoop Earring",
+    "description": "Bold chunky hoop earrings designed for everyday statement wear. Waterproof, anti-tarnish, and lightweight.\nAvoid spraying perfume or body spray, and avoid exposure to harsh chemicals.",
+    "category": "6963fb25390836809e4ae399",
+    "price": 250,
+    "comparePrice": 0,
+    "discount": 0,
+    "sku": "ER015",
+    "stock": 1,
+    "lowStockThreshold": 10,
+    "images": [
+      {
+        "url": "https://res.cloudinary.com/dyhutb5oh/image/upload/v1768558486/products/l3jvsnfxdv1xgfxgcxks.png",
+        "publicId": "products/l3jvsnfxdv1xgfxgcxks",
+        "alt": "",
+        "isPrimary": true,
+        "_id": "696a0f9e91201fa1d47da8d2"
+      },
+      {
+        "url": "https://res.cloudinary.com/dyhutb5oh/image/upload/v1768558486/products/rvxxh3t4u4b5pgu77hjz.png",
+        "publicId": "products/rvxxh3t4u4b5pgu77hjz",
+        "alt": "",
+        "isPrimary": false,
+        "_id": "696a0f9e91201fa1d47da8d3"
+      },
+      {
+        "url": "https://res.cloudinary.com/dyhutb5oh/image/upload/v1768558487/products/twz0qdeff3bjdbalvjwk.png",
+        "publicId": "products/twz0qdeff3bjdbalvjwk",
+        "alt": "",
+        "isPrimary": false,
+        "_id": "696a0f9e91201fa1d47da8d4"
+      },
+      {
+        "url": "https://res.cloudinary.com/dyhutb5oh/image/upload/v1768558487/products/vxfs344yug4izgprtb58.png",
+        "publicId": "products/vxfs344yug4izgprtb58",
+        "alt": "",
+        "isPrimary": false,
+        "_id": "696a0f9e91201fa1d47da8d5"
+      }
+    ],
+    "materials": [],
+    "tags": [],
+    "isFeatured": false,
+    "isTrending": false,
+    "isNewArrival": false,
+    "rating": {
+      "average": 0,
+      "count": 0
+    },
+    "reviews": [],
+    "metaKeywords": [],
+    "isActive": true,
+    "specifications": [],
+    "createdAt": "2026-01-16T10:14:54.513Z",
+    "updatedAt": "2026-01-16T10:14:54.513Z",
+    "slug": "chunky-hoop-earring",
+    "__v": 0
+  },
+  {
+    "_id": "696a109991201fa1d47da90a",
+    "name": "Gold Hoop Earring",
+    "description": "Avoid spraying perfume or body spray, and avoid exposure to harsh chemicals.\nClassic gold hoop earrings designed for effortless daily wear. Waterproof, anti-tarnish, and lightweight.",
+    "category": "6963fb25390836809e4ae399",
+    "price": 200,
+    "comparePrice": 0,
+    "discount": 0,
+    "sku": "ER016",
+    "stock": 1,
+    "lowStockThreshold": 10,
+    "images": [
+      {
+        "url": "https://res.cloudinary.com/dyhutb5oh/image/upload/v1768558712/products/hvvnodbdkx3powissgls.png",
+        "publicId": "products/hvvnodbdkx3powissgls",
+        "alt": "",
+        "isPrimary": true,
+        "_id": "696a109991201fa1d47da90b"
+      },
+      {
+        "url": "https://res.cloudinary.com/dyhutb5oh/image/upload/v1768558713/products/htborighdac5chdmg8o6.png",
+        "publicId": "products/htborighdac5chdmg8o6",
+        "alt": "",
+        "isPrimary": false,
+        "_id": "696a109991201fa1d47da90c"
+      }
+    ],
+    "materials": [],
+    "tags": [],
+    "isFeatured": false,
+    "isTrending": false,
+    "isNewArrival": false,
+    "rating": {
+      "average": 0,
+      "count": 0
+    },
+    "reviews": [],
+    "metaKeywords": [],
+    "isActive": true,
+    "specifications": [],
+    "createdAt": "2026-01-16T10:19:05.650Z",
+    "updatedAt": "2026-01-16T10:19:05.650Z",
+    "slug": "gold-hoop-earring",
+    "__v": 0
+  },
+  {
+    "_id": "696a11a991201fa1d47da928",
+    "name": "Silver Hoop Earring",
+    "description": "Classic silver hoop earrings designed for effortless daily wear. Waterproof, anti-tarnish, and lightweight.\nAvoid spraying perfume or body spray, and avoid exposure to harsh chemicals.",
+    "category": "6963fb25390836809e4ae399",
+    "price": 200,
+    "comparePrice": 0,
+    "discount": 0,
+    "sku": "ER017",
+    "stock": 1,
+    "lowStockThreshold": 10,
+    "images": [
+      {
+        "url": "https://res.cloudinary.com/dyhutb5oh/image/upload/v1768558990/products/gszvpsj8hdarud80gx1f.png",
+        "publicId": "products/gszvpsj8hdarud80gx1f",
+        "alt": "",
+        "isPrimary": true,
+        "_id": "696a11a991201fa1d47da929"
+      },
+      {
+        "url": "https://res.cloudinary.com/dyhutb5oh/image/upload/v1768558989/products/rmbs9krzzsx1hp6ifz1a.png",
+        "publicId": "products/rmbs9krzzsx1hp6ifz1a",
+        "alt": "",
+        "isPrimary": false,
+        "_id": "696a11a991201fa1d47da92a"
+      }
+    ],
+    "materials": [],
+    "tags": [],
+    "isFeatured": false,
+    "isTrending": false,
+    "isNewArrival": false,
+    "rating": {
+      "average": 0,
+      "count": 0
+    },
+    "reviews": [],
+    "metaKeywords": [],
+    "isActive": true,
+    "specifications": [],
+    "createdAt": "2026-01-16T10:23:37.771Z",
+    "updatedAt": "2026-01-16T10:23:37.771Z",
+    "slug": "silver-hoop-earring",
+    "__v": 0
+  },
+  {
+    "_id": "696a147791201fa1d47da93b",
+    "name": "Black Crystal Stud Earring",
+    "description": "Elegant black crystal stud earrings designed for everyday sophistication. Waterproof, anti-tarnish, and lightweight.",
+    "category": "6963fb25390836809e4ae399",
+    "price": 300,
+    "comparePrice": 0,
+    "discount": 0,
+    "sku": "ER018",
+    "stock": 1,
+    "lowStockThreshold": 10,
+    "images": [
+      {
+        "url": "https://res.cloudinary.com/dyhutb5oh/image/upload/v1768559707/products/dvhwyoz6vfesov2olkzd.png",
+        "publicId": "products/dvhwyoz6vfesov2olkzd",
+        "alt": "",
+        "isPrimary": false,
+        "_id": "696a147791201fa1d47da93c"
+      },
+      {
+        "url": "https://res.cloudinary.com/dyhutb5oh/image/upload/v1768559706/products/ldb4cpel6nmufvgr5hve.png",
+        "publicId": "products/ldb4cpel6nmufvgr5hve",
+        "alt": "",
+        "isPrimary": true,
+        "_id": "696a147791201fa1d47da93d"
+      }
+    ],
+    "materials": [],
+    "tags": [],
+    "isFeatured": false,
+    "isTrending": false,
+    "isNewArrival": false,
+    "rating": {
+      "average": 0,
+      "count": 0
+    },
+    "reviews": [],
+    "metaKeywords": [],
+    "isActive": true,
+    "specifications": [],
+    "createdAt": "2026-01-16T10:35:35.338Z",
+    "updatedAt": "2026-01-16T10:36:26.912Z",
+    "slug": "black-crystal-stud-earring",
+    "__v": 0
+  },
+  {
+    "_id": "696a176391201fa1d47da9ab",
+    "name": "Cluster Disc Stud Earring",
+    "description": "Textured cluster disc stud earrings designed for effortless daily wear. Waterproof, anti-tarnish, and lightweight.\nAvoid spraying perfume or body spray, and avoid exposure to harsh chemicals.",
+    "category": "6963fb25390836809e4ae399",
+    "price": 850,
+    "comparePrice": 0,
+    "discount": 0,
+    "sku": "ER019",
+    "stock": 1,
+    "lowStockThreshold": 10,
+    "images": [
+      {
+        "url": "https://res.cloudinary.com/dyhutb5oh/image/upload/v1768560200/products/aazugh6igo5ohqonh1xw.png",
+        "publicId": "products/aazugh6igo5ohqonh1xw",
+        "alt": "",
+        "isPrimary": true,
+        "_id": "696a176391201fa1d47da9ac"
+      },
+      {
+        "url": "https://res.cloudinary.com/dyhutb5oh/image/upload/v1768560199/products/rrww1sbhdmdn2vefponp.png",
+        "publicId": "products/rrww1sbhdmdn2vefponp",
+        "alt": "",
+        "isPrimary": false,
+        "_id": "696a176391201fa1d47da9ad"
+      },
+      {
+        "url": "https://res.cloudinary.com/dyhutb5oh/image/upload/v1768560200/products/r89j0dye7wfrqwbnzgsj.png",
+        "publicId": "products/r89j0dye7wfrqwbnzgsj",
+        "alt": "",
+        "isPrimary": false,
+        "_id": "696a176391201fa1d47da9ae"
+      },
+      {
+        "url": "https://res.cloudinary.com/dyhutb5oh/image/upload/v1768560198/products/g9qh74pqhjrojanbietm.png",
+        "publicId": "products/g9qh74pqhjrojanbietm",
+        "alt": "",
+        "isPrimary": false,
+        "_id": "696a176391201fa1d47da9af"
+      }
+    ],
+    "materials": [],
+    "tags": [],
+    "isFeatured": false,
+    "isTrending": false,
+    "isNewArrival": false,
+    "rating": {
+      "average": 0,
+      "count": 0
+    },
+    "reviews": [],
+    "metaKeywords": [],
+    "isActive": true,
+    "specifications": [],
+    "createdAt": "2026-01-16T10:48:03.462Z",
+    "updatedAt": "2026-01-16T10:48:03.462Z",
+    "slug": "cluster-disc-stud-earring",
+    "__v": 0
+  },
+  {
+    "_id": "696a23aca9f37ff36b0b6ae2",
+    "name": "Enamel Segmented Bangles Bracelet (Bamboo-Style)",
+    "description": "Stylish enamel segmented bangle bracelet designed for everyday elegance. Waterproof, anti-tarnish, and lightweight.\nAvoid spraying perfume or body spray, and avoid exposure to harsh chemicals.",
+    "category": "6964acb05f8d291f40392a65",
+    "price": 1100,
+    "comparePrice": 0,
+    "discount": 0,
+    "sku": "BB001",
+    "stock": 1,
+    "lowStockThreshold": 10,
+    "images": [
+      {
+        "url": "https://res.cloudinary.com/dyhutb5oh/image/upload/v1768563587/products/slx4chldd8n5fkfyixcc.png",
+        "publicId": "products/slx4chldd8n5fkfyixcc",
+        "alt": "",
+        "isPrimary": false,
+        "_id": "696a23aca9f37ff36b0b6ae3"
+      },
+      {
+        "url": "https://res.cloudinary.com/dyhutb5oh/image/upload/v1768563587/products/x6ippwasoetnv4uum1wg.png",
+        "publicId": "products/x6ippwasoetnv4uum1wg",
+        "alt": "",
+        "isPrimary": true,
+        "_id": "696a23aca9f37ff36b0b6ae4"
+      },
+      {
+        "url": "https://res.cloudinary.com/dyhutb5oh/image/upload/v1768563587/products/f8lbmzamn3x1qer8qior.png",
+        "publicId": "products/f8lbmzamn3x1qer8qior",
+        "alt": "",
+        "isPrimary": false,
+        "_id": "696a23aca9f37ff36b0b6ae5"
+      },
+      {
+        "url": "https://res.cloudinary.com/dyhutb5oh/image/upload/v1768563587/products/pzzsay6s99ea2paeu0bs.png",
+        "publicId": "products/pzzsay6s99ea2paeu0bs",
+        "alt": "",
+        "isPrimary": false,
+        "_id": "696a23aca9f37ff36b0b6ae6"
+      }
+    ],
+    "materials": [],
+    "tags": [],
+    "isFeatured": false,
+    "isTrending": false,
+    "isNewArrival": false,
+    "rating": {
+      "average": 0,
+      "count": 0
+    },
+    "reviews": [],
+    "metaKeywords": [],
+    "isActive": true,
+    "specifications": [],
+    "createdAt": "2026-01-16T11:40:28.550Z",
+    "updatedAt": "2026-01-16T11:40:28.550Z",
+    "slug": "enamel-segmented-bangles-bracelet-bamboo-style",
+    "__v": 0
+  },
+  {
+    "_id": "696cdbab986fe799978db974",
+    "name": "Enamel Segmented Bangles Bracelet (Shades of Beige)",
+    "description": "Elegant enamel segmented bangles bracelet in soft beige tones, designed for everyday wear. Waterproof, anti-tarnish, and lightweight.\nAvoid spraying perfume or body spray, and avoid exposure to harsh chemicals.",
+    "category": "6964acb05f8d291f40392a65",
+    "price": 1100,
+    "comparePrice": 0,
+    "discount": 0,
+    "sku": "BB002",
+    "stock": 1,
+    "lowStockThreshold": 10,
+    "images": [
+      {
+        "url": "https://res.cloudinary.com/dyhutb5oh/image/upload/v1768741769/products/oeuaad4ncdtrmhy6a4bv.png",
+        "publicId": "products/oeuaad4ncdtrmhy6a4bv",
+        "alt": "",
+        "isPrimary": true,
+        "_id": "696cdbab986fe799978db975"
+      },
+      {
+        "url": "https://res.cloudinary.com/dyhutb5oh/image/upload/v1768741769/products/hwzt62gvzm5pmvfzaoyo.png",
+        "publicId": "products/hwzt62gvzm5pmvfzaoyo",
+        "alt": "",
+        "isPrimary": false,
+        "_id": "696cdbab986fe799978db976"
+      }
+    ],
+    "materials": [],
+    "tags": [],
+    "isFeatured": false,
+    "isTrending": false,
+    "isNewArrival": false,
+    "rating": {
+      "average": 0,
+      "count": 0
+    },
+    "reviews": [],
+    "metaKeywords": [],
+    "isActive": true,
+    "specifications": [],
+    "createdAt": "2026-01-18T13:10:03.869Z",
+    "updatedAt": "2026-01-18T13:10:03.869Z",
+    "slug": "enamel-segmented-bangles-bracelet-shades-of-beige",
+    "__v": 0
+  },
+  {
+    "_id": "696cdcda986fe799978db985",
+    "name": "Enamel Segmented Bangles Bracelet (Black & White)",
+    "description": "Chic enamel segmented bangles bracelet in classic black and white, designed for everyday elegance. Waterproof, anti-tarnish, and lightweight.\nAvoid spraying perfume or body spray, and avoid exposure to harsh chemicals.",
+    "category": "6964acb05f8d291f40392a65",
+    "price": 1100,
+    "comparePrice": 0,
+    "discount": 0,
+    "sku": "BB003",
+    "stock": 1,
+    "lowStockThreshold": 10,
+    "images": [
+      {
+        "url": "https://res.cloudinary.com/dyhutb5oh/image/upload/v1768741988/products/jps9raxm8yt6jzeoso4j.png",
+        "publicId": "products/jps9raxm8yt6jzeoso4j",
+        "alt": "",
+        "isPrimary": false,
+        "_id": "696cdcda986fe799978db986"
+      },
+      {
+        "url": "https://res.cloudinary.com/dyhutb5oh/image/upload/v1768741983/products/mxrjojkxjiph1xdjp6yj.png",
+        "publicId": "products/mxrjojkxjiph1xdjp6yj",
+        "alt": "",
+        "isPrimary": true,
+        "_id": "696cdcda986fe799978db987"
+      },
+      {
+        "url": "https://res.cloudinary.com/dyhutb5oh/image/upload/v1768741982/products/g2djtge5w8r6dcjbctvw.png",
+        "publicId": "products/g2djtge5w8r6dcjbctvw",
+        "alt": "",
+        "isPrimary": false,
+        "_id": "696cdcda986fe799978db988"
+      }
+    ],
+    "materials": [],
+    "tags": [],
+    "isFeatured": false,
+    "isTrending": false,
+    "isNewArrival": false,
+    "rating": {
+      "average": 0,
+      "count": 0
+    },
+    "reviews": [],
+    "metaKeywords": [],
+    "isActive": true,
+    "specifications": [],
+    "createdAt": "2026-01-18T13:15:06.830Z",
+    "updatedAt": "2026-01-18T13:15:06.830Z",
+    "slug": "enamel-segmented-bangles-bracelet-black-white",
+    "__v": 0
+  },
+  {
+    "_id": "696cdedf986fe799978db997",
+    "name": "Enamel Segmented Bangles Bracelet (Pink & Purple)",
+    "description": "Elegant enamel segmented bangles bracelet in soft pink and purple hues, designed for everyday wear. Waterproof, anti-tarnish, and lightweight.\nAvoid spraying perfume or body spray, and avoid exposure to harsh chemicals.",
+    "category": "6964acb05f8d291f40392a65",
+    "price": 1100,
+    "comparePrice": 0,
+    "discount": 0,
+    "sku": "BB004",
+    "stock": 1,
+    "lowStockThreshold": 10,
+    "images": [
+      {
+        "url": "https://res.cloudinary.com/dyhutb5oh/image/upload/v1768742573/products/abmne0fz6ciadpyiwkct.png",
+        "publicId": "products/abmne0fz6ciadpyiwkct",
+        "alt": "",
+        "isPrimary": true,
+        "_id": "696cdedf986fe799978db998"
+      },
+      {
+        "url": "https://res.cloudinary.com/dyhutb5oh/image/upload/v1768742583/products/anaawsnfrima3r1pxgnk.png",
+        "publicId": "products/anaawsnfrima3r1pxgnk",
+        "alt": "",
+        "isPrimary": false,
+        "_id": "696cdedf986fe799978db999"
+      }
+    ],
+    "materials": [],
+    "tags": [],
+    "isFeatured": false,
+    "isTrending": false,
+    "isNewArrival": false,
+    "rating": {
+      "average": 0,
+      "count": 0
+    },
+    "reviews": [],
+    "metaKeywords": [],
+    "isActive": true,
+    "specifications": [],
+    "createdAt": "2026-01-18T13:23:43.927Z",
+    "updatedAt": "2026-01-18T13:23:43.927Z",
+    "slug": "enamel-segmented-bangles-bracelet-pink-purple",
+    "__v": 0
+  },
+  {
+    "_id": "696de0e2e071ff5931df41c6",
+    "name": "Enamel Segmented Bangles Bracelet (Pink Ivory)",
+    "description": "Blush and ivory enamel segments come together in a graceful, minimal gold bangle. Waterproof and anti-tarnish.\nAvoid spraying perfume or body spray, and avoid exposure to harsh chemicals.",
+    "category": "6964acb05f8d291f40392a65",
+    "price": 1500,
+    "comparePrice": 0,
+    "discount": 0,
+    "sku": "BB019",
+    "stock": 1,
+    "lowStockThreshold": 10,
+    "images": [
+      {
+        "url": "https://res.cloudinary.com/dyhutb5oh/image/upload/v1768808652/products/js3rf9rc08cawn2znyyb.png",
+        "publicId": "products/js3rf9rc08cawn2znyyb",
+        "alt": "",
+        "isPrimary": true,
+        "_id": "696de0e2e071ff5931df41c7"
+      },
+      {
+        "url": "https://res.cloudinary.com/dyhutb5oh/image/upload/v1768808652/products/hubjgj9qp001hg5oetnj.png",
+        "publicId": "products/hubjgj9qp001hg5oetnj",
+        "alt": "",
+        "isPrimary": false,
+        "_id": "696de0e2e071ff5931df41c8"
+      },
+      {
+        "url": "https://res.cloudinary.com/dyhutb5oh/image/upload/v1768808653/products/cd3adwynlmcl8bekjab9.png",
+        "publicId": "products/cd3adwynlmcl8bekjab9",
+        "alt": "",
+        "isPrimary": false,
+        "_id": "696de0e3e071ff5931df41c9"
+      },
+      {
+        "url": "https://res.cloudinary.com/dyhutb5oh/image/upload/v1768808652/products/o9sctgrhlqpg8xmzfifq.png",
+        "publicId": "products/o9sctgrhlqpg8xmzfifq",
+        "alt": "",
+        "isPrimary": false,
+        "_id": "696de0e3e071ff5931df41ca"
+      }
+    ],
+    "materials": [],
+    "tags": [],
+    "isFeatured": false,
+    "isTrending": false,
+    "isNewArrival": false,
+    "rating": {
+      "average": 0,
+      "count": 0
+    },
+    "reviews": [],
+    "metaKeywords": [],
+    "isActive": true,
+    "specifications": [],
+    "createdAt": "2026-01-19T07:44:35.059Z",
+    "updatedAt": "2026-01-19T07:57:26.237Z",
+    "slug": "enamel-segmented-bangles-bracelet-pink-ivory",
+    "__v": 0
+  },
+  {
+    "_id": "696de3bee071ff5931df41d7",
+    "name": "Enamel Segmented Bangles Bracelet (Red Ivory)",
+    "description": "An elegant segmented bangle bracelet featuring a bold coral-red contrast paired with soft ivory enamel, all set within a polished gold-tone frame. Waterproof and anti-tarnish.\nAvoid spraying perfume or body spray, and avoid exposure to harsh chemicals.",
+    "category": "6964acb05f8d291f40392a65",
+    "price": 1500,
+    "comparePrice": 0,
+    "discount": 0,
+    "sku": "BB020",
+    "stock": 1,
+    "lowStockThreshold": 10,
+    "images": [
+      {
+        "url": "https://res.cloudinary.com/dyhutb5oh/image/upload/v1768809346/products/bpoiuqhdqhn9h0mmrq1e.png",
+        "publicId": "products/bpoiuqhdqhn9h0mmrq1e",
+        "alt": "",
+        "isPrimary": true,
+        "_id": "696de3bee071ff5931df41d8"
+      },
+      {
+        "url": "https://res.cloudinary.com/dyhutb5oh/image/upload/v1768809346/products/ocbpwy0xlqfalwi5x1fq.png",
+        "publicId": "products/ocbpwy0xlqfalwi5x1fq",
+        "alt": "",
+        "isPrimary": false,
+        "_id": "696de3bee071ff5931df41d9"
+      }
+    ],
+    "materials": [],
+    "tags": [],
+    "isFeatured": false,
+    "isTrending": false,
+    "isNewArrival": false,
+    "rating": {
+      "average": 0,
+      "count": 0
+    },
+    "reviews": [],
+    "metaKeywords": [],
+    "isActive": true,
+    "specifications": [],
+    "createdAt": "2026-01-19T07:56:46.472Z",
+    "updatedAt": "2026-01-19T07:58:35.414Z",
+    "slug": "enamel-segmented-bangles-bracelet-red-ivory",
+    "__v": 0
+  },
+  {
+    "_id": "696de5bce071ff5931df4218",
+    "name": "Enamel Segmented Bangles Bracelet (Black Pearl)",
+    "description": "A timeless combination of black and pearl white enamel on a smooth gold base. Waterproof and anti-tarnish.\nAvoid spraying perfume or body spray, and avoid exposure to harsh chemicals.",
+    "category": "6964acb05f8d291f40392a65",
+    "price": 1500,
+    "comparePrice": 0,
+    "discount": 0,
+    "sku": "BB021",
+    "stock": 1,
+    "lowStockThreshold": 10,
+    "images": [
+      {
+        "url": "https://res.cloudinary.com/dyhutb5oh/image/upload/v1768809866/products/hzjzxpsnzwclaaidvlxp.png",
+        "publicId": "products/hzjzxpsnzwclaaidvlxp",
+        "alt": "",
+        "isPrimary": true,
+        "_id": "696de5bce071ff5931df4219"
+      },
+      {
+        "url": "https://res.cloudinary.com/dyhutb5oh/image/upload/v1768809866/products/ys3rpujzzn0hw7akvjjd.png",
+        "publicId": "products/ys3rpujzzn0hw7akvjjd",
+        "alt": "",
+        "isPrimary": false,
+        "_id": "696de5bce071ff5931df421a"
+      },
+      {
+        "url": "https://res.cloudinary.com/dyhutb5oh/image/upload/v1768809866/products/eqmv4nptfqxjyfmubwcd.png",
+        "publicId": "products/eqmv4nptfqxjyfmubwcd",
+        "alt": "",
+        "isPrimary": false,
+        "_id": "696de5bce071ff5931df421b"
+      }
+    ],
+    "materials": [],
+    "tags": [],
+    "isFeatured": false,
+    "isTrending": false,
+    "isNewArrival": false,
+    "rating": {
+      "average": 0,
+      "count": 0
+    },
+    "reviews": [],
+    "metaKeywords": [],
+    "isActive": true,
+    "specifications": [],
+    "createdAt": "2026-01-19T08:05:16.150Z",
+    "updatedAt": "2026-01-19T08:05:16.150Z",
+    "slug": "enamel-segmented-bangles-bracelet-black-pearl",
+    "__v": 0
+  },
+  {
+    "_id": "696de6eee071ff5931df423e",
+    "name": "Enamel Segmented Bangles Bracelet (Caramel Ivory)",
+    "description": "Warm caramel enamel paired with soft ivory accents on a polished gold base. Waterproof and Anti-tarnish.\nAvoid spraying perfume or body spray, and avoid exposure to harsh chemicals.",
+    "category": "6964acb05f8d291f40392a65",
+    "price": 1500,
+    "comparePrice": 0,
+    "discount": 0,
+    "sku": "BB022",
+    "stock": 1,
+    "lowStockThreshold": 10,
+    "images": [
+      {
+        "url": "https://res.cloudinary.com/dyhutb5oh/image/upload/v1768810209/products/kamtzcg38ufumqucc2f7.png",
+        "publicId": "products/kamtzcg38ufumqucc2f7",
+        "alt": "",
+        "isPrimary": true,
+        "_id": "696de6eee071ff5931df423f"
+      },
+      {
+        "url": "https://res.cloudinary.com/dyhutb5oh/image/upload/v1768810208/products/xn5a5vzgavhcxzmf7thx.png",
+        "publicId": "products/xn5a5vzgavhcxzmf7thx",
+        "alt": "",
+        "isPrimary": false,
+        "_id": "696de6eee071ff5931df4240"
+      },
+      {
+        "url": "https://res.cloudinary.com/dyhutb5oh/image/upload/v1768810210/products/xyioxje0mvt0endfwxrf.png",
+        "publicId": "products/xyioxje0mvt0endfwxrf",
+        "alt": "",
+        "isPrimary": false,
+        "_id": "696de6eee071ff5931df4241"
+      }
+    ],
+    "materials": [],
+    "tags": [],
+    "isFeatured": false,
+    "isTrending": false,
+    "isNewArrival": false,
+    "rating": {
+      "average": 0,
+      "count": 0
+    },
+    "reviews": [],
+    "metaKeywords": [],
+    "isActive": true,
+    "specifications": [],
+    "createdAt": "2026-01-19T08:10:22.527Z",
+    "updatedAt": "2026-01-19T08:10:22.527Z",
+    "slug": "enamel-segmented-bangles-bracelet-caramel-ivory",
+    "__v": 0
+  },
+  {
+    "_id": "696de7b5e071ff5931df424e",
+    "name": "Enamel Segmented Bangles Bracelet (Green Amber)",
+    "description": "Rich green enamel paired with warm amber tones on a polished gold base. Waterproof and Anti-tarnish.\nAvoid spraying perfume or body spray, and avoid exposure to harsh chemicals.",
+    "category": "6964acb05f8d291f40392a65",
+    "price": 1500,
+    "comparePrice": 0,
+    "discount": 0,
+    "sku": "BB023",
+    "stock": 1,
+    "lowStockThreshold": 10,
+    "images": [
+      {
+        "url": "https://res.cloudinary.com/dyhutb5oh/image/upload/v1768810398/products/vlnqi7k2d78otpyg04e6.png",
+        "publicId": "products/vlnqi7k2d78otpyg04e6",
+        "alt": "",
+        "isPrimary": true,
+        "_id": "696de7b5e071ff5931df424f"
+      },
+      {
+        "url": "https://res.cloudinary.com/dyhutb5oh/image/upload/v1768810397/products/yjor17utwnggpcjs4jq9.png",
+        "publicId": "products/yjor17utwnggpcjs4jq9",
+        "alt": "",
+        "isPrimary": false,
+        "_id": "696de7b5e071ff5931df4250"
+      }
+    ],
+    "materials": [],
+    "tags": [],
+    "isFeatured": false,
+    "isTrending": false,
+    "isNewArrival": false,
+    "rating": {
+      "average": 0,
+      "count": 0
+    },
+    "reviews": [],
+    "metaKeywords": [],
+    "isActive": true,
+    "specifications": [],
+    "createdAt": "2026-01-19T08:13:41.276Z",
+    "updatedAt": "2026-01-19T08:13:41.276Z",
+    "slug": "enamel-segmented-bangles-bracelet-green-amber",
+    "__v": 0
+  },
+  {
+    "_id": "696de89de071ff5931df425d",
+    "name": "Enamel Segmented Bangles Bracelet (Ocean Sage)",
+    "description": "Cool ocean-blue tones balanced with calm sage green accents. Waterproof and anti-tarnish.\nAvoid spraying perfume or body spray, and avoid exposure to harsh chemicals.",
+    "category": "6964acb05f8d291f40392a65",
+    "price": 1500,
+    "comparePrice": 0,
+    "discount": 0,
+    "sku": "BB024",
+    "stock": 1,
+    "lowStockThreshold": 10,
+    "images": [
+      {
+        "url": "https://res.cloudinary.com/dyhutb5oh/image/upload/v1768810455/products/pmeh897l4qfqopgvejya.png",
+        "publicId": "products/pmeh897l4qfqopgvejya",
+        "alt": "",
+        "isPrimary": true,
+        "_id": "696de89de071ff5931df425e"
+      },
+      {
+        "url": "https://res.cloudinary.com/dyhutb5oh/image/upload/v1768810455/products/c1w95uoc56o8vi5skalk.png",
+        "publicId": "products/c1w95uoc56o8vi5skalk",
+        "alt": "",
+        "isPrimary": false,
+        "_id": "696de89de071ff5931df425f"
+      }
+    ],
+    "materials": [],
+    "tags": [],
+    "isFeatured": false,
+    "isTrending": false,
+    "isNewArrival": false,
+    "rating": {
+      "average": 0,
+      "count": 0
+    },
+    "reviews": [],
+    "metaKeywords": [],
+    "isActive": true,
+    "specifications": [],
+    "createdAt": "2026-01-19T08:17:33.834Z",
+    "updatedAt": "2026-01-23T14:45:58.258Z",
+    "slug": "enamel-segmented-bangles-bracelet-ocean-sage",
+    "__v": 0
+  },
+  {
+    "_id": "696e50d32e8c5568da0e45ca",
+    "name": "Enamel Segmented Bangles Bracelet (Pastel Garden)",
+    "description": "A gentle mix of pastel purple, mint, and ivory tones.Waterproof and anti-tarnish.\nAvoid spraying perfume or body spray, and avoid exposure to harsh chemicals.",
+    "category": "6964acb05f8d291f40392a65",
+    "price": 1100,
+    "comparePrice": 0,
+    "discount": 0,
+    "sku": "BB026",
+    "stock": 1,
+    "lowStockThreshold": 10,
+    "images": [
+      {
+        "url": "https://res.cloudinary.com/dyhutb5oh/image/upload/v1768825623/products/wkxocd1hzxlykx6kgabq.png",
+        "publicId": "products/wkxocd1hzxlykx6kgabq",
+        "alt": "",
+        "isPrimary": true,
+        "_id": "696e50d32e8c5568da0e45cb"
+      },
+      {
+        "url": "https://res.cloudinary.com/dyhutb5oh/image/upload/v1768825623/products/gkak7cyxl9qvuzwobumm.png",
+        "publicId": "products/gkak7cyxl9qvuzwobumm",
+        "alt": "",
+        "isPrimary": false,
+        "_id": "696e50d32e8c5568da0e45cc"
+      }
+    ],
+    "materials": [],
+    "tags": [],
+    "isFeatured": false,
+    "isTrending": false,
+    "isNewArrival": false,
+    "rating": {
+      "average": 0,
+      "count": 0
+    },
+    "reviews": [],
+    "metaKeywords": [],
+    "isActive": true,
+    "specifications": [],
+    "createdAt": "2026-01-19T15:42:11.931Z",
+    "updatedAt": "2026-01-19T15:42:11.931Z",
+    "slug": "enamel-segmented-bangles-bracelet-pastel-garden",
+    "__v": 0
+  },
+  {
+    "_id": "696e6e6fba4dd16e0e6568fa",
+    "name": "Jamuna Braclet",
+    "description": "This is test",
+    "category": "6964a9005f8d291f40392a23",
+    "price": 45000,
+    "comparePrice": 0,
+    "discount": 0,
+    "sku": "JB-001_DELETED_1769155723492",
+    "stock": 0,
+    "lowStockThreshold": 10,
+    "images": [
+      {
+        "url": "https://res.cloudinary.com/dyhutb5oh/image/upload/v1768844887/products/ialcq3rgua0jeltfceot.jpg",
+        "publicId": "products/ialcq3rgua0jeltfceot",
+        "alt": "Jamuna Braclet",
+        "isPrimary": true,
+        "_id": "696e6e6fba4dd16e0e6568fb"
+      }
+    ],
+    "materials": "Gold",
+    "weight": 15,
+    "tags": [],
+    "isFeatured": false,
+    "isTrending": false,
+    "isNewArrival": false,
+    "rating": {
+      "average": 0,
+      "count": 0
+    },
+    "reviews": [],
+    "metaKeywords": [],
+    "isActive": false,
+    "specifications": [],
+    "createdAt": "2026-01-19T17:48:31.853Z",
+    "updatedAt": "2026-01-23T08:08:43.536Z",
+    "slug": "jamuna-braclet",
+    "__v": 0,
+    "precautions": "1. asfafaf\n2.dafadasd\n3.dsdasda\n4.eqeqeqerqwe\n5.dasdasdada"
+  }
+]

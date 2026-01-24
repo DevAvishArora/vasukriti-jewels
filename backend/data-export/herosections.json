@@ -1,0 +1,176 @@
+[
+  {
+    "_id": "6962c921702e0e3499ca65e8",
+    "title": "Where Elegance Meets Love",
+    "subtitle": "",
+    "description": "Minimal, waterproof, 18k-gold finish jewellery made for modern romance.",
+    "images": [
+      {
+        "url": "https://res.cloudinary.com/dyhutb5oh/image/upload/v1768156257/hero/rpyyy4ivwwsjgjd5wwio.png",
+        "publicId": "hero/rpyyy4ivwwsjgjd5wwio",
+        "alt": "Where Elegance Meets Love",
+        "_id": "6963ec7182f1fc919f68d711"
+      }
+    ],
+    "cta": {
+      "text": "Shop Now",
+      "link": "/shop",
+      "style": "primary"
+    },
+    "secondaryCta": {
+      "text": "Learn More",
+      "link": "",
+      "style": "outline"
+    },
+    "design": {
+      "overlay": {
+        "enabled": true,
+        "color": "rgba(0, 0, 0, 0.4)"
+      },
+      "layout": "fullscreen",
+      "textAlignment": "left",
+      "animation": "slide",
+      "height": "100vh"
+    },
+    "isActive": true,
+    "isDraft": false,
+    "scheduledPublish": null,
+    "version": 4,
+    "order": 1,
+    "createdAt": "2026-01-10T21:48:17.870Z",
+    "updatedAt": "2026-01-11T18:32:26.558Z",
+    "__v": 0
+  },
+  {
+    "_id": "6962ca60702e0e3499ca6628",
+    "title": "PROMISE",
+    "subtitle": "A Promise Wrapped in Gold",
+    "description": "Timeless jewellery made to celebrate love and forever moments.",
+    "images": [
+      {
+        "url": "https://res.cloudinary.com/dyhutb5oh/image/upload/v1768156377/hero/fp5lvuidieljsvweikyg.png",
+        "publicId": "hero/fp5lvuidieljsvweikyg",
+        "alt": "PROMISE",
+        "_id": "6963ecee82f1fc919f68d74b"
+      }
+    ],
+    "cta": {
+      "text": "Shop Now",
+      "link": "/shop",
+      "style": "primary"
+    },
+    "secondaryCta": {
+      "text": "",
+      "link": "",
+      "style": "outline"
+    },
+    "design": {
+      "overlay": {
+        "enabled": true,
+        "color": "rgba(0, 0, 0, 0.4)"
+      },
+      "layout": "split",
+      "textAlignment": "left",
+      "animation": "fade",
+      "height": "100vh"
+    },
+    "isActive": true,
+    "isDraft": false,
+    "scheduledPublish": null,
+    "version": 5,
+    "order": 4,
+    "createdAt": "2026-01-10T21:53:36.040Z",
+    "updatedAt": "2026-01-11T18:33:41.196Z",
+    "__v": 0
+  },
+  {
+    "_id": "69638c0b4f8a9d879004e4c2",
+    "title": "SHAIBHA",
+    "subtitle": "A love worth celebrating.",
+    "description": "Because every love story deserves something timeless.",
+    "images": [
+      {
+        "url": "https://res.cloudinary.com/dyhutb5oh/image/upload/v1768154974/hero/sdvi7our4hjzdrauvkfl.png",
+        "publicId": "hero/sdvi7our4hjzdrauvkfl",
+        "alt": "SHAIBHA",
+        "_id": "6963e76c82f1fc919f68d6c0"
+      },
+      {
+        "url": "https://res.cloudinary.com/dyhutb5oh/image/upload/v1768155302/hero/exjerrg0ns7xjmbsdv0b.jpg",
+        "publicId": "hero/exjerrg0ns7xjmbsdv0b",
+        "alt": "SHAIBHA",
+        "_id": "6963e8b782f1fc919f68d6e0"
+      }
+    ],
+    "cta": {
+      "text": "Shop Now",
+      "link": "/shop",
+      "style": "primary"
+    },
+    "secondaryCta": {
+      "text": "Learn More",
+      "link": "",
+      "style": "outline"
+    },
+    "design": {
+      "overlay": {
+        "enabled": true,
+        "color": "rgba(0, 0, 0, 0.4)"
+      },
+      "layout": "fullscreen",
+      "textAlignment": "left",
+      "animation": "fade",
+      "height": "100vh"
+    },
+    "isActive": true,
+    "isDraft": false,
+    "scheduledPublish": null,
+    "version": 9,
+    "order": 3,
+    "createdAt": "2026-01-11T11:39:55.144Z",
+    "updatedAt": "2026-01-11T18:32:13.373Z",
+    "__v": 0
+  },
+  {
+    "_id": "6963a6ed5b64051dbcaecc9c",
+    "title": "LOVE",
+    "subtitle": "When Love Feels Effortless",
+    "description": "Delicate designs inspired by quiet, unforgettable moments.",
+    "images": [
+      {
+        "url": "https://res.cloudinary.com/dyhutb5oh/image/upload/v1768138302/hero/ji3ukknq7juth3drp98u.png",
+        "publicId": "hero/ji3ukknq7juth3drp98u",
+        "alt": "LOVE",
+        "_id": "6963a6ed5b64051dbcaecc9d"
+      }
+    ],
+    "cta": {
+      "text": "Shop Now",
+      "link": "/shop",
+      "style": "primary"
+    },
+    "secondaryCta": {
+      "text": "Learn More",
+      "link": "",
+      "style": "outline"
+    },
+    "design": {
+      "overlay": {
+        "enabled": true,
+        "color": "rgba(0, 0, 0, 0.4)"
+      },
+      "layout": "fullscreen",
+      "textAlignment": "left",
+      "animation": "zoom",
+      "height": "100vh"
+    },
+    "isActive": true,
+    "isDraft": false,
+    "scheduledPublish": null,
+    "version": 2,
+    "order": 2,
+    "createdAt": "2026-01-11T13:34:37.841Z",
+    "updatedAt": "2026-01-11T18:20:25.953Z",
+    "__v": 0
+  }
+]

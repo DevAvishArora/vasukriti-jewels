@@ -4,7 +4,7 @@ const fs = require('fs');
 const path = require('path');
 
 // REPLACE THIS with your NEW MongoDB URI (vasukriti.store@gmail.com account)
-const NEW_MONGODB_URI = process.env.MONGODB_URI || 'PASTE_YOUR_NEW_MONGODB_URI_HERE';
+const NEW_MONGODB_URI = process.env.MONGODB_URI || 'mongodb+srv://vasukritistore_db_dev_user:KYamnEa2pchzjmPo@vasukriti-development.1unebd6.mongodb.net/vasukriti?retryWrites=true&w=majority';
 
 const collections = [
   'users',
