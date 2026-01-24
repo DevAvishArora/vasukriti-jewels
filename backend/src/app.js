@@ -23,6 +23,8 @@ const allowedOrigins = [
   'https://vasukriti.vercel.app',
   'https://vasukriti.store',
   'https://www.vasukriti.store',
+  'https://staging.vasukriti.store',
+  'https://dev.vasukriti.store',
   process.env.FRONTEND_URL
 ].filter(Boolean);
 
