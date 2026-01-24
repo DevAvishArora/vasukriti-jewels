@@ -17,6 +17,8 @@ const allowedOrigins = [
   'http://localhost:3000',
   'http://localhost:3002',
   'https://vasukriti.vercel.app',
+  'https://vasukriti.store',
+  'https://www.vasukriti.store',
   process.env.FRONTEND_URL
 ].filter(Boolean);
 
@@ -25,7 +27,7 @@ app.use(cors({
     // Allow requests with no origin (like mobile apps or curl requests)
     if (!origin) return callback(null, true);
     
-    if (allowedOrigins.indexOf(origin) !== -1 || origin.endsWith('.vercel.app')) {
+    if (allowedOrigins.indexOf(origin) !== -1 || origin.endsWith('.vercel.app') || origin.endsWith('.vasukriti.store')) {
       callback(null, true);
     } else {
       callback(new Error('Not allowed by CORS'));

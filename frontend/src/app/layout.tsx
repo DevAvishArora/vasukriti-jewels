@@ -43,8 +43,12 @@ const cormorant = Cormorant({
 });
 
 export const metadata: Metadata = {
-  title: "Vasukriti - Handcrafted Luxury Jewellery",
+  title: "Vasukriti Jewels - Handcrafted Luxury Jewellery",
   description: "Crafted to adorn your timeless elegance. Handcrafted jewellery inspired by tradition, designed for today.",
+  icons: {
+    icon: '/favicon.png',
+    apple: '/favicon.png',
+  },
 };
 
 export default function RootLayout({
