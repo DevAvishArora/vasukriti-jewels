@@ -15,6 +15,7 @@ const {
   cleanupDeletedProducts,
 } = require('../controllers/productController');
 const { protect, admin } = require('../middleware/auth.middleware');
+const { cache } = require('../middleware/cache.middleware');
 
 const router = express.Router();
 
@@ -93,12 +94,12 @@ const validateStock = [
     .withMessage('Stock quantity must be a non-negative integer'),
 ];
 
-// Public routes
-router.get('/', getProducts);
+// Public routes (with caching)
+router.get('/', cache(120), getProducts); // Cache for 2 minutes
 router.get('/search/autocomplete', searchProducts); // Must be before /:slug
-router.get('/featured', getFeaturedProducts);
-router.get('/new-arrivals', getNewArrivals);
-router.get('/best-sellers', getBestSellers);
+router.get('/featured', cache(300), getFeaturedProducts); // Cache for 5 minutes
+router.get('/new-arrivals', cache(300), getNewArrivals); // Cache for 5 minutes
+router.get('/best-sellers', cache(300), getBestSellers); // Cache for 5 minutes
 
 // Protected admin routes
 router.post('/', protect, admin, validateProduct, createProduct);
@@ -109,6 +110,6 @@ router.delete('/:id', protect, admin, deleteProduct);
 router.patch('/:id/stock', protect, admin, validateStock, updateStock);
 
 // Get single product (must be last to avoid matching specific routes)
-router.get('/:slug', getProduct);
+router.get('/:slug', cache(300), getProduct); // Cache for 5 minutes
 
 module.exports = router;

@@ -58,6 +58,9 @@ const getProducts = async (req, res, next) => {
     // Get total count for pagination
     const count = await Product.countDocuments(query);
 
+    // Cache for 5 minutes
+    res.set('Cache-Control', 'public, max-age=300, s-maxage=300, stale-while-revalidate=600');
+    
     res.status(200).json({
       success: true,
       data: {
@@ -87,9 +90,13 @@ const getProduct = async (req, res, next) => {
 
     // If param is a valid MongoDB ObjectId, fetch by id, otherwise treat as slug
     if (mongoose.Types.ObjectId.isValid(param)) {
-      product = await Product.findById(param).populate('category', 'name slug');
+      product = await Product.findById(param)
+        .populate('category', 'name slug')
+        .lean();
     } else {
-      product = await Product.findOne({ slug: param }).populate('category', 'name slug');
+      product = await Product.findOne({ slug: param })
+        .populate('category', 'name slug')
+        .lean();
     }
 
     // Note: Review population will be added when Review routes are implemented
@@ -99,6 +106,9 @@ const getProduct = async (req, res, next) => {
       throw new Error('Product not found');
     }
 
+    // Add cache header
+    res.set('Cache-Control', 'public, max-age=300, s-maxage=300, stale-while-revalidate=600');
+    
     res.status(200).json({
       success: true,
       data: { product },
@@ -247,11 +257,14 @@ const getFeaturedProducts = async (req, res, next) => {
       isActive: true, 
       isFeatured: true 
     })
+      .select('name slug price images category sku material isFeatured')
       .populate('category', 'name slug')
       .limit(8)
       .sort('-createdAt')
       .lean();
 
+    res.set('Cache-Control', 'public, max-age=300, s-maxage=300, stale-while-revalidate=600');
+    
     res.status(200).json({
       success: true,
       data: { products },
@@ -267,11 +280,14 @@ const getFeaturedProducts = async (req, res, next) => {
 const getNewArrivals = async (req, res, next) => {
   try {
     const products = await Product.find({ isActive: true })
+      .select('name slug price images category sku material createdAt')
       .populate('category', 'name slug')
       .sort('-createdAt')
       .limit(12)
       .lean();
 
+    res.set('Cache-Control', 'public, max-age=300, s-maxage=300, stale-while-revalidate=600');
+    
     res.status(200).json({
       success: true,
       data: { products },
@@ -287,11 +303,14 @@ const getNewArrivals = async (req, res, next) => {
 const getBestSellers = async (req, res, next) => {
   try {
     const products = await Product.find({ isActive: true })
+      .select('name slug price images category sku material soldCount')
       .populate('category', 'name slug')
       .sort('-soldCount')
       .limit(12)
       .lean();
 
+    res.set('Cache-Control', 'public, max-age=300, s-maxage=300, stale-while-revalidate=600');
+    
     res.status(200).json({
       success: true,
       data: { products },

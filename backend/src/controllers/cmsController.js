@@ -10,8 +10,11 @@ exports.getActivePromotionalBar = async (req, res) => {
       ? { isDraft: true }
       : { isActive: true, isDraft: false };
 
-    const promotionalBar = await PromotionalBar.findOne(query).sort({ createdAt: -1 });
+    const promotionalBar = await PromotionalBar.findOne(query).sort({ createdAt: -1 }).lean();
 
+    // Cache for 5 minutes
+    res.set('Cache-Control', 'public, max-age=300, s-maxage=300, stale-while-revalidate=600');
+    
     res.status(200).json({
       success: true,
       data: promotionalBar,
@@ -200,7 +203,7 @@ exports.publishPromotionalBar = async (req, res) => {
 // @access  Public
 exports.getBrandStory = async (req, res) => {
   try {
-    const settings = await Settings.findOne();
+    const settings = await Settings.findOne().lean();
     
     const brandStory = {
       image: settings?.brandStory?.image || '/images/brand-story.png',
@@ -215,6 +218,9 @@ exports.getBrandStory = async (req, res) => {
       ctaText: settings?.brandStory?.ctaText || 'Discover Our Story',
       ctaLink: settings?.brandStory?.ctaLink || '/about',
     };
+
+    // Cache for 10 minutes
+    res.set('Cache-Control', 'public, max-age=600, s-maxage=600, stale-while-revalidate=1200');
 
     res.status(200).json({
       success: true,

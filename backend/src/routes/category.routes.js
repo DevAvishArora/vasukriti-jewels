@@ -9,6 +9,7 @@ const {
   deleteCategory,
 } = require('../controllers/categoryController');
 const { protect, admin } = require('../middleware/auth.middleware');
+const { cache } = require('../middleware/cache.middleware');
 
 const router = express.Router();
 
@@ -48,10 +49,10 @@ const validateCategoryUpdate = [
     .withMessage('Invalid parent category ID'),
 ];
 
-// Public routes
-router.get('/', getCategories);
-router.get('/tree', getCategoryTree);
-router.get('/:slug', getCategory);
+// Public routes (cached for 10 minutes)
+router.get('/', cache(600), getCategories);
+router.get('/tree', cache(600), getCategoryTree);
+router.get('/:slug', cache(300), getCategory);
 
 // Protected admin routes
 router.post('/', protect, admin, validateCategory, createCategory);

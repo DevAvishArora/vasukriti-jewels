@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const { protect, admin } = require('../middleware/auth.middleware');
+const { cache } = require('../middleware/cache.middleware');
 
 // Import controllers
 const {
@@ -37,9 +38,8 @@ const {
   publishFAQ,
 } = require('../controllers/contentController');
 
-// ==================== PROMOTIONAL BAR ROUTES ====================
-// Public routes
-router.get('/promotional-bar/active', getActivePromotionalBar);
+// ============= (cached for 5 minutes)
+router.get('/promotional-bar/active', cache(300), getActivePromotionalBar);
 
 // Admin routes
 router.get('/promotional-bar', protect, admin, getAllPromotionalBars);
@@ -50,8 +50,8 @@ router.delete('/promotional-bar/:id', protect, admin, deletePromotionalBar);
 router.post('/promotional-bar/:id/publish', protect, admin, publishPromotionalBar);
 
 // ==================== HERO SECTION ROUTES ====================
-// Public routes
-router.get('/hero/active', getActiveHeroSections);
+// Public routes (cached for 5 minutes)
+router.get('/hero/active', cache(300), getActiveHeroSections);
 
 // Admin routes
 router.get('/hero', protect, admin, getAllHeroSections);
@@ -62,8 +62,8 @@ router.delete('/hero/:id', protect, admin, deleteHeroSection);
 router.post('/hero/:id/publish', protect, admin, publishHeroSection);
 
 // ==================== STATIC CONTENT ROUTES ====================
-// Public routes
-router.get('/static/:key', getStaticContentByKey);
+// Public routes (cached for 10 minutes)
+router.get('/static/:key', cache(600), getStaticContentByKey);
 
 // Admin routes
 router.get('/static', protect, admin, getAllStaticContent);
@@ -71,8 +71,8 @@ router.put('/static/:sectionKey', protect, admin, upsertStaticContent);
 router.post('/static/:sectionKey/publish', protect, admin, publishStaticContent);
 
 // ==================== FAQ ROUTES ====================
-// Public routes
-router.get('/faq/active', getActiveFAQs);
+// Public routes (cached for 10 minutes)
+router.get('/faq/active', cache(600), getActiveFAQs);
 
 // Admin routes
 router.get('/faq', protect, admin, getAllFAQs);
@@ -84,8 +84,8 @@ router.post('/faq/order', protect, admin, updateFAQOrder);
 router.post('/faq/:id/publish', protect, admin, publishFAQ);
 
 // ==================== BRAND STORY ROUTES ====================
-// Public route
-router.get('/brand-story', getBrandStory);
+// Public route (cached for 10 minutes)
+router.get('/brand-story', cache(600), getBrandStory);
 
 // Admin route
 router.post('/brand-story', protect, admin, updateBrandStory);

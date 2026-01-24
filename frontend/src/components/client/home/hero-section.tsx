@@ -1,9 +1,14 @@
 'use client';
 
 import Link from 'next/link';
+import dynamic from 'next/dynamic';
 import { Button } from '@/components/ui/button';
 import { ArrowRight, Sparkles, Award, Shield } from 'lucide-react';
-import { motion } from 'framer-motion';
+
+// Lazy load motion for performance
+const motion = dynamic(() => import('framer-motion').then(mod => ({ default: mod.motion })), {
+  ssr: false,
+});
 
 export function HeroSection() {
   return (

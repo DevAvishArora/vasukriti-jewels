@@ -2,12 +2,16 @@ const express = require('express');
 const cors = require('cors');
 const helmet = require('helmet');
 const morgan = require('morgan');
+const compression = require('compression');
 const cookieParser = require('cookie-parser');
 const { notFound, errorHandler } = require('./middleware/error.middleware');
 const { apiLimiter } = require('./middleware/rateLimit.middleware');
 const logger = require('./utils/logger');
 
 const app = express();
+
+// Compression middleware - compress all responses
+app.use(compression());
 
 // Middleware
 app.use(helmet()); // Security headers
